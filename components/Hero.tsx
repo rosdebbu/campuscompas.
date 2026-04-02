@@ -49,8 +49,8 @@ const Hero: React.FC = () => {
                     <div className="hidden lg:block relative">
                         <div className="absolute inset-0 bg-gradient-to-tr from-rose-400 to-teal-400 rounded-3xl transform rotate-3 scale-105 opacity-20 dark:opacity-30 blur-lg"></div>
                         <img 
-                            src="https://images.unsplash.com/photo-1562774053-61a2765c7ba3?q=80&w=1974&auto=format&fit=crop" 
-                            alt="SRMIST KTR campus" 
+                            src="/images/hero_tech_park.jpg" 
+                            alt="SRMIST KTR campus - Tech Park" 
                             className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white dark:border-slate-800"
                         />
                     </div>
