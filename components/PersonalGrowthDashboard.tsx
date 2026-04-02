@@ -30,10 +30,10 @@ const mockCommunityImpact: CommunityImpactStats = {
 // --- SUB-COMPONENTS ---
 const ContributionHistoryGraph: React.FC = () => {
     const days = useMemo(() => Array.from({ length: 364 }, () => Math.floor(Math.random() * 5)), []); // 52 * 7 = 364
-    const colors = ['bg-lime-100', 'bg-teal-100', 'bg-teal-200', 'bg-teal-400', 'bg-teal-600'];
+    const colors = ['bg-lime-100 dark:bg-slate-800', 'bg-teal-100', 'bg-teal-200', 'bg-teal-400', 'bg-teal-600'];
     
     return (
-        <div className="grid grid-cols-52 grid-rows-7 gap-px p-2 bg-white rounded-md border border-lime-200">
+        <div className="grid grid-cols-52 grid-rows-7 gap-px p-2 bg-white dark:bg-slate-900 rounded-md border border-lime-200 dark:border-slate-700">
             {days.map((level, i) => (
                 <div key={i} className={`w-full aspect-square rounded-sm ${colors[level]}`} />
             ))}
@@ -83,7 +83,7 @@ const RadarChart: React.FC<{ data: SkillData[] }> = ({ data }) => {
 const BarChart: React.FC<{ data: ProjectVelocityData[] }> = ({ data }) => {
     const maxProjects = Math.max(...data.map(d => d.projects), 0) || 1;
     return (
-        <div className="flex justify-around items-end h-40 bg-lime-50 p-4 rounded-lg border border-lime-200">
+        <div className="flex justify-around items-end h-40 bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
             {data.map(item => (
                 <div key={item.month} className="flex flex-col items-center h-full justify-end">
                     <div className="w-8 bg-rose-300 rounded-t-md hover:bg-rose-400 transition-colors" style={{ height: `${(item.projects / maxProjects) * 100}%` }} title={`${item.projects} projects`} />
@@ -97,57 +97,57 @@ const BarChart: React.FC<{ data: ProjectVelocityData[] }> = ({ data }) => {
 
 const PersonalGrowthDashboard: React.FC = () => {
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <GrowthIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">My Growth Dashboard</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">My Growth Dashboard</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Your personal journey, visualized. Track your progress, celebrate your milestones, and discover insights into your habits and growth.
                     </p>
                 </div>
 
                 <div className="space-y-8">
                     {/* Top Row: Contribution Graph */}
-                    <div className="bg-lime-50 p-6 rounded-2xl shadow-lg border">
-                        <h3 className="text-xl font-bold text-rose-900 mb-4">Coding Consistency</h3>
+                    <div className="bg-lime-50 dark:bg-slate-950 p-6 rounded-2xl shadow-lg border">
+                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4">Coding Consistency</h3>
                         <ContributionHistoryGraph />
-                        <p className="text-xs text-rose-500 mt-2 text-center">Past 12 months of GitHub activity.</p>
+                        <p className="text-xs text-rose-500 dark:text-rose-400 mt-2 text-center">Past 12 months of GitHub activity.</p>
                     </div>
 
                     {/* Bottom Row: Widgets */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {/* Skill Diversity */}
-                        <div className="bg-lime-50 p-6 rounded-2xl shadow-lg border">
-                            <h3 className="text-xl font-bold text-rose-900 mb-2 text-center">Skill Diversity</h3>
+                        <div className="bg-lime-50 dark:bg-slate-950 p-6 rounded-2xl shadow-lg border">
+                            <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-2 text-center">Skill Diversity</h3>
                             <div className="flex justify-center items-center h-48">
                                 <RadarChart data={mockSkillData} />
                             </div>
                         </div>
 
                         {/* Project Velocity */}
-                        <div className="bg-lime-50 p-6 rounded-2xl shadow-lg border">
-                            <h3 className="text-xl font-bold text-rose-900 mb-4 text-center">Project Velocity</h3>
+                        <div className="bg-lime-50 dark:bg-slate-950 p-6 rounded-2xl shadow-lg border">
+                            <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4 text-center">Project Velocity</h3>
                             <BarChart data={mockProjectVelocity} />
                         </div>
 
                         {/* Community Impact */}
-                        <div className="bg-lime-50 p-6 rounded-2xl shadow-lg border">
-                             <h3 className="text-xl font-bold text-rose-900 mb-4 text-center">Community Impact</h3>
+                        <div className="bg-lime-50 dark:bg-slate-950 p-6 rounded-2xl shadow-lg border">
+                             <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4 text-center">Community Impact</h3>
                              <div className="space-y-3">
-                                <div className="text-center p-3 bg-white rounded-lg">
-                                    <p className="text-3xl font-bold text-rose-800">{mockCommunityImpact.mentees}</p>
-                                    <p className="text-sm text-rose-600">Mentees Guided</p>
+                                <div className="text-center p-3 bg-white dark:bg-slate-900 rounded-lg">
+                                    <p className="text-3xl font-bold text-rose-800 dark:text-rose-200">{mockCommunityImpact.mentees}</p>
+                                    <p className="text-sm text-rose-600 dark:text-rose-300">Mentees Guided</p>
                                 </div>
-                                <div className="text-center p-3 bg-white rounded-lg">
-                                    <p className="text-3xl font-bold text-rose-800">{mockCommunityImpact.doubtsAnswered}</p>
-                                    <p className="text-sm text-rose-600">Doubts Answered</p>
+                                <div className="text-center p-3 bg-white dark:bg-slate-900 rounded-lg">
+                                    <p className="text-3xl font-bold text-rose-800 dark:text-rose-200">{mockCommunityImpact.doubtsAnswered}</p>
+                                    <p className="text-sm text-rose-600 dark:text-rose-300">Doubts Answered</p>
                                 </div>
-                                <div className="text-center p-3 bg-white rounded-lg">
-                                    <p className="text-3xl font-bold text-rose-800">{mockCommunityImpact.articleClaps}</p>
-                                    <p className="text-sm text-rose-600">Article Claps Received</p>
+                                <div className="text-center p-3 bg-white dark:bg-slate-900 rounded-lg">
+                                    <p className="text-3xl font-bold text-rose-800 dark:text-rose-200">{mockCommunityImpact.articleClaps}</p>
+                                    <p className="text-sm text-rose-600 dark:text-rose-300">Article Claps Received</p>
                                 </div>
                             </div>
                         </div>

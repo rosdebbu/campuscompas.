@@ -65,13 +65,13 @@ const SuggestFeatureModal: React.FC<SuggestFeatureModalProps> = ({ onClose, onSu
 
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600"><CloseIcon /></button>
-                <h2 className="text-2xl font-bold text-rose-900 mb-6 text-center">Suggest a New Feature</h2>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
+                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Suggest a New Feature</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Feature Title" required className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <textarea value={description} onChange={e => setDescription(e.target.value)} rows={4} placeholder="Describe your feature idea..." className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
-                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Submit Suggestion</button>
+                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Feature Title" required className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <textarea value={description} onChange={e => setDescription(e.target.value)} rows={4} placeholder="Describe your feature idea..." className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Submit Suggestion</button>
                 </form>
             </div>
         </div>
@@ -135,30 +135,30 @@ const OpenSourceApprenticeship: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <ApprenticeIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Open Source Apprenticeship</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Open Source Apprenticeship</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Go from writing code to building software. Join our simulated open-source team, tackle real-world tasks, and learn to navigate a large codebase.
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg border p-6 sm:p-8 space-y-8">
+                <div className="max-w-6xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-6 sm:p-8 space-y-8">
                     {/* Journey Tracker */}
                     <div>
-                        <h3 className="text-xl font-bold text-rose-900 mb-4">Your Journey</h3>
+                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4">Your Journey</h3>
                         <div className="flex items-center">
                             {journeyStages.map((stage, index) => (
                                 <React.Fragment key={stage.stage}>
                                     <div className="flex flex-col items-center">
-                                        <div className={`w-12 h-12 rounded-full flex items-center justify-center border-4 ${index <= currentStageIndex ? 'bg-rose-400 border-rose-500 text-white' : 'bg-lime-100 border-lime-300 text-rose-500'}`}>
+                                        <div className={`w-12 h-12 rounded-full flex items-center justify-center border-4 ${index <= currentStageIndex ? 'bg-rose-400 border-rose-500 text-white' : 'bg-lime-100 dark:bg-slate-800 border-lime-300 text-rose-500 dark:text-rose-400'}`}>
                                             <CheckCircleIcon className="w-8 h-8" />
                                         </div>
-                                        <p className={`text-xs font-semibold mt-2 text-center ${index <= currentStageIndex ? 'text-rose-800' : 'text-rose-500'}`}>{stage.stage}</p>
+                                        <p className={`text-xs font-semibold mt-2 text-center ${index <= currentStageIndex ? 'text-rose-800 dark:text-rose-200' : 'text-rose-500 dark:text-rose-400'}`}>{stage.stage}</p>
                                     </div>
                                     {index < journeyStages.length - 1 && (
                                         <div className={`flex-grow h-1 mx-2 rounded-full ${index < currentStageIndex ? 'bg-rose-400' : 'bg-lime-200'}`}></div>
@@ -190,29 +190,29 @@ const OpenSourceApprenticeship: React.FC = () => {
                             {/* Project Dashboard */}
                             <div>
                                 <div className="flex justify-between items-center mb-4">
-                                    <h3 className="text-xl font-bold text-rose-900">Project: Campus Compass Core</h3>
+                                    <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100">Project: Campus Compass Core</h3>
                                     <button onClick={() => setIsSuggestModalOpen(true)} className="px-4 py-2 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-full hover:bg-yellow-200">+ Suggest a Feature</button>
                                 </div>
                                 <div className="flex flex-col md:flex-row gap-6 h-[400px]">
                                     <div className="md:w-1/4 flex flex-col gap-2">
-                                        <button onClick={() => setActiveTab('overview')} className={`flex items-center p-3 rounded-lg font-semibold transition-colors ${activeTab === 'overview' ? 'bg-lime-100 text-rose-800' : 'hover:bg-lime-50'}`}><OverviewIcon /> Overview</button>
-                                        <button onClick={() => setActiveTab('issues')} className={`flex items-center p-3 rounded-lg font-semibold transition-colors ${activeTab === 'issues' ? 'bg-lime-100 text-rose-800' : 'hover:bg-lime-50'}`}><IssuesIcon /> Issues</button>
-                                        <button onClick={() => setActiveTab('wiki')} className={`flex items-center p-3 rounded-lg font-semibold transition-colors ${activeTab === 'wiki' ? 'bg-lime-100 text-rose-800' : 'hover:bg-lime-50'}`}><WikiIcon /> Wiki</button>
+                                        <button onClick={() => setActiveTab('overview')} className={`flex items-center p-3 rounded-lg font-semibold transition-colors ${activeTab === 'overview' ? 'bg-lime-100 dark:bg-slate-800 text-rose-800 dark:text-rose-200' : 'hover:bg-lime-50 dark:bg-slate-950'}`}><OverviewIcon /> Overview</button>
+                                        <button onClick={() => setActiveTab('issues')} className={`flex items-center p-3 rounded-lg font-semibold transition-colors ${activeTab === 'issues' ? 'bg-lime-100 dark:bg-slate-800 text-rose-800 dark:text-rose-200' : 'hover:bg-lime-50 dark:bg-slate-950'}`}><IssuesIcon /> Issues</button>
+                                        <button onClick={() => setActiveTab('wiki')} className={`flex items-center p-3 rounded-lg font-semibold transition-colors ${activeTab === 'wiki' ? 'bg-lime-100 dark:bg-slate-800 text-rose-800 dark:text-rose-200' : 'hover:bg-lime-50 dark:bg-slate-950'}`}><WikiIcon /> Wiki</button>
                                     </div>
-                                    <div className="md:w-3/4 bg-lime-50 rounded-lg p-4 border border-lime-200 overflow-y-auto">
+                                    <div className="md:w-3/4 bg-lime-50 dark:bg-slate-950 rounded-lg p-4 border border-lime-200 dark:border-slate-700 overflow-y-auto">
                                         {activeTab === 'overview' && (
                                             <div>
-                                                <textarea value={readme} onChange={(e) => setReadme(e.target.value)} className="w-full h-72 font-mono text-sm whitespace-pre-wrap bg-white p-2 rounded-md" />
-                                                <button onClick={() => alert('Changes committed!')} className="mt-2 px-4 py-2 bg-rose-400 text-white text-sm font-semibold rounded-lg hover:bg-rose-500">Commit Changes</button>
+                                                <textarea value={readme} onChange={(e) => setReadme(e.target.value)} className="w-full h-72 font-mono text-sm whitespace-pre-wrap bg-white dark:bg-slate-900 p-2 rounded-md" />
+                                                <button onClick={() => alert('Changes committed!')} className="mt-2 px-4 py-2 bg-rose-400 text-white text-sm font-semibold rounded-lg hover:bg-rose-50 dark:bg-slate-8000">Commit Changes</button>
                                             </div>
                                         )}
                                         {activeTab === 'wiki' && <pre className="font-mono text-sm whitespace-pre-wrap">{contributingContent}</pre>}
                                         {activeTab === 'issues' && (
                                             <div className="space-y-3">
                                                 {availableIssues.length > 0 ? availableIssues.map(issue => (
-                                                    <div key={issue.id} className="p-3 bg-white rounded-md border flex items-center justify-between">
+                                                    <div key={issue.id} className="p-3 bg-white dark:bg-slate-900 rounded-md border flex items-center justify-between">
                                                         <div>
-                                                            <p className="font-semibold text-rose-800">{issue.title}</p>
+                                                            <p className="font-semibold text-rose-800 dark:text-rose-200">{issue.title}</p>
                                                             <div className="flex gap-2 mt-1">
                                                                 {issue.labels.map(label => <span key={label.name} className={`text-xs font-semibold px-2 py-0.5 rounded-full ${label.color}`}>{label.name}</span>)}
                                                             </div>
@@ -226,7 +226,7 @@ const OpenSourceApprenticeship: React.FC = () => {
                                                         </button>
                                                     </div>
                                                 )) : (
-                                                    <p className="text-center text-rose-500 p-4">No available issues for this stage.</p>
+                                                    <p className="text-center text-rose-500 dark:text-rose-400 p-4">No available issues for this stage.</p>
                                                 )}
                                             </div>
                                         )}
@@ -235,26 +235,26 @@ const OpenSourceApprenticeship: React.FC = () => {
                             </div>
 
                             {/* Current Task */}
-                            <div className="bg-rose-50 p-6 rounded-lg border-2 border-rose-200">
+                            <div className="bg-rose-50 dark:bg-slate-800 p-6 rounded-lg border-2 border-rose-200">
                                 {claimedIssue ? (
                                     <>
-                                        <h3 className="text-xl font-bold text-rose-900">Your Current Task: {claimedIssue.title}</h3>
+                                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100">Your Current Task: {claimedIssue.title}</h3>
                                         <p className="text-rose-700 mt-2">You've claimed this issue. Once you've (simulated) fixing it, submit your pull request to complete this stage.</p>
                                         <button
                                             onClick={handlePullRequestSubmit}
                                             disabled={isSubmitting}
-                                            className="mt-4 px-6 py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors disabled:bg-rose-200"
+                                            className="mt-4 px-6 py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors disabled:bg-rose-200"
                                         >
                                             {isSubmitting ? 'Merging Pull Request...' : 'Submit Pull Request'}
                                         </button>
                                     </>
                                 ) : (
                                     <>
-                                        <h3 className="text-xl font-bold text-rose-900">{currentTask.title}</h3>
+                                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100">{currentTask.title}</h3>
                                         <p className="text-rose-700 mt-2">{currentTask.description}</p>
                                         <button
                                             onClick={() => setActiveTab('issues')}
-                                            className="mt-4 px-6 py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors"
+                                            className="mt-4 px-6 py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors"
                                         >
                                             Go to Issues Tab
                                         </button>

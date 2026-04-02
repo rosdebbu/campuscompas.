@@ -140,9 +140,9 @@ const PollComponent: React.FC<{ message: ForumMessage, onVote: (pollId: number, 
 };
 
 const IdeaCard: React.FC<{card: IdeaCardData}> = ({ card }) => (
-    <div className="bg-white p-4 rounded-lg shadow-sm border border-lime-300">
-        <p className="font-bold text-rose-800">{card.title}</p>
-        <p className="text-xs text-rose-500 mt-1">Submitted by {card.submitter.name} • {card.upvotes} upvotes</p>
+    <div className="bg-white dark:bg-slate-900 p-4 rounded-lg shadow-sm border border-lime-300">
+        <p className="font-bold text-rose-800 dark:text-rose-200">{card.title}</p>
+        <p className="text-xs text-rose-500 dark:text-rose-400 mt-1">Submitted by {card.submitter.name} • {card.upvotes} upvotes</p>
         {card.reviewBy && <p className="text-xs mt-2"><strong>Reviewer:</strong> {card.reviewBy}</p>}
         {card.timeline && <p className="text-xs mt-1"><strong>Timeline:</strong> {card.timeline}</p>}
     </div>
@@ -247,30 +247,30 @@ const CommunityForum: React.FC = () => {
     const renderDiscussion = () => (
         <div className="w-full flex flex-col md:flex-row gap-6 h-full">
             {/* Sidebar with channels */}
-            <div className="w-full md:w-1/3 bg-white rounded-xl p-4 flex flex-col">
-                <h3 className="font-bold text-lg mb-4 text-rose-900">Discussion Channels</h3>
-                <div className="space-y-2 overflow-y-auto text-rose-800">
+            <div className="w-full md:w-1/3 bg-white dark:bg-slate-900 rounded-xl p-4 flex flex-col">
+                <h3 className="font-bold text-lg mb-4 text-rose-900 dark:text-rose-100">Discussion Channels</h3>
+                <div className="space-y-2 overflow-y-auto text-rose-800 dark:text-rose-200">
                     {channels.map(channel => (
-                        <button key={channel.id} onClick={() => setActiveChannelId(channel.id)} className={`w-full text-left p-3 rounded-lg font-semibold cursor-pointer transition-colors duration-200 ${activeChannelId === channel.id ? 'bg-teal-100 text-teal-900' : 'hover:bg-lime-100'}`}>
+                        <button key={channel.id} onClick={() => setActiveChannelId(channel.id)} className={`w-full text-left p-3 rounded-lg font-semibold cursor-pointer transition-colors duration-200 ${activeChannelId === channel.id ? 'bg-teal-100 text-teal-900' : 'hover:bg-lime-100 dark:bg-slate-800'}`}>
                             {channel.name}
                         </button>
                     ))}
                 </div>
             </div>
             {/* Main chat window */}
-            <div className="w-full md:w-2/3 flex flex-col bg-white rounded-xl">
+            <div className="w-full md:w-2/3 flex flex-col bg-white dark:bg-slate-900 rounded-xl">
                 <div className="p-4 border-b border-rose-200">
-                    <h3 className="font-bold text-xl text-rose-900">{activeChannel.name}</h3>
-                    <p className="text-sm text-rose-600">{activeChannel.description}</p>
+                    <h3 className="font-bold text-xl text-rose-900 dark:text-rose-100">{activeChannel.name}</h3>
+                    <p className="text-sm text-rose-600 dark:text-rose-300">{activeChannel.description}</p>
                 </div>
                 <div className="flex-grow p-4 space-y-4 overflow-y-auto">
                     {(messages[activeChannelId] || []).map(msg => (
                         <div key={msg.id} className={`flex items-start gap-3 ${msg.user.name === 'You' ? 'flex-row-reverse' : ''}`}>
                             <div className={`w-10 h-10 rounded-full ${msg.user.avatarColor} flex-shrink-0`}></div>
                             <div className={`flex flex-col ${msg.user.name === 'You' ? 'items-end' : 'items-start'}`}>
-                                <p className="font-semibold text-rose-900">{msg.user.name}</p>
-                                <div className={`p-3 rounded-lg mt-1 group ${msg.user.name === 'You' ? 'bg-rose-400 text-white' : 'bg-lime-100'}`}>
-                                    {msg.text && <p className={`${msg.user.name === 'You' ? 'text-white' : 'text-rose-900'}`}>{msg.text}</p>}
+                                <p className="font-semibold text-rose-900 dark:text-rose-100">{msg.user.name}</p>
+                                <div className={`p-3 rounded-lg mt-1 group ${msg.user.name === 'You' ? 'bg-rose-400 text-white' : 'bg-lime-100 dark:bg-slate-800'}`}>
+                                    {msg.text && <p className={`${msg.user.name === 'You' ? 'text-white' : 'text-rose-900 dark:text-rose-100'}`}>{msg.text}</p>}
                                     {msg.poll && <PollComponent message={msg} onVote={handleVote} />}
                                     <div className="flex items-center gap-2 mt-2">
                                         <button onClick={() => handleLike(msg.id)} className="flex items-center gap-1 hover:opacity-80 transition-opacity"><ThumbsUpIcon active={msg.isLiked} /> {msg.likes}</button>
@@ -283,8 +283,8 @@ const CommunityForum: React.FC = () => {
                 </div>
                 <div className="p-4 border-t border-rose-200">
                     <form onSubmit={handleSendMessage} className="relative flex items-center">
-                        <input type="text" placeholder="Share your thoughts..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} className="w-full bg-lime-100 rounded-full py-3 px-5 pr-14 focus:outline-none focus:ring-2 focus:ring-rose-400 text-rose-800 placeholder-rose-400"/>
-                        <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-rose-400 hover:bg-rose-500 text-white w-10 h-10 rounded-full flex items-center justify-center" aria-label="Send Message"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.428A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg></button>
+                        <input type="text" placeholder="Share your thoughts..." value={newMessage} onChange={(e) => setNewMessage(e.target.value)} className="w-full bg-lime-100 dark:bg-slate-800 rounded-full py-3 px-5 pr-14 focus:outline-none focus:ring-2 focus:ring-rose-400 text-rose-800 dark:text-rose-200 placeholder-rose-400"/>
+                        <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-rose-400 hover:bg-rose-50 dark:bg-slate-8000 text-white w-10 h-10 rounded-full flex items-center justify-center" aria-label="Send Message"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.428A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" /></svg></button>
                     </form>
                 </div>
             </div>
@@ -297,8 +297,8 @@ const CommunityForum: React.FC = () => {
             <div className="w-full h-full overflow-x-auto">
                  <div className="flex gap-4 min-w-max h-full">
                     {stages.map(stage => (
-                        <div key={stage} className="w-72 bg-white rounded-xl p-3 flex-shrink-0 flex flex-col">
-                            <h3 className="font-bold text-rose-800 mb-3 px-1">{stage}</h3>
+                        <div key={stage} className="w-72 bg-white dark:bg-slate-900 rounded-xl p-3 flex-shrink-0 flex flex-col">
+                            <h3 className="font-bold text-rose-800 dark:text-rose-200 mb-3 px-1">{stage}</h3>
                             <div className="space-y-3 overflow-y-auto flex-grow">
                                 {ideaCards.filter(c => c.stage === stage).map(card => <IdeaCard key={card.id} card={card} />)}
                             </div>
@@ -318,18 +318,18 @@ const CommunityForum: React.FC = () => {
 
         return (
             <div className="w-full h-full grid grid-cols-1 lg:grid-cols-3 gap-6 overflow-y-auto">
-                <div className="bg-white rounded-xl p-4">
-                    <h3 className="font-bold text-xl text-rose-900 mb-3">Top Ideators</h3>
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
+                    <h3 className="font-bold text-xl text-rose-900 dark:text-rose-100 mb-3">Top Ideators</h3>
                     <ul className="space-y-2">
                         {ideatorLeaderboard.map((leader, index) => {
                             const rank = index + 1;
-                            const specialClass = rank <= 3 ? rankClasses[rank] : 'bg-lime-50';
+                            const specialClass = rank <= 3 ? rankClasses[rank] : 'bg-lime-50 dark:bg-slate-950';
                             return (
                                 <li key={`${leader.name}-ideator`} className={`flex items-center p-3 rounded-lg transition-transform duration-200 hover:scale-[1.02] ${specialClass}`}>
                                     <span className="font-bold text-rose-700 w-8 text-lg">#{rank}</span>
                                     <div className={`w-8 h-8 rounded-full ${leader.avatarColor} mr-3`}></div>
                                     <div className="flex-grow">
-                                        <span className="font-semibold text-rose-800">{leader.name}</span>
+                                        <span className="font-semibold text-rose-800 dark:text-rose-200">{leader.name}</span>
                                         <div className="flex items-center gap-1 mt-1">
                                             {leader.badges?.map(badge => <BadgeIcon key={badge} badge={badge} />)}
                                         </div>
@@ -340,18 +340,18 @@ const CommunityForum: React.FC = () => {
                         })}
                     </ul>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                    <h3 className="font-bold text-xl text-rose-900 mb-3">Top Helpers</h3>
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
+                    <h3 className="font-bold text-xl text-rose-900 dark:text-rose-100 mb-3">Top Helpers</h3>
                     <ul className="space-y-2">
                         {topHelpersLeaderboard.map((leader, index) => {
                              const rank = index + 1;
-                             const specialClass = rank <= 3 ? rankClasses[rank] : 'bg-lime-50';
+                             const specialClass = rank <= 3 ? rankClasses[rank] : 'bg-lime-50 dark:bg-slate-950';
                              return (
                                 <li key={`${leader.name}-helper`} className={`flex items-center p-3 rounded-lg transition-transform duration-200 hover:scale-[1.02] ${specialClass}`}>
                                     <span className="font-bold text-rose-700 w-8 text-lg">#{rank}</span>
                                     <div className={`w-8 h-8 rounded-full ${leader.avatarColor} mr-3`}></div>
                                     <div className="flex-grow">
-                                        <span className="font-semibold text-rose-800">{leader.name}</span>
+                                        <span className="font-semibold text-rose-800 dark:text-rose-200">{leader.name}</span>
                                         <div className="flex items-center gap-1 mt-1">
                                             {leader.badges?.map(badge => <BadgeIcon key={badge} badge={badge} />)}
                                         </div>
@@ -362,8 +362,8 @@ const CommunityForum: React.FC = () => {
                         })}
                     </ul>
                 </div>
-                <div className="bg-white rounded-xl p-4">
-                    <h3 className="font-bold text-xl text-rose-900 mb-3">How to Earn Badges</h3>
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-4">
+                    <h3 className="font-bold text-xl text-rose-900 dark:text-rose-100 mb-3">How to Earn Badges</h3>
                     <div className="space-y-3 text-sm text-rose-700">
                         <p><strong>💡 Idea Starter:</strong> Make your first suggestion.</p>
                         <p><strong>🔊 Community Voice:</strong> Get 100+ upvotes on a post.</p>
@@ -377,18 +377,18 @@ const CommunityForum: React.FC = () => {
 
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                     <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Community Hub</h2>
-                     <p className="text-lg text-rose-600 max-w-2xl mx-auto">Share ideas, track campus change, and get recognized for your contributions.</p>
+                     <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Community Hub</h2>
+                     <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Share ideas, track campus change, and get recognized for your contributions.</p>
                 </div>
 
-                <div className="max-w-6xl mx-auto bg-lime-100 rounded-2xl shadow-lg p-6 h-[800px] flex flex-col">
+                <div className="max-w-6xl mx-auto bg-lime-100 dark:bg-slate-800 rounded-2xl shadow-lg p-6 h-[800px] flex flex-col">
                     <div className="flex-shrink-0 mb-4 bg-white/50 backdrop-blur-sm p-1.5 rounded-xl flex items-center justify-center gap-2">
-                        <button onClick={() => setActiveTab('discussion')} className={`flex-1 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${activeTab === 'discussion' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}><DiscussionIcon /> Discussion</button>
-                        <button onClick={() => setActiveTab('pipeline')} className={`flex-1 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${activeTab === 'pipeline' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}><PipelineIcon /> Idea Pipeline</button>
-                        <button onClick={() => setActiveTab('leaders')} className={`flex-1 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${activeTab === 'leaders' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}><TrophyIcon /> Leaders</button>
+                        <button onClick={() => setActiveTab('discussion')} className={`flex-1 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${activeTab === 'discussion' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}><DiscussionIcon /> Discussion</button>
+                        <button onClick={() => setActiveTab('pipeline')} className={`flex-1 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${activeTab === 'pipeline' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}><PipelineIcon /> Idea Pipeline</button>
+                        <button onClick={() => setActiveTab('leaders')} className={`flex-1 py-2.5 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${activeTab === 'leaders' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}><TrophyIcon /> Leaders</button>
                     </div>
 
                     <div className="flex-grow min-h-0">

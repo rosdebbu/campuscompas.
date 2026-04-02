@@ -77,15 +77,15 @@ CMD [ "npm", "start" ]
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Dockerfile</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Dockerfile</h3>
                 <CodeBlock language="dockerfile">{dockerfile}</CodeBlock>
                 <div className="flex gap-4 mt-4">
-                    <button onClick={handleBuild} disabled={status !== 'idle'} className="flex-1 py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-500 transition-colors">1. Build Image</button>
+                    <button onClick={handleBuild} disabled={status !== 'idle'} className="flex-1 py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-50 dark:bg-slate-8000 transition-colors">1. Build Image</button>
                     <button onClick={handleRun} disabled={status !== 'built' && status !== 'running'} className="flex-1 py-2 px-4 bg-teal-400 text-white font-semibold rounded-lg disabled:bg-teal-200 hover:bg-teal-500 transition-colors">2. Run Container</button>
                 </div>
             </div>
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Simulated Terminal</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Simulated Terminal</h3>
                 <Terminal logs={logs} />
             </div>
         </div>
@@ -108,22 +108,22 @@ const GitModule: React.FC = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Git Repository Visualization</h3>
-                <div className="bg-lime-50 p-4 rounded-lg h-64 border border-lime-200 font-mono text-sm relative">
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Git Repository Visualization</h3>
+                <div className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg h-64 border border-lime-200 dark:border-slate-700 font-mono text-sm relative">
                     {/* Simplified static visualization for demo */}
                     <p>* <span className="text-yellow-500">c4 (HEAD -> dev)</span> New feature</p>
                     <p>| * <span className="text-green-500">c3</span> Another commit</p>
                     <p>|/ </p>
                     <p>* <span className="text-blue-500">c2 (main)</span> Update README</p>
-                    <p>* <span className="text-gray-500">c1</span> Initial commit</p>
+                    <p>* <span className="text-gray-500 dark:text-gray-400">c1</span> Initial commit</p>
                 </div>
                 <div className="flex gap-4 mt-4">
-                    <button onClick={handleCommit} className="flex-1 py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg hover:bg-rose-500 transition-colors">Commit to `dev`</button>
+                    <button onClick={handleCommit} className="flex-1 py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Commit to `dev`</button>
                     <button onClick={handleMerge} className="flex-1 py-2 px-4 bg-teal-400 text-white font-semibold rounded-lg hover:bg-teal-500 transition-colors">Merge `dev` to `main`</button>
                 </div>
             </div>
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Simulated Terminal</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Simulated Terminal</h3>
                 <Terminal logs={logs} />
             </div>
         </div>
@@ -170,18 +170,18 @@ const CiCdModule: React.FC = () => {
     return (
         <div>
             <div className="flex justify-between items-center mb-4">
-                 <h3 className="text-lg font-semibold text-rose-800">CI/CD Pipeline Simulation</h3>
-                 <button onClick={runPipeline} disabled={isRunning} className="py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-500 transition-colors">Run Pipeline</button>
+                 <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200">CI/CD Pipeline Simulation</h3>
+                 <button onClick={runPipeline} disabled={isRunning} className="py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Run Pipeline</button>
             </div>
             <div className="space-y-4">
                 {stages.map(stage => (
-                    <div key={stage.id} className="bg-lime-50 p-4 rounded-lg border border-lime-200">
+                    <div key={stage.id} className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
                         <div className="flex items-center">
                             {stage.status === 'success' && <CheckCircleIcon />}
                             {stage.status === 'failure' && <XCircleIcon />}
                             {stage.status === 'running' && <div className="h-6 w-6 flex items-center justify-center"><div className="animate-spin rounded-full h-4 w-4 border-b-2 border-rose-400"></div></div>}
                             {stage.status === 'pending' && <div className="h-6 w-6"><div className="h-4 w-4 mt-1 ml-1 rounded-full bg-gray-300"></div></div>}
-                            <h4 className="ml-3 font-semibold text-rose-900">{stage.name}</h4>
+                            <h4 className="ml-3 font-semibold text-rose-900 dark:text-rose-100">{stage.name}</h4>
                         </div>
                         {stage.log && (
                              <pre className="mt-2 bg-gray-800 text-white p-2 rounded text-xs font-mono overflow-x-auto">
@@ -206,25 +206,25 @@ const DevOpsPlayground: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <div className="flex justify-center items-center mb-4">
                         <DevOpsIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">DevOps Playground</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">DevOps Playground</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Go beyond just writing code. Learn how to package, deploy, and manage your applications like a professional engineer.
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg border overflow-hidden">
-                    <div className="flex border-b border-lime-200">
+                <div className="max-w-6xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg border overflow-hidden">
+                    <div className="flex border-b border-lime-200 dark:border-slate-700">
                         {modules.map(mod => (
                             <button 
                                 key={mod.id}
                                 onClick={() => setActiveModule(mod.id as any)}
-                                className={`flex-1 py-4 px-2 text-center font-semibold flex items-center justify-center gap-2 transition-colors duration-200 ${activeModule === mod.id ? 'border-b-4 border-rose-400 text-rose-600' : 'text-rose-500 hover:bg-lime-50'}`}
+                                className={`flex-1 py-4 px-2 text-center font-semibold flex items-center justify-center gap-2 transition-colors duration-200 ${activeModule === mod.id ? 'border-b-4 border-rose-400 text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400 hover:bg-lime-50 dark:bg-slate-950'}`}
                             >
                                 <mod.icon className="h-5 w-5" />
                                 {mod.name}

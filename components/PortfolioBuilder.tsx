@@ -50,16 +50,16 @@ const EditModal: React.FC<EditModalProps> = ({ project, onClose, onSave }) => {
 
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl p-8 relative" onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600"><CloseIcon /></button>
-                <h2 className="text-2xl font-bold text-rose-900 mb-1">Add Context to</h2>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-2xl p-8 relative" onClick={e => e.stopPropagation()}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
+                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-1">Add Context to</h2>
                 <p className="text-teal-600 font-semibold text-lg mb-6">{project.name}</p>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <textarea name="whatILearned" value={formData.whatILearned} onChange={handleChange} placeholder="What I Learned..." rows={3} className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <textarea name="challenges" value={formData.challenges} onChange={handleChange} placeholder="Challenges Faced..." rows={3} className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <input name="course" type="text" value={formData.course} onChange={handleChange} placeholder="Related Course (e.g., CS101)" className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <input name="techStack" type="text" value={formData.techStack} onChange={handleChange} placeholder="Tech Stack (e.g., React, Node.js, Firebase)" className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Save Changes</button>
+                    <textarea name="whatILearned" value={formData.whatILearned} onChange={handleChange} placeholder="What I Learned..." rows={3} className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <textarea name="challenges" value={formData.challenges} onChange={handleChange} placeholder="Challenges Faced..." rows={3} className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <input name="course" type="text" value={formData.course} onChange={handleChange} placeholder="Related Course (e.g., CS101)" className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <input name="techStack" type="text" value={formData.techStack} onChange={handleChange} placeholder="Tech Stack (e.g., React, Node.js, Firebase)" className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Save Changes</button>
                 </form>
             </div>
         </div>
@@ -98,12 +98,12 @@ const PortfolioBuilder: React.FC = () => {
     };
     
     const DisconnectedState = () => (
-         <div className="bg-white rounded-2xl shadow-lg p-8 text-center border">
+         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-8 text-center border">
             <div className="flex justify-center items-center mb-4">
                 <PortfolioIcon />
-                <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Portfolio Builder</h2>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Portfolio Builder</h2>
             </div>
-            <p className="text-lg text-rose-600 max-w-2xl mx-auto">Connect your GitHub account to automatically curate and showcase your best projects.</p>
+            <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Connect your GitHub account to automatically curate and showcase your best projects.</p>
             <button 
                 onClick={() => setIsConnected(true)}
                 className="mt-8 inline-flex items-center px-8 py-4 bg-gray-800 text-white font-semibold rounded-full shadow-lg hover:bg-gray-900 transition-all transform hover:scale-105 duration-300"
@@ -114,42 +114,42 @@ const PortfolioBuilder: React.FC = () => {
     );
 
     const ConnectedState = () => (
-        <div className="bg-white rounded-2xl shadow-lg border p-6 space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-6 space-y-6">
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                 <div>
-                     <h2 className="text-2xl font-bold text-rose-900">Your Developer Portfolio</h2>
-                     <p className="text-rose-600">Share this link with recruiters: 
+                     <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100">Your Developer Portfolio</h2>
+                     <p className="text-rose-600 dark:text-rose-300">Share this link with recruiters: 
                          <a href="#" onClick={e=>e.preventDefault()} className="font-semibold text-teal-600 hover:underline ml-1">campasscompass.com/portfolio/{mockUser.username}</a>
                      </p>
                 </div>
-                 <button onClick={() => setIsConnected(false)} className="text-sm text-rose-500 hover:underline">Disconnect GitHub</button>
+                 <button onClick={() => setIsConnected(false)} className="text-sm text-rose-500 dark:text-rose-400 hover:underline">Disconnect GitHub</button>
             </div>
 
-            <div className="bg-lime-50 rounded-lg p-4 flex flex-wrap justify-around items-center border border-lime-200">
+            <div className="bg-lime-50 dark:bg-slate-950 rounded-lg p-4 flex flex-wrap justify-around items-center border border-lime-200 dark:border-slate-700">
                 <div className="text-center p-2">
-                    <p className="text-2xl font-bold text-rose-900">{mockStats.totalContributions}</p>
-                    <p className="text-sm text-rose-600">Total Contributions</p>
+                    <p className="text-2xl font-bold text-rose-900 dark:text-rose-100">{mockStats.totalContributions}</p>
+                    <p className="text-sm text-rose-600 dark:text-rose-300">Total Contributions</p>
                 </div>
                 <div className="text-center p-2">
-                    <p className="text-2xl font-bold text-rose-900">{mockStats.longestStreak} days</p>
-                    <p className="text-sm text-rose-600">Longest Streak</p>
+                    <p className="text-2xl font-bold text-rose-900 dark:text-rose-100">{mockStats.longestStreak} days</p>
+                    <p className="text-sm text-rose-600 dark:text-rose-300">Longest Streak</p>
                 </div>
                 <div className="text-center p-2">
-                    <p className="text-2xl font-bold text-rose-900">{mockStats.mostUsedLanguage}</p>
-                    <p className="text-sm text-rose-600">Most Used Language</p>
+                    <p className="text-2xl font-bold text-rose-900 dark:text-rose-100">{mockStats.mostUsedLanguage}</p>
+                    <p className="text-sm text-rose-600 dark:text-rose-300">Most Used Language</p>
                 </div>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Available Repos */}
                 <div>
-                    <h3 className="font-semibold text-rose-800 mb-3">Available Repositories</h3>
-                    <div className="space-y-3 p-4 bg-lime-50 rounded-lg border border-lime-200 max-h-96 overflow-y-auto">
+                    <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-3">Available Repositories</h3>
+                    <div className="space-y-3 p-4 bg-lime-50 dark:bg-slate-950 rounded-lg border border-lime-200 dark:border-slate-700 max-h-96 overflow-y-auto">
                         {availableRepos.map(repo => (
-                            <div key={repo.id} className="bg-white p-3 rounded-md flex justify-between items-center">
+                            <div key={repo.id} className="bg-white dark:bg-slate-900 p-3 rounded-md flex justify-between items-center">
                                 <div>
-                                    <p className="font-semibold text-rose-800">{repo.name}</p>
-                                    <p className="text-sm text-rose-500 line-clamp-1">{repo.description}</p>
+                                    <p className="font-semibold text-rose-800 dark:text-rose-200">{repo.name}</p>
+                                    <p className="text-sm text-rose-500 dark:text-rose-400 line-clamp-1">{repo.description}</p>
                                 </div>
                                 <button onClick={() => handlePinRepo(repo)} className="flex-shrink-0 ml-4 px-3 py-1 bg-teal-100 text-teal-800 text-sm font-semibold rounded-full hover:bg-teal-200 flex items-center">
                                     <PinIcon /> Pin
@@ -161,15 +161,15 @@ const PortfolioBuilder: React.FC = () => {
 
                  {/* Pinned Projects */}
                 <div>
-                    <h3 className="font-semibold text-rose-800 mb-3">Pinned Projects</h3>
-                    <div className="space-y-3 p-4 bg-lime-50 rounded-lg border border-lime-200 max-h-96 overflow-y-auto">
+                    <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-3">Pinned Projects</h3>
+                    <div className="space-y-3 p-4 bg-lime-50 dark:bg-slate-950 rounded-lg border border-lime-200 dark:border-slate-700 max-h-96 overflow-y-auto">
                          {pinnedProjects.length > 0 ? pinnedProjects.map(project => (
-                             <div key={project.id} className="bg-white p-3 rounded-md">
+                             <div key={project.id} className="bg-white dark:bg-slate-900 p-3 rounded-md">
                                  <div className="flex justify-between items-start">
                                       <div>
-                                        <p className="font-semibold text-rose-800">{project.name}</p>
+                                        <p className="font-semibold text-rose-800 dark:text-rose-200">{project.name}</p>
                                         <div className="flex flex-wrap gap-1 mt-1">
-                                            {project.techStack?.map(tech => <span key={tech} className="text-xs bg-rose-100 text-rose-800 px-1.5 py-0.5 rounded">{tech}</span>)}
+                                            {project.techStack?.map(tech => <span key={tech} className="text-xs bg-rose-100 text-rose-800 dark:text-rose-200 px-1.5 py-0.5 rounded">{tech}</span>)}
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2 flex-shrink-0 ml-2">
@@ -178,7 +178,7 @@ const PortfolioBuilder: React.FC = () => {
                                     </div>
                                  </div>
                              </div>
-                         )) : <p className="text-center text-rose-500 p-4">Pin projects from the left to build your portfolio!</p>}
+                         )) : <p className="text-center text-rose-500 dark:text-rose-400 p-4">Pin projects from the left to build your portfolio!</p>}
                     </div>
                 </div>
             </div>
@@ -187,7 +187,7 @@ const PortfolioBuilder: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 {isConnected ? <ConnectedState /> : <DisconnectedState />}
             </div>

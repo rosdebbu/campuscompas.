@@ -31,10 +31,10 @@ const ContributionGraph: React.FC = () => {
         return grid;
     }, []);
 
-    const colors = ['bg-lime-100', 'bg-teal-100', 'bg-teal-200', 'bg-teal-400', 'bg-teal-600'];
+    const colors = ['bg-lime-100 dark:bg-slate-800', 'bg-teal-100', 'bg-teal-200', 'bg-teal-400', 'bg-teal-600'];
 
     return (
-        <div className="grid grid-cols-17 grid-rows-7 gap-1 p-2 bg-white rounded-md border border-lime-200">
+        <div className="grid grid-cols-17 grid-rows-7 gap-1 p-2 bg-white dark:bg-slate-900 rounded-md border border-lime-200 dark:border-slate-700">
             {days.map((level, i) => (
                 <div key={i} className={`w-3 h-3 rounded-sm ${colors[level]}`} title={`Contribution level ${level}`}></div>
             ))}
@@ -57,19 +57,19 @@ const DisconnectedState: React.FC<{ onConnect: (username: string) => void }> = (
     };
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg p-8 text-center border">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-8 text-center border">
             <div className="flex justify-center items-center mb-4">
                 <GitHubIcon className="h-8 w-8 text-rose-400 mr-2" />
-                <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">GitHub Project Tracker</h2>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">GitHub Project Tracker</h2>
             </div>
-            <p className="text-lg text-rose-600 max-w-2xl mx-auto">Connect your GitHub account to see your activity, repositories, and project tasks right here.</p>
+            <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Connect your GitHub account to see your activity, repositories, and project tasks right here.</p>
             <form onSubmit={handleSubmit} className="mt-8 max-w-sm mx-auto flex flex-col sm:flex-row gap-3">
                 <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Enter your GitHub username"
-                    className="flex-grow w-full px-4 py-3 rounded-full text-rose-800 placeholder-rose-400 bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400 border border-transparent"
+                    className="flex-grow w-full px-4 py-3 rounded-full text-rose-800 dark:text-rose-200 placeholder-rose-400 bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400 border border-transparent"
                     aria-label="GitHub username"
                 />
                 <button
@@ -144,44 +144,44 @@ const ConnectedState: React.FC<{ username: string; onDisconnect: () => void }> =
 
     if (loading) {
         return (
-            <div className="bg-white rounded-2xl shadow-lg border p-8 text-center flex items-center justify-center h-96">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-8 text-center flex items-center justify-center h-96">
                 <svg className="animate-spin h-10 w-10 text-rose-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p className="ml-4 text-lg text-rose-600">Connecting to GitHub...</p>
+                <p className="ml-4 text-lg text-rose-600 dark:text-rose-300">Connecting to GitHub...</p>
             </div>
         );
     }
     
     if (error) {
         return (
-            <div className="bg-white rounded-2xl shadow-lg border p-8 text-center h-96 flex flex-col justify-center items-center">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-8 text-center h-96 flex flex-col justify-center items-center">
                 <p className="text-red-500 font-semibold text-lg">{error}</p>
-                <p className="text-rose-600 mt-2">Please check the username and try again. Disconnecting...</p>
+                <p className="text-rose-600 dark:text-rose-300 mt-2">Please check the username and try again. Disconnecting...</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white rounded-2xl shadow-lg border">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border">
             <div className="p-6">
                 <div className="flex items-center justify-between">
                     <div>
-                        <h2 className="text-2xl font-bold text-rose-900">GitHub Activity</h2>
-                        <a href={userData?.html_url} target="_blank" rel="noopener noreferrer" className="text-rose-600 hover:text-teal-600 transition-colors">@{userData?.login}</a>
+                        <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100">GitHub Activity</h2>
+                        <a href={userData?.html_url} target="_blank" rel="noopener noreferrer" className="text-rose-600 dark:text-rose-300 hover:text-teal-600 transition-colors">@{userData?.login}</a>
                     </div>
                      <div className="flex items-center gap-4">
                         <a href={userData?.html_url} target="_blank" rel="noopener noreferrer">
-                            <img src={userData?.avatar_url} alt="User Avatar" className="w-12 h-12 rounded-full border-2 border-lime-200 hover:border-teal-400 transition-colors"/>
+                            <img src={userData?.avatar_url} alt="User Avatar" className="w-12 h-12 rounded-full border-2 border-lime-200 dark:border-slate-700 hover:border-teal-400 transition-colors"/>
                         </a>
-                        <button onClick={onDisconnect} className="text-sm text-rose-500 hover:underline">Disconnect</button>
+                        <button onClick={onDisconnect} className="text-sm text-rose-500 dark:text-rose-400 hover:underline">Disconnect</button>
                     </div>
                 </div>
             </div>
             
             <div className="px-6 pb-6">
-                <h3 className="font-semibold text-rose-800 mb-2">Contribution Graph (simulation)</h3>
+                <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-2">Contribution Graph (simulation)</h3>
                 <a href={userData?.html_url} target="_blank" rel="noopener noreferrer" className="block hover:opacity-80 transition-opacity">
                     <ContributionGraph />
                 </a>
@@ -189,15 +189,15 @@ const ConnectedState: React.FC<{ username: string; onDisconnect: () => void }> =
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-lime-200">
                 {/* Recent Repos */}
-                <div className="bg-white p-6">
-                    <h3 className="font-semibold text-rose-800 mb-3">Recent Repositories</h3>
+                <div className="bg-white dark:bg-slate-900 p-6">
+                    <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-3">Recent Repositories</h3>
                     <ul className="space-y-3">
                         {repos && repos.map(repo => (
                             <li key={repo.id}>
-                                <a href={repo.url} target="_blank" rel="noopener noreferrer" className="group flex justify-between items-start hover:bg-lime-50 p-2 rounded-md -m-2 transition-colors">
+                                <a href={repo.url} target="_blank" rel="noopener noreferrer" className="group flex justify-between items-start hover:bg-lime-50 dark:bg-slate-950 p-2 rounded-md -m-2 transition-colors">
                                     <div>
-                                        <p className="font-semibold text-rose-800 group-hover:text-teal-600">{repo.name}</p>
-                                        <p className="text-sm text-rose-500 line-clamp-1">{repo.description || "No description provided."}</p>
+                                        <p className="font-semibold text-rose-800 dark:text-rose-200 group-hover:text-teal-600">{repo.name}</p>
+                                        <p className="text-sm text-rose-500 dark:text-rose-400 line-clamp-1">{repo.description || "No description provided."}</p>
                                     </div>
                                     <LinkIcon />
                                 </a>
@@ -207,8 +207,8 @@ const ConnectedState: React.FC<{ username: string; onDisconnect: () => void }> =
                 </div>
                 
                 {/* Project Tasks */}
-                <div className="bg-white p-6">
-                     <h3 className="font-semibold text-rose-800 mb-3">Local Project Tasks</h3>
+                <div className="bg-white dark:bg-slate-900 p-6">
+                     <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-3">Local Project Tasks</h3>
                     <ul className="space-y-2">
                         {tasks.map(task => (
                             <li key={task.id} className="flex items-center cursor-pointer group" onClick={() => handleToggleTask(task.id)}>
@@ -241,7 +241,7 @@ const GitHubWidget: React.FC = () => {
     };
     
     return (
-        <section className="py-20 bg-lime-50">
+        <section className="py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 {username ? (
                     <ConnectedState username={username} onDisconnect={handleDisconnect} />

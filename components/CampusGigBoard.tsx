@@ -43,16 +43,16 @@ const PostGigModal: React.FC<PostGigModalProps> = ({ onClose, onAddGig }) => {
 
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600"><CloseIcon /></button>
-                <h2 className="text-2xl font-bold text-rose-900 mb-6 text-center">Post a Gig</h2>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
+                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Post a Gig</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title" required className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <input type="text" value={client} onChange={e => setClient(e.target.value)} placeholder="Your Name / Club Name" required className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <textarea value={description} onChange={e => setDescription(e.target.value)} rows={3} placeholder="Project Description" required className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
-                    <input type="text" value={skills} onChange={e => setSkills(e.target.value)} placeholder="Required Skills (e.g., React, Python)" required className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <input type="number" value={budget} onChange={e => setBudget(e.target.value)} placeholder="Budget (in USD)" required className="w-full p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Post Gig</button>
+                    <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Project Title" required className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <input type="text" value={client} onChange={e => setClient(e.target.value)} placeholder="Your Name / Club Name" required className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <textarea value={description} onChange={e => setDescription(e.target.value)} rows={3} placeholder="Project Description" required className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                    <input type="text" value={skills} onChange={e => setSkills(e.target.value)} placeholder="Required Skills (e.g., React, Python)" required className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <input type="number" value={budget} onChange={e => setBudget(e.target.value)} placeholder="Budget (in USD)" required className="w-full p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Post Gig</button>
                 </form>
             </div>
         </div>
@@ -62,18 +62,18 @@ const PostGigModal: React.FC<PostGigModalProps> = ({ onClose, onAddGig }) => {
 
 // --- GIG CARD ---
 const GigCard: React.FC<{ gig: Gig }> = ({ gig }) => (
-    <div className="bg-white rounded-lg shadow-md p-6 flex flex-col transform hover:-translate-y-1 transition-transform duration-300 border border-lime-200">
+    <div className="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 flex flex-col transform hover:-translate-y-1 transition-transform duration-300 border border-lime-200 dark:border-slate-700">
         <div className="flex-grow">
-            <p className="text-sm text-rose-500">{gig.client}</p>
-            <h3 className="text-xl font-bold text-rose-900 mt-1">{gig.title}</h3>
+            <p className="text-sm text-rose-500 dark:text-rose-400">{gig.client}</p>
+            <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mt-1">{gig.title}</h3>
             <p className="text-sm text-rose-700 mt-2 line-clamp-3">{gig.description}</p>
             <div className="flex flex-wrap gap-2 mt-4">
                 {gig.skills.map(skill => <span key={skill} className="text-xs font-semibold bg-lime-200 text-lime-800 px-2 py-1 rounded-full">{skill}</span>)}
             </div>
         </div>
-        <div className="mt-4 pt-4 border-t border-lime-200 flex justify-between items-center">
+        <div className="mt-4 pt-4 border-t border-lime-200 dark:border-slate-700 flex justify-between items-center">
             <p className="text-lg font-bold text-teal-600">${gig.budget}</p>
-            <button className="px-4 py-2 bg-rose-400 text-white text-sm font-semibold rounded-lg hover:bg-rose-500 transition-colors">View & Apply</button>
+            <button className="px-4 py-2 bg-rose-400 text-white text-sm font-semibold rounded-lg hover:bg-rose-50 dark:bg-slate-8000 transition-colors">View & Apply</button>
         </div>
     </div>
 );
@@ -100,19 +100,19 @@ const CampusGigBoard: React.FC = () => {
     };
 
     return (
-        <section className="py-20 bg-lime-50">
+        <section className="py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <GigBoardIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Campus Gig Board</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Campus Gig Board</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Put your skills to work. Find paid projects, collaborate on interesting ideas, and gain real-world experience right here on campus.
                     </p>
                     <button 
                         onClick={() => setIsModalOpen(true)}
-                        className="mt-4 inline-flex items-center text-rose-500 font-semibold hover:underline"
+                        className="mt-4 inline-flex items-center text-rose-500 dark:text-rose-400 font-semibold hover:underline"
                     >
                          <PostIcon /> Post a New Gig
                     </button>
@@ -121,7 +121,7 @@ const CampusGigBoard: React.FC = () => {
                 <div className="flex justify-center items-center mb-8">
                     <div className="flex flex-wrap justify-center gap-2">
                         {allSkills.map(skill => (
-                            <button key={skill} onClick={() => setActiveSkill(skill)} className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${activeSkill === skill ? 'bg-rose-400 text-white shadow-md' : 'bg-white text-rose-700 hover:bg-lime-200'}`}>
+                            <button key={skill} onClick={() => setActiveSkill(skill)} className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${activeSkill === skill ? 'bg-rose-400 text-white shadow-md' : 'bg-white dark:bg-slate-900 text-rose-700 hover:bg-lime-200'}`}>
                                 {skill}
                             </button>
                         ))}
@@ -132,7 +132,7 @@ const CampusGigBoard: React.FC = () => {
                     {filteredGigs.length > 0 ? (
                         filteredGigs.map(gig => <GigCard key={gig.id} gig={gig} />)
                     ) : (
-                        <div className="md:col-span-2 lg:col-span-3 text-center text-rose-600 bg-white p-8 rounded-lg">
+                        <div className="md:col-span-2 lg:col-span-3 text-center text-rose-600 dark:text-rose-300 bg-white dark:bg-slate-900 p-8 rounded-lg">
                             <p>No gigs found for this skill. Try another filter!</p>
                         </div>
                     )}

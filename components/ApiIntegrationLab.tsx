@@ -39,11 +39,11 @@ const ApiPlaygroundModule: React.FC = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Make a Request</h3>
-                <div className="space-y-4 bg-lime-50 p-4 rounded-lg border border-lime-200">
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Make a Request</h3>
+                <div className="space-y-4 bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
                     <div>
                         <label className="text-sm font-medium text-rose-700">Select API</label>
-                        <select value={api} onChange={e => setApi(e.target.value)} className="w-full mt-1 p-2 rounded bg-white">
+                        <select value={api} onChange={e => setApi(e.target.value)} className="w-full mt-1 p-2 rounded bg-white dark:bg-slate-900">
                             <option value="github">GitHub</option>
                             <option value="jokes">Joke API</option>
                         </select>
@@ -54,15 +54,15 @@ const ApiPlaygroundModule: React.FC = () => {
                             <span className="bg-gray-200 p-2 rounded-l text-sm">{apiDetails[api as keyof typeof apiDetails].base}</span>
                             <input type="text" value={endpoint} onChange={e => setEndpoint(e.target.value)} className="w-full p-2 rounded-r" />
                         </div>
-                         <p className="text-xs text-rose-500 mt-1">Example: <code className="bg-rose-100 p-1 rounded">{apiDetails[api as keyof typeof apiDetails].example}</code></p>
+                         <p className="text-xs text-rose-500 dark:text-rose-400 mt-1">Example: <code className="bg-rose-100 p-1 rounded">{apiDetails[api as keyof typeof apiDetails].example}</code></p>
                     </div>
-                     <button onClick={handleSendRequest} disabled={isLoading} className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-500 transition-colors">
+                     <button onClick={handleSendRequest} disabled={isLoading} className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
                         {isLoading ? 'Sending...' : 'Send Request'}
                     </button>
                 </div>
             </div>
             <div>
-                 <h3 className="text-lg font-semibold text-rose-800 mb-2">Response</h3>
+                 <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Response</h3>
                  <div className="h-80">
                     <CodeBlock language="json">{isLoading ? "Loading..." : response || "// Response will appear here"}</CodeBlock>
                 </div>
@@ -100,18 +100,18 @@ app.listen(3000, () => {
 
     return (
         <div>
-            <h3 className="text-lg font-semibold text-rose-800 mb-2">Build a Simple "To-Do List" API</h3>
+            <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Build a Simple "To-Do List" API</h3>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
                      <p className="text-rose-700 mb-4">This example shows the basic code for creating a REST API with Express.js. It has two endpoints: one to get all to-do items and one to add a new one.</p>
                      <CodeBlock language="javascript">{nodeCode}</CodeBlock>
                  </div>
                  <div>
-                    <h4 className="font-semibold text-rose-800 mb-2">Test it Out</h4>
-                    <p className="text-sm text-rose-600 mb-2">You can test this API using a tool like Postman or with curl commands in your terminal:</p>
-                    <p className="font-semibold text-rose-800 mt-4">Fetch all items:</p>
+                    <h4 className="font-semibold text-rose-800 dark:text-rose-200 mb-2">Test it Out</h4>
+                    <p className="text-sm text-rose-600 dark:text-rose-300 mb-2">You can test this API using a tool like Postman or with curl commands in your terminal:</p>
+                    <p className="font-semibold text-rose-800 dark:text-rose-200 mt-4">Fetch all items:</p>
                     <CodeBlock language="bash">curl http://localhost:3000/todos</CodeBlock>
-                    <p className="font-semibold text-rose-800 mt-4">Add a new item:</p>
+                    <p className="font-semibold text-rose-800 dark:text-rose-200 mt-4">Add a new item:</p>
                     <CodeBlock language="bash">
 {`curl -X POST http://localhost:3000/todos \\
 -H "Content-Type: application/json" \\
@@ -154,22 +154,22 @@ paths:
 
     return (
         <div>
-            <h3 className="text-lg font-semibold text-rose-800 mb-2">Documenting an API with OpenAPI (Swagger)</h3>
+            <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Documenting an API with OpenAPI (Swagger)</h3>
             <p className="text-rose-700 mb-4">Good documentation is crucial for any API. The OpenAPI Specification is a standard way to describe REST APIs. The YAML code below defines a simple endpoint, and the panel on the right shows how it would be rendered in a tool like Swagger UI.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                      <CodeBlock language="yaml">{swaggerYaml}</CodeBlock>
                 </div>
-                <div className="bg-lime-50 p-4 rounded-lg border border-lime-200">
+                <div className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
                     <h4 className="text-lg font-bold">Swagger UI Preview</h4>
-                    <div className="mt-4 p-3 bg-white rounded shadow-sm">
+                    <div className="mt-4 p-3 bg-white dark:bg-slate-900 rounded shadow-sm">
                         <div className="p-2 bg-teal-100 rounded flex items-center">
                             <span className="font-bold text-teal-800 text-sm mr-4 bg-teal-200 px-2 py-1 rounded">GET</span>
                             <span className="font-mono text-teal-900">/books</span>
                         </div>
                         <div className="p-2 mt-2">
-                             <p className="text-sm text-gray-600">Returns a list of books.</p>
-                             <p className="font-semibold mt-2 text-gray-800">Responses</p>
+                             <p className="text-sm text-gray-600 dark:text-gray-400">Returns a list of books.</p>
+                             <p className="font-semibold mt-2 text-gray-800 dark:text-gray-200">Responses</p>
                              <div className="flex items-center justify-between mt-1 text-sm bg-gray-100 p-2 rounded">
                                  <span><span className="font-mono text-green-700">200</span> A JSON array of books</span>
                                  <a href="#" className="text-blue-600 hover:underline">Schema</a>
@@ -194,25 +194,25 @@ const ApiIntegrationLab: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <div className="flex justify-center items-center mb-4">
                         <ApiIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">API & Integration Lab</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">API & Integration Lab</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Connect your code to the world. Learn to fetch data, automate tasks, and build powerful applications using APIs.
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg border overflow-hidden">
-                    <div className="flex border-b border-lime-200">
+                <div className="max-w-6xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg border overflow-hidden">
+                    <div className="flex border-b border-lime-200 dark:border-slate-700">
                         {modules.map(mod => (
                             <button 
                                 key={mod.id}
                                 onClick={() => setActiveModule(mod.id as any)}
-                                className={`flex-1 py-4 px-2 text-center font-semibold flex items-center justify-center gap-2 transition-colors duration-200 ${activeModule === mod.id ? 'border-b-4 border-rose-400 text-rose-600' : 'text-rose-500 hover:bg-lime-50'}`}
+                                className={`flex-1 py-4 px-2 text-center font-semibold flex items-center justify-center gap-2 transition-colors duration-200 ${activeModule === mod.id ? 'border-b-4 border-rose-400 text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400 hover:bg-lime-50 dark:bg-slate-950'}`}
                             >
                                 <mod.icon className="h-5 w-5" />
                                 {mod.name}

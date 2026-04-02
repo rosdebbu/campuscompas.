@@ -20,14 +20,14 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ onFeedbackClick }) => {
     return (
-        <footer className="bg-teal-800 text-lime-200">
+        <footer className="bg-teal-900 border-t border-teal-800 dark:bg-slate-950 dark:border-slate-800 text-lime-100 transition-colors duration-300">
             <div className="container mx-auto px-4 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* About Section */}
                     <div className="md:col-span-1">
                          <div className="flex items-center mb-4">
                             <LogoIcon />
-                            <h2 className="text-xl font-bold text-white">LocalAlert Pro</h2>
+                            <h2 className="text-xl font-bold text-white">CampusCompass</h2>
                         </div>
                         <p className="text-sm text-lime-100 max-w-xs">
                             Empowering SRMIST Potheri students with AI-powered campus navigation, real-time updates, and seamless connectivity for a smarter campus experience.
@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({ onFeedbackClick }) => {
                              </li>
                             <li className="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                support@localalert.edu
+                                support@campuscompass.edu
                             </li>
                              <li>
                                 <button onClick={onFeedbackClick} className="flex items-center hover:text-white transition-colors">
@@ -67,7 +67,7 @@ const Footer: React.FC<FooterProps> = ({ onFeedbackClick }) => {
                 </div>
 
                 <div className="mt-12 border-t border-teal-700 pt-6 text-center text-sm text-lime-100">
-                    <p>&copy; {new Date().getFullYear()} LocalAlert Pro - SRMIST Potheri. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} CampusCompass - SRMIST Potheri. All rights reserved.</p>
                     <p>Made with <span className="text-red-400">&hearts;</span> for students.</p>
                 </div>
             </div>

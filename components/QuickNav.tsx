@@ -22,18 +22,32 @@ const navItems: NavItem[] = [
     { id: 8, label: 'Events', icon: EventsIcon },
 ];
 
-const NavButton: React.FC<{ item: NavItem }> = ({ item }) => (
-    <div className="flex flex-col items-center space-y-3">
-        <button className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg text-rose-500 hover:bg-rose-50 transition-all duration-300 transform hover:scale-105">
-            <item.icon />
-        </button>
-        <span className="px-4 py-1 bg-gray-300 text-gray-700 rounded-md text-sm font-medium">{item.label}</span>
-    </div>
-);
+const NavButton: React.FC<{ item: NavItem }> = ({ item }) => {
+    const handleScroll = () => {
+        const targetId = item.label.toLowerCase();
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
+    return (
+        <div className="flex flex-col items-center space-y-3">
+            <button 
+                onClick={handleScroll}
+                title={`Go to ${item.label}`}
+                className="w-24 h-24 bg-white dark:bg-slate-900 rounded-3xl flex items-center justify-center shadow-lg text-rose-500 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-slate-800 transition-all duration-300 transform hover:scale-105"
+            >
+                <item.icon />
+            </button>
+            <span className="px-4 py-1 bg-gray-300 text-gray-700 dark:bg-slate-700 dark:text-gray-300 rounded-md text-sm font-medium">{item.label}</span>
+        </div>
+    );
+};
 
 const QuickNav: React.FC = () => {
     return (
-        <section className="py-12 bg-lime-100">
+        <section className="py-12 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-8 sm:gap-x-8">
                     {navItems.map(item => (

@@ -86,29 +86,29 @@ const SuggestPlaceModal: React.FC<{
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative"
+        className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative"
         onClick={e => e.stopPropagation()}
       >
-        <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600">
+        <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300">
           <CloseIcon />
         </button>
-        <h2 className="text-2xl font-bold text-rose-900 mb-6 text-center">Suggest a New Place</h2>
+        <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Suggest a New Place</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="placeName" className="text-sm font-medium text-rose-800">Place Name</label>
-            <input id="placeName" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Corner Cafe" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+            <label htmlFor="placeName" className="text-sm font-medium text-rose-800 dark:text-rose-200">Place Name</label>
+            <input id="placeName" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Corner Cafe" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
           </div>
           <div>
-            <label htmlFor="address" className="text-sm font-medium text-rose-800">Location / Address</label>
-            <input id="address" type="text" value={address} onChange={e => setAddress(e.target.value)} placeholder="e.g., Near Tech Park" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+            <label htmlFor="address" className="text-sm font-medium text-rose-800 dark:text-rose-200">Location / Address</label>
+            <input id="address" type="text" value={address} onChange={e => setAddress(e.target.value)} placeholder="e.g., Near Tech Park" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
           </div>
           <div>
-            <label htmlFor="category" className="text-sm font-medium text-rose-800">Category</label>
-            <select id="category" value={category} onChange={e => setCategory(e.target.value)} className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400">
+            <label htmlFor="category" className="text-sm font-medium text-rose-800 dark:text-rose-200">Category</label>
+            <select id="category" value={category} onChange={e => setCategory(e.target.value)} className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400">
               {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.title}</option>)}
             </select>
           </div>
-          <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Submit Suggestion</button>
+          <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Submit Suggestion</button>
         </form>
       </div>
     </div>
@@ -119,7 +119,7 @@ const SuggestPlaceModal: React.FC<{
 // --- COMPONENTS ---
 const PlaceCard: React.FC<{ place: Place; isSaved: boolean; onSaveToggle: (id: string) => void; showRemoveButton?: boolean; }> = ({ place, isSaved, onSaveToggle, showRemoveButton }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 group relative">
+    <div className="bg-white dark:bg-slate-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 group relative">
       <img src={place.imageUrl} alt={place.name} className="w-full h-40 object-cover" />
       {showRemoveButton && (
           <button 
@@ -133,8 +133,8 @@ const PlaceCard: React.FC<{ place: Place; isSaved: boolean; onSaveToggle: (id: s
       <div className="p-4">
         <div className="flex justify-between items-start">
             <div>
-                <h3 className="text-xl font-bold text-rose-900">{place.name}</h3>
-                <p className="text-sm text-rose-600">{place.address}</p>
+                <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100">{place.name}</h3>
+                <p className="text-sm text-rose-600 dark:text-rose-300">{place.address}</p>
             </div>
             <button onClick={() => onSaveToggle(place.id)} className="p-1 -mt-1 -mr-1" aria-label={`Save ${place.name}`}>
                 <BookmarkIcon filled={isSaved} />
@@ -228,8 +228,8 @@ const CampusFacilities: React.FC = () => {
         return (
           <div>
             <div className="flex justify-between items-center mb-6">
-                 <h2 className="text-3xl font-bold text-rose-900">{title}</h2>
-                 <button onClick={() => setActiveCategory(null)} className="text-rose-500 font-semibold hover:underline">
+                 <h2 className="text-3xl font-bold text-rose-900 dark:text-rose-100">{title}</h2>
+                 <button onClick={() => setActiveCategory(null)} className="text-rose-500 dark:text-rose-400 font-semibold hover:underline">
                     &larr; Back to Categories
                  </button>
             </div>
@@ -246,10 +246,10 @@ const CampusFacilities: React.FC = () => {
                     ))}
                  </div>
             ) : (
-                <div className="text-center bg-white p-8 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-rose-900">No Saved Places Yet</h3>
-                    <p className="text-rose-600 mt-2">Click the bookmark icon on a place to save it here.</p>
-                     <button onClick={() => setView('results')} className="mt-4 px-6 py-2 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-500 transition-colors">
+                <div className="text-center bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm">
+                    <h3 className="text-xl font-semibold text-rose-900 dark:text-rose-100">No Saved Places Yet</h3>
+                    <p className="text-rose-600 dark:text-rose-300 mt-2">Click the bookmark icon on a place to save it here.</p>
+                     <button onClick={() => setView('results')} className="mt-4 px-6 py-2 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
                         Find Nearby Places
                     </button>
                 </div>
@@ -263,13 +263,13 @@ const CampusFacilities: React.FC = () => {
             {categories.map(category => {
                 const savedCount = savedPlaces[category.id]?.length || 0;
                 return (
-                    <div key={category.id} className="bg-white rounded-2xl shadow-lg p-6 text-center flex flex-col justify-between">
+                    <div key={category.id} className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-6 text-center flex flex-col justify-between">
                         <div>
-                            <h3 className="text-2xl font-bold text-rose-900">{category.title}</h3>
-                            <p className="text-rose-600 mb-6">{category.subtitle}</p>
+                            <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100">{category.title}</h3>
+                            <p className="text-rose-600 dark:text-rose-300 mb-6">{category.subtitle}</p>
                         </div>
                         <div className="flex flex-col space-y-3">
-                            <button onClick={() => handleAction(category, 'results')} className="w-full px-6 py-3 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-500 transition-colors">
+                            <button onClick={() => handleAction(category, 'results')} className="w-full px-6 py-3 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
                                 Find Nearby
                             </button>
                             <button onClick={() => handleAction(category, 'saved')} className="w-full px-6 py-3 bg-red-300 text-white font-semibold rounded-full hover:bg-red-400 transition-colors">
@@ -283,7 +283,7 @@ const CampusFacilities: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 {!activeCategory && (
                      <div className="text-center mb-12">
@@ -291,12 +291,12 @@ const CampusFacilities: React.FC = () => {
                             <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                             </svg>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Campus Facilities</h2>
+                            <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Campus Facilities</h2>
                         </div>
-                        <p className="text-lg text-rose-600 max-w-2xl mx-auto">Discover and save key places around campus.</p>
+                        <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Discover and save key places around campus.</p>
                          <button 
                             onClick={() => setIsSuggestModalOpen(true)}
-                            className="mt-4 inline-flex items-center px-6 py-2 bg-white text-rose-600 font-semibold rounded-full border border-rose-200 hover:bg-rose-50 transition-colors shadow-sm"
+                            className="mt-4 inline-flex items-center px-6 py-2 bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-300 font-semibold rounded-full border border-rose-200 hover:bg-rose-50 dark:bg-slate-800 transition-colors shadow-sm"
                         >
                             + Suggest a New Place
                         </button>

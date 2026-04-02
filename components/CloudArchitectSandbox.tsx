@@ -7,7 +7,7 @@ const ServerIcon: React.FC<{className?: string}> = ({ className }) => <svg xmlns
 const DatabaseIcon: React.FC<{className?: string}> = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" className={className || "h-6 w-6"} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" /></svg>;
 const LambdaIcon: React.FC<{className?: string}> = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" className={className || "h-6 w-6"} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
 const CheckCircleIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
-const SpinnerIcon: React.FC = () => <svg className="animate-spin h-5 w-5 text-rose-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>;
+const SpinnerIcon: React.FC = () => <svg className="animate-spin h-5 w-5 text-rose-500 dark:text-rose-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>;
 
 // --- SHARED COMPONENTS ---
 const CodeBlock: React.FC<{ children: React.ReactNode; language: string }> = ({ children, language }) => (
@@ -49,27 +49,27 @@ const WebServerModule: React.FC = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Instance Configuration</h3>
-                <div className="space-y-3 bg-lime-50 p-4 rounded-lg border border-lime-200">
-                    <div><label className="text-sm font-medium text-rose-700">Instance Name</label><input type="text" value={vm.name} readOnly className="w-full mt-1 p-2 rounded bg-white" /></div>
-                    <div><label className="text-sm font-medium text-rose-700">Instance Type</label><input type="text" value={vm.type} readOnly className="w-full mt-1 p-2 rounded bg-white" /></div>
-                    <div><label className="text-sm font-medium text-rose-700">Operating System</label><input type="text" value={vm.os} readOnly className="w-full mt-1 p-2 rounded bg-white" /></div>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Instance Configuration</h3>
+                <div className="space-y-3 bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
+                    <div><label className="text-sm font-medium text-rose-700">Instance Name</label><input type="text" value={vm.name} readOnly className="w-full mt-1 p-2 rounded bg-white dark:bg-slate-900" /></div>
+                    <div><label className="text-sm font-medium text-rose-700">Instance Type</label><input type="text" value={vm.type} readOnly className="w-full mt-1 p-2 rounded bg-white dark:bg-slate-900" /></div>
+                    <div><label className="text-sm font-medium text-rose-700">Operating System</label><input type="text" value={vm.os} readOnly className="w-full mt-1 p-2 rounded bg-white dark:bg-slate-900" /></div>
                 </div>
-                <button onClick={handleLaunch} disabled={vm.status === 'pending' || vm.status === 'running'} className="w-full mt-4 py-3 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-500 transition-colors">Launch Instance</button>
+                <button onClick={handleLaunch} disabled={vm.status === 'pending' || vm.status === 'running'} className="w-full mt-4 py-3 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Launch Instance</button>
             </div>
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Status & Logs</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Status & Logs</h3>
                 <div className="space-y-3">
-                    <div className="flex justify-between items-center bg-lime-50 p-3 rounded-lg border border-lime-200">
-                        <span className="font-semibold text-rose-800">Status</span>
+                    <div className="flex justify-between items-center bg-lime-50 dark:bg-slate-950 p-3 rounded-lg border border-lime-200 dark:border-slate-700">
+                        <span className="font-semibold text-rose-800 dark:text-rose-200">Status</span>
                         <div className="flex items-center gap-2">
                            {vm.status === 'running' && <CheckCircleIcon />}
                            {vm.status === 'pending' && <SpinnerIcon />}
                            <span className="capitalize">{vm.status}</span>
                         </div>
                     </div>
-                     <div className="flex justify-between items-center bg-lime-50 p-3 rounded-lg border border-lime-200">
-                        <span className="font-semibold text-rose-800">Public IP</span>
+                     <div className="flex justify-between items-center bg-lime-50 dark:bg-slate-950 p-3 rounded-lg border border-lime-200 dark:border-slate-700">
+                        <span className="font-semibold text-rose-800 dark:text-rose-200">Public IP</span>
                         <span>{vm.ipAddress || 'N/A'}</span>
                     </div>
                     <Terminal logs={logs} />
@@ -102,26 +102,26 @@ const DatabaseModule: React.FC = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Database Configuration</h3>
-                <div className="space-y-3 bg-lime-50 p-4 rounded-lg border border-lime-200">
-                     <div><label className="text-sm font-medium text-rose-700">DB Name</label><input type="text" value={db.name} readOnly className="w-full mt-1 p-2 rounded bg-white" /></div>
-                     <div><label className="text-sm font-medium text-rose-700">Engine</label><input type="text" value={db.engine} readOnly className="w-full mt-1 p-2 rounded bg-white" /></div>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Database Configuration</h3>
+                <div className="space-y-3 bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
+                     <div><label className="text-sm font-medium text-rose-700">DB Name</label><input type="text" value={db.name} readOnly className="w-full mt-1 p-2 rounded bg-white dark:bg-slate-900" /></div>
+                     <div><label className="text-sm font-medium text-rose-700">Engine</label><input type="text" value={db.engine} readOnly className="w-full mt-1 p-2 rounded bg-white dark:bg-slate-900" /></div>
                 </div>
-                <button onClick={handleProvision} disabled={db.status !== 'off'} className="w-full mt-4 py-3 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-500 transition-colors">Provision Database</button>
+                <button onClick={handleProvision} disabled={db.status !== 'off'} className="w-full mt-4 py-3 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Provision Database</button>
             </div>
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Status & Logs</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Status & Logs</h3>
                 <div className="space-y-3">
-                     <div className="flex justify-between items-center bg-lime-50 p-3 rounded-lg border border-lime-200">
-                        <span className="font-semibold text-rose-800">Status</span>
+                     <div className="flex justify-between items-center bg-lime-50 dark:bg-slate-950 p-3 rounded-lg border border-lime-200 dark:border-slate-700">
+                        <span className="font-semibold text-rose-800 dark:text-rose-200">Status</span>
                          <div className="flex items-center gap-2">
                            {db.status === 'available' && <CheckCircleIcon />}
                            {db.status === 'provisioning' && <SpinnerIcon />}
                            <span className="capitalize">{db.status}</span>
                         </div>
                     </div>
-                     <div className="bg-lime-50 p-3 rounded-lg border border-lime-200">
-                        <p className="font-semibold text-rose-800">Endpoint</p>
+                     <div className="bg-lime-50 dark:bg-slate-950 p-3 rounded-lg border border-lime-200 dark:border-slate-700">
+                        <p className="font-semibold text-rose-800 dark:text-rose-200">Endpoint</p>
                         <p className="text-xs break-all">{db.endpoint || 'N/A'}</p>
                     </div>
                     <Terminal logs={logs} />
@@ -164,18 +164,18 @@ def lambda_handler(event, context):
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Function Code ({func.runtime})</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Function Code ({func.runtime})</h3>
                 <CodeBlock language="python">{func.code}</CodeBlock>
                  <div className="flex gap-4 mt-4">
-                    <button onClick={handleDeploy} disabled={func.status === 'deploying'} className="flex-1 py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-500 transition-colors">Deploy</button>
+                    <button onClick={handleDeploy} disabled={func.status === 'deploying'} className="flex-1 py-2 px-4 bg-rose-400 text-white font-semibold rounded-lg disabled:bg-rose-200 hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Deploy</button>
                     <button onClick={handleTrigger} disabled={func.status !== 'deployed'} className="flex-1 py-2 px-4 bg-teal-400 text-white font-semibold rounded-lg disabled:bg-teal-200 hover:bg-teal-500 transition-colors">Trigger</button>
                 </div>
             </div>
             <div>
-                <h3 className="text-lg font-semibold text-rose-800 mb-2">Status & Output</h3>
+                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-2">Status & Output</h3>
                 <div className="space-y-3">
-                     <div className="flex justify-between items-center bg-lime-50 p-3 rounded-lg border border-lime-200">
-                        <span className="font-semibold text-rose-800">Status</span>
+                     <div className="flex justify-between items-center bg-lime-50 dark:bg-slate-950 p-3 rounded-lg border border-lime-200 dark:border-slate-700">
+                        <span className="font-semibold text-rose-800 dark:text-rose-200">Status</span>
                          <div className="flex items-center gap-2">
                            {func.status === 'deployed' && <CheckCircleIcon />}
                            {func.status === 'deploying' && <SpinnerIcon />}
@@ -203,25 +203,25 @@ const CloudArchitectSandbox: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <div className="flex justify-center items-center mb-4">
                         <CloudIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Cloud Architect Sandbox</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Cloud Architect Sandbox</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Learn the cloud without the cost. Provision virtual servers, databases, and serverless functions in our realistic cloud simulator.
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg border overflow-hidden">
-                    <div className="flex border-b border-lime-200">
+                <div className="max-w-6xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg border overflow-hidden">
+                    <div className="flex border-b border-lime-200 dark:border-slate-700">
                         {modules.map(mod => (
                             <button 
                                 key={mod.id}
                                 onClick={() => setActiveModule(mod.id as any)}
-                                className={`flex-1 py-4 px-2 text-center font-semibold flex items-center justify-center gap-2 transition-colors duration-200 ${activeModule === mod.id ? 'border-b-4 border-rose-400 text-rose-600' : 'text-rose-500 hover:bg-lime-50'}`}
+                                className={`flex-1 py-4 px-2 text-center font-semibold flex items-center justify-center gap-2 transition-colors duration-200 ${activeModule === mod.id ? 'border-b-4 border-rose-400 text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400 hover:bg-lime-50 dark:bg-slate-950'}`}
                             >
                                 <mod.icon className="h-5 w-5" />
                                 {mod.name}

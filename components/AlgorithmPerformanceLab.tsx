@@ -56,7 +56,7 @@ const LineChart: React.FC<{ results: BenchmarkResult[] }> = ({ results }) => {
     };
 
     return (
-        <div className="bg-lime-50 p-4 rounded-lg border border-lime-200">
+        <div className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
             <svg viewBox="0 0 100 100" className="w-full h-64">
                 {/* Axes */}
                 <line x1="0" y1="100" x2="100" y2="100" stroke="#d1d5db" strokeWidth="0.5" />
@@ -99,40 +99,40 @@ const AlgorithmPerformanceLab: React.FC = () => {
     };
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <LabIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Algorithm Performance Lab</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Algorithm Performance Lab</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Correctness is just the beginning. Pit your algorithms against massive datasets and learn to write code that performs under pressure.
                     </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg border p-6 sm:p-8 space-y-8">
+                <div className="max-w-6xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-6 sm:p-8 space-y-8">
                     {/* Challenge Description */}
                     <div>
-                        <h3 className="text-2xl font-bold text-rose-900">Challenge: Two Sum</h3>
+                        <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100">Challenge: Two Sum</h3>
                         <p className="text-rose-700 mt-2">Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.</p>
                     </div>
 
                     {/* Code Inputs */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <h4 className="font-semibold text-rose-800 mb-2">Solution A (Brute-Force)</h4>
+                            <h4 className="font-semibold text-rose-800 dark:text-rose-200 mb-2">Solution A (Brute-Force)</h4>
                             <CodeEditor value={bruteForceSolution} />
                         </div>
                         <div>
-                            <h4 className="font-semibold text-rose-800 mb-2">Solution B (Optimized)</h4>
+                            <h4 className="font-semibold text-rose-800 dark:text-rose-200 mb-2">Solution B (Optimized)</h4>
                             <CodeEditor value={optimizedSolution} />
                         </div>
                     </div>
 
                     {/* Benchmark Control */}
                     <div className="text-center">
-                        <button onClick={handleRunBenchmark} disabled={benchmarkStatus === 'running'} className="px-8 py-4 bg-rose-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:bg-rose-500 transition-all transform hover:scale-105 active:scale-95 duration-300 disabled:bg-rose-200 disabled:scale-100">
+                        <button onClick={handleRunBenchmark} disabled={benchmarkStatus === 'running'} className="px-8 py-4 bg-rose-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:bg-rose-50 dark:bg-slate-8000 transition-all transform hover:scale-105 active:scale-95 duration-300 disabled:bg-rose-200 disabled:scale-100">
                            {benchmarkStatus === 'running' ? 'Running Benchmark...' : 'Run Benchmark'}
                         </button>
                     </div>
@@ -140,15 +140,15 @@ const AlgorithmPerformanceLab: React.FC = () => {
                     {/* Results Section */}
                     {benchmarkStatus !== 'idle' && (
                         <div className="space-y-6">
-                            <h3 className="text-2xl font-bold text-rose-900 text-center">Performance Report</h3>
+                            <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100 text-center">Performance Report</h3>
                             
                             {/* Chart */}
                             {benchmarkStatus === 'finished' && <LineChart results={results} />}
 
                             {/* Table */}
                             <div className="overflow-x-auto">
-                                <table className="w-full text-sm text-left text-rose-800">
-                                    <thead className="text-xs text-rose-700 uppercase bg-lime-100">
+                                <table className="w-full text-sm text-left text-rose-800 dark:text-rose-200">
+                                    <thead className="text-xs text-rose-700 uppercase bg-lime-100 dark:bg-slate-800">
                                         <tr>
                                             <th scope="col" className="px-6 py-3 rounded-l-lg">Dataset Size</th>
                                             <th scope="col" className="px-6 py-3">Solution A Time (ms)</th>
@@ -159,7 +159,7 @@ const AlgorithmPerformanceLab: React.FC = () => {
                                     </thead>
                                     <tbody>
                                         {results.map(res => (
-                                            <tr key={res.datasetSize} className="bg-white border-b border-lime-200">
+                                            <tr key={res.datasetSize} className="bg-white dark:bg-slate-900 border-b border-lime-200 dark:border-slate-700">
                                                 <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">{res.datasetSize}</th>
                                                 <td className={`px-6 py-4 ${res.solutionA.time === 'Timed Out' ? 'text-red-500 font-bold' : ''}`}>{res.solutionA.time}</td>
                                                 <td className="px-6 py-4">{res.solutionB.time}</td>

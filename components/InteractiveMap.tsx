@@ -7,7 +7,7 @@ const ARIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 
 const LocateIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 const CloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>;
 const NavArrowIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-32 w-32 text-rose-300 drop-shadow-lg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 10l7-7m0 0l7 7m-7-7v18" /></svg>;
-const CameraOffIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18" /></svg>;
+const CameraOffIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18" /></svg>;
 const MapPlaceholderIcon = () => <svg className="h-20 w-20 text-rose-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 
 // Category-specific icons for markers
@@ -55,7 +55,7 @@ const mapFilters = [
     { id: 'food', label: 'Food & Dining', icon: FoodIcon, color: 'text-orange-500' },
     { id: 'shops', label: 'Shops & Services', icon: ShopIcon, color: 'text-green-500' },
     { id: 'gym', label: 'Gyms & Fitness', icon: GymIcon, color: 'text-purple-500' },
-    { id: 'health', label: 'Health & Safety', icon: HealthIcon, color: 'text-rose-500' },
+    { id: 'health', label: 'Health & Safety', icon: HealthIcon, color: 'text-rose-500 dark:text-rose-400' },
     { id: 'housing', label: 'Housing', icon: HousingIcon, color: 'text-yellow-500' },
 ];
 
@@ -66,8 +66,8 @@ const ARNavigationView: React.FC<{ destination: string; onExit: () => void }> = 
         <div className="fixed inset-0 bg-black z-50 text-white flex flex-col items-center justify-center">
             <div className="absolute inset-0 bg-gray-900 flex flex-col items-center justify-center">
                 <CameraOffIcon />
-                <p className="text-gray-500 text-lg mt-4">Camera feed placeholder</p>
-                <p className="text-gray-600 text-sm">AR feature is a demo and requires camera access.</p>
+                <p className="text-gray-500 dark:text-gray-400 text-lg mt-4">Camera feed placeholder</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">AR feature is a demo and requires camera access.</p>
             </div>
             <div className="relative z-10 w-full h-full flex flex-col p-4">
                 <header className="flex justify-between items-center bg-black/50 p-3 rounded-lg">
@@ -135,7 +135,7 @@ const InteractiveMap: React.FC = () => {
     };
 
     return (
-        <section className="py-20 bg-white">
+        <section id="transport" className="py-20 bg-white dark:bg-slate-900">
             {arModeActive && selectedLocation && (
                 <ARNavigationView
                     destination={selectedLocation.name}
@@ -149,9 +149,9 @@ const InteractiveMap: React.FC = () => {
                         <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m0 10V7m0 10L9 7" />
                         </svg>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Interactive Campus Map</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Interactive Campus Map</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-2xl mx-auto">Select a category and explore points of interest using the interactive sidebar and map.</p>
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Select a category and explore points of interest using the interactive sidebar and map.</p>
                 </div>
 
                 <div className="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4">
@@ -159,7 +159,7 @@ const InteractiveMap: React.FC = () => {
                         <button
                             key={filter.id}
                             onClick={() => handleFilterChange(filter.id as MapLocation['category'])}
-                            className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 flex items-center gap-2 ${activeFilter === filter.id ? 'bg-rose-400 text-white shadow-md' : 'bg-lime-100 text-rose-700 hover:bg-lime-200'}`}
+                            className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 flex items-center gap-2 ${activeFilter === filter.id ? 'bg-rose-400 text-white shadow-md' : 'bg-lime-100 dark:bg-slate-800 text-rose-700 hover:bg-lime-200'}`}
                         >
                           <filter.icon className="h-5 w-5" />  {filter.label}
                         </button>
@@ -168,7 +168,7 @@ const InteractiveMap: React.FC = () => {
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Left: Map */}
-                    <div className="lg:w-2/3 w-full h-[600px] rounded-2xl shadow-lg border overflow-hidden relative bg-lime-50">
+                    <div className="lg:w-2/3 w-full h-[600px] rounded-2xl shadow-lg border overflow-hidden relative bg-lime-50 dark:bg-slate-950">
                         {isMapLoading && (
                             <div className="absolute inset-0 bg-white/70 z-20 flex items-center justify-center" role="status">
                                 <svg className="animate-spin h-10 w-10 text-rose-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -180,8 +180,8 @@ const InteractiveMap: React.FC = () => {
                         {!selectedLocation && !isMapLoading && (
                              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4">
                                 <MapPlaceholderIcon />
-                                <h3 className="text-xl font-semibold text-rose-800 mt-4">Explore the Campus</h3>
-                                <p className="text-rose-600 max-w-xs mt-1">Select a location from the list to view it on the map.</p>
+                                <h3 className="text-xl font-semibold text-rose-800 dark:text-rose-200 mt-4">Explore the Campus</h3>
+                                <p className="text-rose-600 dark:text-rose-300 max-w-xs mt-1">Select a location from the list to view it on the map.</p>
                             </div>
                         )}
                         <iframe
@@ -200,15 +200,15 @@ const InteractiveMap: React.FC = () => {
                     </div>
                     
                     {/* Right: Sidebar */}
-                    <div className="lg:w-1/3 w-full h-[600px] bg-lime-50 rounded-2xl shadow-lg border p-4 flex flex-col">
-                        <h3 className="text-xl font-bold text-rose-900 mb-2 px-2 capitalize">{activeFilter} Locations</h3>
+                    <div className="lg:w-1/3 w-full h-[600px] bg-lime-50 dark:bg-slate-950 rounded-2xl shadow-lg border p-4 flex flex-col">
+                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-2 px-2 capitalize">{activeFilter} Locations</h3>
                          <div className="relative mb-4">
                             <input 
                                 type="text"
                                 placeholder="Search in category..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full py-2 pl-10 pr-4 rounded-full text-rose-800 placeholder-rose-400 bg-white border-2 border-lime-200 focus:outline-none focus:ring-2 focus:ring-rose-300"
+                                className="w-full py-2 pl-10 pr-4 rounded-full text-rose-800 dark:text-rose-200 placeholder-rose-400 bg-white dark:bg-slate-900 border-2 border-lime-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-300"
                             />
                             <svg className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-rose-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                         </div>
@@ -222,19 +222,19 @@ const InteractiveMap: React.FC = () => {
                                 <div 
                                     key={location.id} 
                                     onClick={() => handleSelectLocation(location)}
-                                    className={`p-3 rounded-lg transition-all duration-300 cursor-pointer border-2 bg-white ${selectedLocation?.id === location.id ? 'border-rose-400 shadow-md' : 'border-transparent hover:shadow-sm hover:border-lime-300'}`}
+                                    className={`p-3 rounded-lg transition-all duration-300 cursor-pointer border-2 bg-white dark:bg-slate-900 ${selectedLocation?.id === location.id ? 'border-rose-400 shadow-md' : 'border-transparent hover:shadow-sm hover:border-lime-300'}`}
                                 >
                                     <div className="flex items-start gap-3">
-                                        <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-lime-100 ${categoryInfo?.color}`}>
+                                        <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-lime-100 dark:bg-slate-800 ${categoryInfo?.color}`}>
                                             <Icon />
                                         </div>
                                         <div>
-                                            <h4 className="font-semibold text-rose-900">{location.name}</h4>
-                                            <p className="text-sm text-rose-600">{location.description}</p>
+                                            <h4 className="font-semibold text-rose-900 dark:text-rose-100">{location.name}</h4>
+                                            <p className="text-sm text-rose-600 dark:text-rose-300">{location.description}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center space-x-2 mt-3">
-                                        <button onClick={(e) => {e.stopPropagation(); handleSelectLocation(location)}} className="flex-1 text-sm bg-rose-400 text-white font-semibold py-2 px-3 rounded-md flex items-center justify-center hover:bg-rose-500 transition-colors">
+                                        <button onClick={(e) => {e.stopPropagation(); handleSelectLocation(location)}} className="flex-1 text-sm bg-rose-400 text-white font-semibold py-2 px-3 rounded-md flex items-center justify-center hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
                                             <LocateIcon /> Locate on Map
                                         </button>
                                         <button onClick={(e) => {e.stopPropagation(); handleArNavigate(location.name)}} className="flex-1 text-sm bg-red-300 text-white font-semibold py-2 px-3 rounded-md flex items-center justify-center hover:bg-red-400 transition-colors">
@@ -243,7 +243,7 @@ const InteractiveMap: React.FC = () => {
                                     </div>
                                 </div>
                             )}) : (
-                                <div className="text-center p-8 text-rose-600">
+                                <div className="text-center p-8 text-rose-600 dark:text-rose-300">
                                     <p>No locations found matching your search.</p>
                                 </div>
                             )}

@@ -60,47 +60,47 @@ const ReportItemModal: React.FC<ReportItemModalProps> = ({ onClose, onAddItem })
 
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale" onClick={e => e.stopPropagation()} style={{ animationFillMode: 'forwards' }}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600" aria-label="Close form">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale" onClick={e => e.stopPropagation()} style={{ animationFillMode: 'forwards' }}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300" aria-label="Close form">
                     <CloseIcon />
                 </button>
-                <h2 className="text-2xl font-bold text-rose-900 mb-6 text-center">Report an Item</h2>
+                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Report an Item</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                      <div>
                         <div className="grid grid-cols-2 gap-3">
-                            <button type="button" onClick={() => setStatus('Lost')} className={`py-3 rounded-lg font-semibold flex items-center justify-center transition-colors border-2 ${status === 'Lost' ? 'bg-red-100 text-red-800 border-red-300' : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200'}`}>
+                            <button type="button" onClick={() => setStatus('Lost')} className={`py-3 rounded-lg font-semibold flex items-center justify-center transition-colors border-2 ${status === 'Lost' ? 'bg-red-100 text-red-800 border-red-300' : 'bg-gray-100 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-slate-700 hover:bg-gray-200'}`}>
                                 <LostTagIcon /> I Lost Something
                             </button>
-                            <button type="button" onClick={() => setStatus('Found')} className={`py-3 rounded-lg font-semibold flex items-center justify-center transition-colors border-2 ${status === 'Found' ? 'bg-teal-100 text-teal-800 border-teal-300' : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200'}`}>
+                            <button type="button" onClick={() => setStatus('Found')} className={`py-3 rounded-lg font-semibold flex items-center justify-center transition-colors border-2 ${status === 'Found' ? 'bg-teal-100 text-teal-800 border-teal-300' : 'bg-gray-100 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-slate-700 hover:bg-gray-200'}`}>
                                 <FoundTagIcon /> I Found Something
                             </button>
                         </div>
                     </div>
                     <div>
-                        <label htmlFor="itemName" className="text-sm font-medium text-rose-800">Item Name</label>
-                        <input id="itemName" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Black Jansport Backpack" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        <label htmlFor="itemName" className="text-sm font-medium text-rose-800 dark:text-rose-200">Item Name</label>
+                        <input id="itemName" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="e.g., Black Jansport Backpack" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                     </div>
                     <div>
-                        <label htmlFor="description" className="text-sm font-medium text-rose-800">Description</label>
-                        <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} rows={3} placeholder="Add any details that might help..." required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                        <label htmlFor="description" className="text-sm font-medium text-rose-800 dark:text-rose-200">Description</label>
+                        <textarea id="description" value={description} onChange={e => setDescription(e.target.value)} rows={3} placeholder="Add any details that might help..." required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
                     </div>
                      <div>
-                        <label htmlFor="location" className="text-sm font-medium text-rose-800">{status === 'Lost' ? 'Last Seen At' : 'Found At'}</label>
-                        <input id="location" type="text" value={location} onChange={e => setLocation(e.target.value)} placeholder="e.g., Tech Park, 3rd Floor" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        <label htmlFor="location" className="text-sm font-medium text-rose-800 dark:text-rose-200">{status === 'Lost' ? 'Last Seen At' : 'Found At'}</label>
+                        <input id="location" type="text" value={location} onChange={e => setLocation(e.target.value)} placeholder="e.g., Tech Park, 3rd Floor" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                     </div>
                     <div>
-                        <label className="text-sm font-medium text-rose-800">Upload Image (Optional)</label>
-                        <div onClick={() => fileInputRef.current?.click()} className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-lime-300 border-dashed rounded-md cursor-pointer hover:border-rose-400 bg-lime-50">
+                        <label className="text-sm font-medium text-rose-800 dark:text-rose-200">Upload Image (Optional)</label>
+                        <div onClick={() => fileInputRef.current?.click()} className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-lime-300 border-dashed rounded-md cursor-pointer hover:border-rose-400 bg-lime-50 dark:bg-slate-950">
                             {imagePreview ? <img src={imagePreview} alt="Preview" className="h-24 object-contain rounded" /> : (
                                 <div className="space-y-1 text-center">
                                     <ImageIcon />
-                                    <p className="text-sm text-rose-600">Click to upload an image</p>
+                                    <p className="text-sm text-rose-600 dark:text-rose-300">Click to upload an image</p>
                                 </div>
                             )}
                         </div>
                          <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
                     </div>
-                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Submit Report</button>
+                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Submit Report</button>
                 </form>
                 <style>{`@keyframes fade-in-scale { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } } .animate-fade-in-scale { animation: fade-in-scale 0.3s cubic-bezier(0.16, 1, 0.3, 1); }`}</style>
             </div>
@@ -111,23 +111,23 @@ const ReportItemModal: React.FC<ReportItemModalProps> = ({ onClose, onAddItem })
 
 // --- SUB-COMPONENTS ---
 const LostItemCard: React.FC<{ item: LostItem }> = ({ item }) => (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 flex flex-col">
+    <div className="bg-white dark:bg-slate-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 flex flex-col">
         <img src={item.imageUrl} alt={item.name} className="w-full h-40 object-cover" />
         <div className="p-4 flex flex-col flex-grow">
             <div>
                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${item.status === 'Lost' ? 'bg-red-100 text-red-800' : 'bg-teal-100 text-teal-800'}`}>
                     {item.status}
                 </span>
-                <h3 className="text-lg font-bold text-rose-900 mt-2">{item.name}</h3>
-                <p className="text-sm text-rose-600 mt-1 line-clamp-2">{item.description}</p>
+                <h3 className="text-lg font-bold text-rose-900 dark:text-rose-100 mt-2">{item.name}</h3>
+                <p className="text-sm text-rose-600 dark:text-rose-300 mt-1 line-clamp-2">{item.description}</p>
             </div>
-            <div className="mt-auto pt-3 text-xs text-rose-500">
+            <div className="mt-auto pt-3 text-xs text-rose-500 dark:text-rose-400">
                 <p><strong>{item.status === 'Lost' ? 'Last Seen:' : 'Found at:'}</strong> {item.location}</p>
                 <p><strong>Date:</strong> {item.date}</p>
             </div>
         </div>
         <div className="p-2 border-t border-lime-100 text-center">
-            <button className="w-full text-sm font-semibold text-rose-600 hover:text-rose-800 transition-colors py-1">
+            <button className="w-full text-sm font-semibold text-rose-600 dark:text-rose-300 hover:text-rose-800 dark:text-rose-200 transition-colors py-1">
                 {item.status === 'Found' ? 'Claim This Item' : 'I Have Found This!'}
             </button>
         </div>
@@ -151,8 +151,8 @@ const LostAndFound: React.FC = () => {
     const renderListView = (title: string, itemsToList: LostItem[], emptyMessage: string) => (
          <div className="w-full">
             <div className="flex justify-between items-center mb-6 px-2">
-                 <h2 className="text-3xl font-bold text-rose-900">{title}</h2>
-                 <button onClick={() => setView('idle')} className="text-rose-500 font-semibold hover:underline">
+                 <h2 className="text-3xl font-bold text-rose-900 dark:text-rose-100">{title}</h2>
+                 <button onClick={() => setView('idle')} className="text-rose-500 dark:text-rose-400 font-semibold hover:underline">
                     &larr; Back
                  </button>
             </div>
@@ -161,9 +161,9 @@ const LostAndFound: React.FC = () => {
                     {itemsToList.map(item => <LostItemCard key={item.id} item={item} />)}
                  </div>
             ) : (
-                <div className="text-center bg-white p-8 rounded-lg shadow-sm">
-                    <h3 className="text-xl font-semibold text-rose-900">No Items Here</h3>
-                    <p className="text-rose-600 mt-2">{emptyMessage}</p>
+                <div className="text-center bg-white dark:bg-slate-900 p-8 rounded-lg shadow-sm">
+                    <h3 className="text-xl font-semibold text-rose-900 dark:text-rose-100">No Items Here</h3>
+                    <p className="text-rose-600 dark:text-rose-300 mt-2">{emptyMessage}</p>
                 </div>
             )}
         </div>
@@ -179,11 +179,11 @@ const LostAndFound: React.FC = () => {
             default:
                 return (
                     <div className="text-center">
-                         <p className="text-lg text-rose-600 max-w-2xl mx-auto">Help fellow students by reporting items you've lost or found around campus.</p>
+                         <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Help fellow students by reporting items you've lost or found around campus.</p>
                          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                             <button 
                                 onClick={() => setView('lost')}
-                                className="px-8 py-4 bg-rose-400 text-white font-semibold rounded-full shadow-lg hover:bg-rose-500 transition-colors transform hover:scale-105 duration-300">
+                                className="px-8 py-4 bg-rose-400 text-white font-semibold rounded-full shadow-lg hover:bg-rose-50 dark:bg-slate-8000 transition-colors transform hover:scale-105 duration-300">
                                 Browse Lost Items ({lostItems.length})
                             </button>
                             <button 
@@ -194,7 +194,7 @@ const LostAndFound: React.FC = () => {
                         </div>
                         <button 
                             onClick={() => setIsModalOpen(true)}
-                            className="mt-6 text-rose-500 font-semibold hover:underline">
+                            className="mt-6 text-rose-500 dark:text-rose-400 font-semibold hover:underline">
                              Or, Report a New Item
                         </button>
                     </div>
@@ -203,7 +203,7 @@ const LostAndFound: React.FC = () => {
     };
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                  {view === 'idle' && (
                     <div className="text-center mb-12">
@@ -211,7 +211,7 @@ const LostAndFound: React.FC = () => {
                             <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7H3" />
                             </svg>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Lost & Found</h2>
+                            <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Lost & Found</h2>
                         </div>
                     </div>
                 )}

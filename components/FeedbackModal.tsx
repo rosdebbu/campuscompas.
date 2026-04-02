@@ -57,29 +57,29 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose, onSubmit }) => {
             aria-labelledby="feedback-modal-title"
         >
             <div 
-                className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale"
+                className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale"
                 onClick={e => e.stopPropagation()}
                 style={{ animationFillMode: 'forwards' }}
             >
-                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 transition-colors" aria-label="Close feedback form">
+                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300 transition-colors" aria-label="Close feedback form">
                     <CloseIcon />
                 </button>
 
                 <div className="text-center">
-                    <h2 id="feedback-modal-title" className="text-3xl font-bold text-rose-900">Share Your Feedback</h2>
-                    <p className="text-rose-600 mt-2">We value your input. Help us improve LocalAlert Pro!</p>
+                    <h2 id="feedback-modal-title" className="text-3xl font-bold text-rose-900 dark:text-rose-100">Share Your Feedback</h2>
+                    <p className="text-rose-600 dark:text-rose-300 mt-2">We value your input. Help us improve CampusCompass!</p>
                 </div>
 
                 <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
                     <div>
-                        <label className="text-sm font-medium text-rose-800 mb-2 block">Feedback Type</label>
+                        <label className="text-sm font-medium text-rose-800 dark:text-rose-200 mb-2 block">Feedback Type</label>
                         <div className="grid grid-cols-3 gap-3">
                             {feedbackOptions.map(option => (
                                 <button
                                     key={option.name}
                                     type="button"
                                     onClick={() => setFeedbackType(option.name)}
-                                    className={`flex flex-col items-center justify-center p-3 rounded-lg border-2 transition-all duration-200 ${feedbackType === option.name ? 'border-rose-400 bg-lime-50 text-rose-600' : 'border-lime-200 bg-white text-rose-500 hover:border-rose-300'}`}
+                                    className={`flex flex-col items-center justify-center p-3 rounded-lg border-2 transition-all duration-200 ${feedbackType === option.name ? 'border-rose-400 bg-lime-50 dark:bg-slate-950 text-rose-600 dark:text-rose-300' : 'border-lime-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-rose-500 dark:text-rose-400 hover:border-rose-300'}`}
                                 >
                                     <option.icon />
                                     <span className="text-sm font-semibold mt-1.5">{option.name}</span>
@@ -89,28 +89,28 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose, onSubmit }) => {
                     </div>
 
                     <div>
-                        <label htmlFor="feedback-message" className="text-sm font-medium text-rose-800">Your Message</label>
+                        <label htmlFor="feedback-message" className="text-sm font-medium text-rose-800 dark:text-rose-200">Your Message</label>
                         <textarea 
                             id="feedback-message"
                             placeholder="Tell us what's on your mind..."
                             rows={5}
                             required
-                            className="w-full mt-1 py-3 px-4 rounded-lg text-rose-800 placeholder-rose-300 bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400 border border-transparent focus:border-rose-300"
+                            className="w-full mt-1 py-3 px-4 rounded-lg text-rose-800 dark:text-rose-200 placeholder-rose-300 bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400 border border-transparent focus:border-rose-300"
                         />
                     </div>
 
                      <div>
-                        <label htmlFor="feedback-email" className="text-sm font-medium text-rose-800">Your Email (Optional)</label>
-                        <p className="text-xs text-rose-500 mb-1">We may follow up for more details.</p>
+                        <label htmlFor="feedback-email" className="text-sm font-medium text-rose-800 dark:text-rose-200">Your Email (Optional)</label>
+                        <p className="text-xs text-rose-500 dark:text-rose-400 mb-1">We may follow up for more details.</p>
                         <input 
                             id="feedback-email"
                             type="email" 
                             placeholder="you@srmist.edu.in"
-                            className="w-full py-3 px-4 rounded-lg text-rose-800 placeholder-rose-300 bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400 border border-transparent focus:border-rose-300"
+                            className="w-full py-3 px-4 rounded-lg text-rose-800 dark:text-rose-200 placeholder-rose-300 bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400 border border-transparent focus:border-rose-300"
                         />
                     </div>
 
-                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow-md hover:bg-rose-500 transition-all duration-300 transform hover:scale-105">
+                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow-md hover:bg-rose-50 dark:bg-slate-8000 transition-all duration-300 transform hover:scale-105">
                         Submit Feedback
                     </button>
                 </form>

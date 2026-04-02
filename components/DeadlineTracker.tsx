@@ -10,10 +10,10 @@ const ChevronRightIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg"
 
 // --- MOCK DATA & HELPERS ---
 const mockCourses: Course[] = [
-    { id: 'cs101', name: 'Intro to Python', color: { background: 'bg-rose-100', text: 'text-rose-800', border: 'border-rose-300' } },
+    { id: 'cs101', name: 'Intro to Python', color: { background: 'bg-rose-100', text: 'text-rose-800 dark:text-rose-200', border: 'border-rose-300' } },
     { id: 'ma202', name: 'Calculus II', color: { background: 'bg-teal-100', text: 'text-teal-800', border: 'border-teal-300' } },
     { id: 'ph150', name: 'Modern Physics', color: { background: 'bg-orange-100', text: 'text-orange-800', border: 'border-orange-300' } },
-    { id: 'en101', name: 'English Composition', color: { background: 'bg-lime-100', text: 'text-lime-800', border: 'border-lime-300' } },
+    { id: 'en101', name: 'English Composition', color: { background: 'bg-lime-100 dark:bg-slate-800', text: 'text-lime-800', border: 'border-lime-300' } },
 ];
 
 const mockExams: Exam[] = [
@@ -56,35 +56,35 @@ const AddBlockModal: React.FC<AddBlockModalProps> = ({ onClose, onAdd, courses, 
 
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600"><CloseIcon /></button>
-                <h2 className="text-2xl font-bold text-rose-900 mb-6 text-center">Add Study Block</h2>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
+                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Add Study Block</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label htmlFor="course" className="text-sm font-medium text-rose-800">Course</label>
-                        <select id="course" value={courseId} onChange={e => setCourseId(e.target.value)} className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        <label htmlFor="course" className="text-sm font-medium text-rose-800 dark:text-rose-200">Course</label>
+                        <select id="course" value={courseId} onChange={e => setCourseId(e.target.value)} className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400">
                             {courses.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                         </select>
                     </div>
                     <div>
-                        <label htmlFor="topic" className="text-sm font-medium text-rose-800">Topic / Task</label>
-                        <input id="topic" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g., Chapter 3 Problems" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        <label htmlFor="topic" className="text-sm font-medium text-rose-800 dark:text-rose-200">Topic / Task</label>
+                        <input id="topic" type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g., Chapter 3 Problems" required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                          <div className="sm:col-span-1">
-                            <label htmlFor="date" className="text-sm font-medium text-rose-800">Date</label>
-                            <input id="date" type="date" value={date} onChange={e => setDate(e.target.value)} required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                            <label htmlFor="date" className="text-sm font-medium text-rose-800 dark:text-rose-200">Date</label>
+                            <input id="date" type="date" value={date} onChange={e => setDate(e.target.value)} required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                         </div>
                         <div className="sm:col-span-1">
-                            <label htmlFor="startTime" className="text-sm font-medium text-rose-800">Start Time</label>
-                            <input id="startTime" type="time" value={startTime} onChange={e => setStartTime(e.target.value)} required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                            <label htmlFor="startTime" className="text-sm font-medium text-rose-800 dark:text-rose-200">Start Time</label>
+                            <input id="startTime" type="time" value={startTime} onChange={e => setStartTime(e.target.value)} required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                         </div>
                         <div className="sm:col-span-1">
-                            <label htmlFor="endTime" className="text-sm font-medium text-rose-800">End Time</label>
-                            <input id="endTime" type="time" value={endTime} onChange={e => setEndTime(e.target.value)} required className="w-full mt-1 p-3 rounded-lg bg-lime-100 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                            <label htmlFor="endTime" className="text-sm font-medium text-rose-800 dark:text-rose-200">End Time</label>
+                            <input id="endTime" type="time" value={endTime} onChange={e => setEndTime(e.target.value)} required className="w-full mt-1 p-3 rounded-lg bg-lime-100 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                         </div>
                     </div>
-                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Add Block</button>
+                    <button type="submit" className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Add Block</button>
                 </form>
             </div>
         </div>
@@ -202,26 +202,26 @@ const PersonalizedStudyPlanner: React.FC = () => {
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => new Date(0, i).toLocaleString('default', { month: 'long' })), []);
 
     return (
-        <section className="py-20 bg-lime-50">
+        <section className="py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <PlannerIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Personalized Study Planner</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Personalized Study Planner</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-2xl mx-auto">Organize your study schedule, track your progress, and conquer your goals.</p>
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Organize your study schedule, track your progress, and conquer your goals.</p>
                 </div>
 
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
                     {/* Calendar */}
-                    <div className="lg:w-2/3 bg-white rounded-2xl p-6 shadow-lg border">
+                    <div className="lg:w-2/3 bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border">
                         <div className="flex justify-between items-center mb-4">
-                            <button onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-lime-100"><ChevronLeftIcon /></button>
+                            <button onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-lime-100 dark:bg-slate-800"><ChevronLeftIcon /></button>
                             <div className="flex items-center gap-2">
                                 <select 
                                     value={currentDate.getMonth()}
                                     onChange={(e) => handleMonthSelect(parseInt(e.target.value, 10))}
-                                    className="appearance-none text-xl font-bold text-rose-900 bg-white hover:bg-lime-50 rounded-md p-2 border-0 focus:ring-2 focus:ring-rose-300 transition-colors cursor-pointer"
+                                    className="appearance-none text-xl font-bold text-rose-900 dark:text-rose-100 bg-white dark:bg-slate-900 hover:bg-lime-50 dark:bg-slate-950 rounded-md p-2 border-0 focus:ring-2 focus:ring-rose-300 transition-colors cursor-pointer"
                                     aria-label="Select month"
                                 >
                                     {months.map((month, index) => (
@@ -231,7 +231,7 @@ const PersonalizedStudyPlanner: React.FC = () => {
                                 <select
                                     value={currentDate.getFullYear()}
                                     onChange={(e) => handleYearSelect(parseInt(e.target.value, 10))}
-                                    className="appearance-none text-xl font-bold text-rose-900 bg-white hover:bg-lime-50 rounded-md p-2 border-0 focus:ring-2 focus:ring-rose-300 transition-colors cursor-pointer"
+                                    className="appearance-none text-xl font-bold text-rose-900 dark:text-rose-100 bg-white dark:bg-slate-900 hover:bg-lime-50 dark:bg-slate-950 rounded-md p-2 border-0 focus:ring-2 focus:ring-rose-300 transition-colors cursor-pointer"
                                     aria-label="Select year"
                                 >
                                     {years.map(y => (
@@ -239,15 +239,15 @@ const PersonalizedStudyPlanner: React.FC = () => {
                                     ))}
                                 </select>
                             </div>
-                            <button onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-lime-100"><ChevronRightIcon /></button>
+                            <button onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-lime-100 dark:bg-slate-800"><ChevronRightIcon /></button>
                         </div>
                         <div className="grid grid-cols-7 gap-1 text-center font-semibold text-rose-700 mb-2">
                             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => <div key={day} className="py-2">{day}</div>)}
                         </div>
                         <div className="grid grid-cols-7 gap-2">
                             {calendarGrid.map((day, i) => (
-                                <div key={i} onClick={() => day && handleDayClick(day)} className={`h-32 p-2 border rounded-lg overflow-hidden ${day ? 'cursor-pointer bg-white hover:bg-lime-50' : 'bg-lime-100'} ${day && formatDate(day) === formatDate(new Date()) ? 'border-2 border-rose-400' : 'border-lime-200'}`}>
-                                    {day && <span className="font-semibold text-rose-800 text-sm">{day.getDate()}</span>}
+                                <div key={i} onClick={() => day && handleDayClick(day)} className={`h-32 p-2 border rounded-lg overflow-hidden ${day ? 'cursor-pointer bg-white dark:bg-slate-900 hover:bg-lime-50 dark:bg-slate-950' : 'bg-lime-100 dark:bg-slate-800'} ${day && formatDate(day) === formatDate(new Date()) ? 'border-2 border-rose-400' : 'border-lime-200 dark:border-slate-700'}`}>
+                                    {day && <span className="font-semibold text-rose-800 dark:text-rose-200 text-sm">{day.getDate()}</span>}
                                     <div className="space-y-1 mt-1 overflow-y-auto max-h-24">
                                         {(day && blocksByDate[formatDate(day)] || []).map(block => {
                                             const course = mockCourses.find(c => c.id === block.courseId);
@@ -266,20 +266,20 @@ const PersonalizedStudyPlanner: React.FC = () => {
                     </div>
 
                     {/* Sidebar */}
-                    <div className="lg:w-1/3 bg-white rounded-2xl p-6 shadow-lg border flex flex-col space-y-6">
+                    <div className="lg:w-1/3 bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border flex flex-col space-y-6">
                         <div>
-                            <h3 className="text-xl font-bold text-rose-900 mb-2">Weekly Progress</h3>
-                            <p className="text-sm text-rose-600">You've studied {weeklyProgress.toFixed(1)} out of {weeklyGoal.target} hours this week.</p>
+                            <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-2">Weekly Progress</h3>
+                            <p className="text-sm text-rose-600 dark:text-rose-300">You've studied {weeklyProgress.toFixed(1)} out of {weeklyGoal.target} hours this week.</p>
                             <div className="w-full bg-lime-200 rounded-full h-4 mt-2">
                                 <div className="bg-rose-400 h-4 rounded-full" style={{ width: `${Math.min(100, (weeklyProgress / weeklyGoal.target) * 100)}%` }}></div>
                             </div>
                         </div>
                          <div>
-                             <button onClick={() => setIsModalOpen(true)} className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-500 transition-colors">Add Study Block</button>
+                             <button onClick={() => setIsModalOpen(true)} className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow hover:bg-rose-50 dark:bg-slate-8000 transition-colors">Add Study Block</button>
                              <button onClick={applyExamPrepTemplate} className="w-full mt-3 py-3 bg-red-300 text-white font-semibold rounded-lg shadow hover:bg-red-400 transition-colors">Use "Exam Prep" Template</button>
                         </div>
                         <div>
-                            <h3 className="text-xl font-bold text-rose-900 mb-2">Upcoming Deadlines</h3>
+                            <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-2">Upcoming Deadlines</h3>
                             <div className="space-y-3">
                                 {mockExams.map(exam => {
                                     const course = mockCourses.find(c => c.id === exam.courseId);

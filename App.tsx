@@ -159,13 +159,22 @@ const App: React.FC = () => {
   };
   
   return (
-    <div className="bg-white">
-      <Header 
-        user={user}
-        onProfileClick={() => setIsLoginModalOpen(true)} 
-      />
-      <main>
-        <Hero />
+    <div className="relative min-h-screen bg-lime-50 dark:bg-slate-950 text-rose-900 dark:text-slate-50 transition-colors duration-300 overflow-hidden overflow-y-auto">
+      {/* Decorative Global Background with Custom Colors */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-40 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen filter blur-[120px]">
+         <div className="absolute top-0 -left-10 w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-blob"></div>
+         <div className="absolute top-40 right-20 w-[24rem] h-[24rem] rounded-full bg-gradient-to-t from-sky-500 to-indigo-500 animate-blob animation-delay-2000"></div>
+         <div className="absolute -bottom-20 left-40 w-[30rem] h-[30rem] rounded-full bg-gradient-to-bl from-violet-500 to-fuchsia-500 animate-blob animation-delay-4000"></div>
+         <div className="absolute bottom-20 right-0 w-[26rem] h-[26rem] rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 animate-blob"></div>
+      </div>
+
+      <div className="relative z-10">
+        <Header 
+          user={user}
+          onProfileClick={() => setIsLoginModalOpen(true)} 
+        />
+        <main>
+          <Hero />
         <QuickNav />
         <CampusGallery />
         <CampusFacilities />
@@ -208,6 +217,7 @@ const App: React.FC = () => {
           onSubmit={handleFeedbackSubmit}
         />
       )}
+      </div>
     </div>
   );
 };

@@ -26,21 +26,21 @@ const CampusNews: React.FC = () => {
     const storiesToShow = showAllNews ? recentStories : recentStories.slice(0, 3);
 
     return (
-        <section className="py-20 bg-lime-100">
+        <section className="py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3h2m-4 3H5" />
                         </svg>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Campus News & Updates</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Campus News & Updates</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-2xl mx-auto">Stay informed about the latest happenings and announcements.</p>
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Stay informed about the latest happenings and announcements.</p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Article */}
-                    <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg overflow-hidden group">
+                    <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl shadow-lg overflow-hidden group">
                         <div className="relative">
                             <img src={mainArticle.imageUrl} alt={mainArticle.title} className="w-full h-80 object-cover" />
                             <div className="absolute top-4 left-4">
@@ -48,27 +48,27 @@ const CampusNews: React.FC = () => {
                             </div>
                         </div>
                         <div className="p-8">
-                            <h3 className="text-2xl font-bold text-rose-900 mb-3 group-hover:text-rose-700 transition-colors duration-300">{mainArticle.title}</h3>
-                            <p className="text-sm text-rose-500 mb-4">{mainArticle.author} • {mainArticle.date}</p>
+                            <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-3 group-hover:text-rose-700 transition-colors duration-300">{mainArticle.title}</h3>
+                            <p className="text-sm text-rose-500 dark:text-rose-400 mb-4">{mainArticle.author} • {mainArticle.date}</p>
                             <p className="text-rose-700 mb-6">{mainArticle.excerpt}</p>
-                            <a href="#" className="font-semibold text-rose-400 hover:text-rose-500 transition-colors duration-300 group">
+                            <a href="#" className="font-semibold text-rose-400 hover:text-rose-500 dark:text-rose-400 transition-colors duration-300 group">
                                 Read More <span className="group-hover:ml-1 transition-all duration-300">&rarr;</span>
                             </a>
                         </div>
                     </div>
 
                     {/* Recent Stories */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg flex flex-col">
-                        <h3 className="text-2xl font-bold text-rose-900 mb-6">Recent Stories</h3>
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg flex flex-col">
+                        <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6">Recent Stories</h3>
                         <div className="space-y-6 flex-grow">
                             {storiesToShow.map(story => (
-                                <a href="#" key={story.id} className="group block hover:bg-lime-50 p-2 rounded-lg transition-colors duration-200 -m-2">
+                                <a href="#" key={story.id} className="group block hover:bg-lime-50 dark:bg-slate-950 p-2 rounded-lg transition-colors duration-200 -m-2">
                                     <div className="flex items-start space-x-4">
                                         <img src={story.imageUrl} alt={story.title} className="w-24 h-20 object-cover rounded-lg flex-shrink-0" />
                                         <div>
                                             <span className={`text-xs font-bold ${story.categoryColor.replace('bg-', 'text-')}`}>{story.category}</span>
-                                            <h4 className="font-semibold text-rose-900 leading-tight group-hover:text-rose-700 transition-colors duration-300 mt-1">{story.title}</h4>
-                                            <p className="text-xs text-rose-500 mt-2 line-clamp-2">{story.excerpt}</p>
+                                            <h4 className="font-semibold text-rose-900 dark:text-rose-100 leading-tight group-hover:text-rose-700 transition-colors duration-300 mt-1">{story.title}</h4>
+                                            <p className="text-xs text-rose-500 dark:text-rose-400 mt-2 line-clamp-2">{story.excerpt}</p>
                                             <p className="text-xs text-rose-300 mt-2">{story.date}</p>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@ const CampusNews: React.FC = () => {
                          <div className="mt-6 text-center">
                             <button
                                 onClick={() => setShowAllNews(!showAllNews)}
-                                className="w-full py-3 bg-lime-200 text-rose-600 font-semibold rounded-lg hover:bg-lime-300 transition-colors duration-300"
+                                className="w-full py-3 bg-lime-200 text-rose-600 dark:text-rose-300 font-semibold rounded-lg hover:bg-lime-300 transition-colors duration-300"
                             >
                                 {showAllNews ? 'Show Less' : 'View All News'}
                             </button>

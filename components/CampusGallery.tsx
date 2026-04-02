@@ -39,12 +39,12 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                 {/* Header */}
                 <div className="flex justify-between items-center border-b border-rose-200 pb-4 mb-4">
                     <div>
-                         <button onClick={handleBackClick} className="text-sm text-rose-500 hover:text-rose-700 mb-1">
+                         <button onClick={handleBackClick} className="text-sm text-rose-500 dark:text-rose-400 hover:text-rose-700 mb-1">
                             &larr; Back to Main Building
                         </button>
-                        <h2 id="building-detail-title" className="text-2xl font-bold text-rose-900">{selectedHostel.name}</h2>
+                        <h2 id="building-detail-title" className="text-2xl font-bold text-rose-900 dark:text-rose-100">{selectedHostel.name}</h2>
                     </div>
-                    <button onClick={onClose} className="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Close building details">
+                    <button onClick={onClose} className="text-rose-400 hover:text-rose-600 dark:text-rose-300 transition-colors" aria-label="Close building details">
                         <CloseIcon />
                     </button>
                 </div>
@@ -52,14 +52,14 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                 {/* Content */}
                 <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden">
                     {/* Floor List */}
-                    <div className="md:col-span-1 bg-white rounded-xl p-4 overflow-y-auto">
-                        <h3 className="text-lg font-semibold text-rose-800 mb-3">Floors</h3>
+                    <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-xl p-4 overflow-y-auto">
+                        <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-3">Floors</h3>
                         <ul className="space-y-2">
                             {floorKeys.map(floorKey => (
                                 <li key={floorKey}>
                                     <button
                                         onClick={() => setActiveFloor(floorKey)}
-                                        className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${activeFloor === floorKey ? 'bg-rose-400 text-white font-semibold' : 'text-rose-700 hover:bg-lime-100'}`}
+                                        className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${activeFloor === floorKey ? 'bg-rose-400 text-white font-semibold' : 'text-rose-700 hover:bg-lime-100 dark:bg-slate-800'}`}
                                     >
                                         {floorKey}
                                     </button>
@@ -68,13 +68,13 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                         </ul>
                     </div>
                     {/* Room List */}
-                    <div className="md:col-span-2 bg-white rounded-xl p-6 overflow-y-auto">
+                    <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-xl p-6 overflow-y-auto">
                         {activeFloor ? (
                             <div>
-                                <h3 className="text-xl font-bold text-rose-900 mb-4">Rooms on {activeFloor}</h3>
+                                <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4">Rooms on {activeFloor}</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {selectedHostel.floorData[activeFloor].map((room, index) => (
-                                        <div key={index} className="bg-lime-50 text-rose-800 font-mono text-sm px-3 py-1.5 rounded-md border border-lime-200">
+                                        <div key={index} className="bg-lime-50 dark:bg-slate-950 text-rose-800 dark:text-rose-200 font-mono text-sm px-3 py-1.5 rounded-md border border-lime-200 dark:border-slate-700">
                                             {room}
                                         </div>
                                     ))}
@@ -85,8 +85,8 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                                 <svg className="h-16 w-16 text-rose-200 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h8a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.8 9.925l.416-.555A4 4 0 0111.652 8h.696a4 4 0 013.436 1.37l.416.555M9 16v-5h6v5m-8-5h10" />
                                 </svg>
-                                <h3 className="text-xl font-semibold text-rose-800">Select a floor</h3>
-                                <p className="text-rose-600 max-w-xs mt-1">Choose a floor to see the list of rooms.</p>
+                                <h3 className="text-xl font-semibold text-rose-800 dark:text-rose-200">Select a floor</h3>
+                                <p className="text-rose-600 dark:text-rose-300 max-w-xs mt-1">Choose a floor to see the list of rooms.</p>
                             </div>
                         )}
                     </div>
@@ -101,8 +101,8 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
             <>
                 {/* Header */}
                 <div className="flex justify-between items-center border-b border-rose-200 pb-4 mb-4">
-                    <h2 id="building-detail-title" className="text-2xl font-bold text-rose-900">{building.title}</h2>
-                    <button onClick={onClose} className="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Close building details">
+                    <h2 id="building-detail-title" className="text-2xl font-bold text-rose-900 dark:text-rose-100">{building.title}</h2>
+                    <button onClick={onClose} className="text-rose-400 hover:text-rose-600 dark:text-rose-300 transition-colors" aria-label="Close building details">
                         <CloseIcon />
                     </button>
                 </div>
@@ -110,15 +110,15 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                 {/* Content */}
                 <div className="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden">
                     {/* Floor List & Other Info */}
-                    <div className="md:col-span-1 bg-white rounded-xl p-4 overflow-y-auto">
+                    <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-xl p-4 overflow-y-auto">
                         <div>
-                            <h3 className="text-lg font-semibold text-rose-800 mb-3">Floors</h3>
+                            <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-3">Floors</h3>
                             <ul className="space-y-2">
                                 {floorKeys.map(floorKey => (
                                     <li key={floorKey}>
                                         <button
                                             onClick={() => setActiveFloor(floorKey)}
-                                            className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${activeFloor === floorKey ? 'bg-rose-400 text-white font-semibold' : 'text-rose-700 hover:bg-lime-100'}`}
+                                            className={`w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${activeFloor === floorKey ? 'bg-rose-400 text-white font-semibold' : 'text-rose-700 hover:bg-lime-100 dark:bg-slate-800'}`}
                                         >
                                             {floorKey}
                                         </button>
@@ -128,13 +128,13 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                         </div>
                          {building.buildingDetails?.otherInfo && (
                             <div className="mt-6 pt-6 border-t border-rose-200">
-                                <h3 className="text-lg font-semibold text-rose-800 mb-3">{building.buildingDetails.otherInfo.title}</h3>
+                                <h3 className="text-lg font-semibold text-rose-800 dark:text-rose-200 mb-3">{building.buildingDetails.otherInfo.title}</h3>
                                 <ul className="space-y-2">
                                     {building.buildingDetails.otherInfo.items.map((hostel, index) => (
                                          <li key={index}>
                                             <button 
                                                 onClick={() => handleHostelClick(hostel)}
-                                                className="w-full text-left text-rose-700 p-3 rounded-lg hover:bg-lime-100 transition-colors duration-200 flex items-start"
+                                                className="w-full text-left text-rose-700 p-3 rounded-lg hover:bg-lime-100 dark:bg-slate-800 transition-colors duration-200 flex items-start"
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-3 mt-0.5 text-rose-300 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                                                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
@@ -149,13 +149,13 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                     </div>
 
                     {/* Staff List */}
-                    <div className="md:col-span-2 bg-white rounded-xl p-6 overflow-y-auto">
+                    <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-xl p-6 overflow-y-auto">
                         {activeFloor ? (
                             <div>
-                                <h3 className="text-xl font-bold text-rose-900 mb-4">Details for {activeFloor}</h3>
+                                <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4">Details for {activeFloor}</h3>
                                 <ul className="space-y-3">
                                     {building.buildingDetails!.floorData[activeFloor].map((person, index) => (
-                                        <li key={index} className="bg-lime-50 p-3 rounded-md text-rose-800 border border-lime-200">
+                                        <li key={index} className="bg-lime-50 dark:bg-slate-950 p-3 rounded-md text-rose-800 dark:text-rose-200 border border-lime-200 dark:border-slate-700">
                                             {person}
                                         </li>
                                     ))}
@@ -166,8 +166,8 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
                                 <svg className="h-16 w-16 text-rose-200 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
-                                <h3 className="text-xl font-semibold text-rose-800">Select a floor</h3>
-                                <p className="text-rose-600 max-w-xs mt-1">Choose a floor from the list on the left to see the details.</p>
+                                <h3 className="text-xl font-semibold text-rose-800 dark:text-rose-200">Select a floor</h3>
+                                <p className="text-rose-600 dark:text-rose-300 max-w-xs mt-1">Choose a floor from the list on the left to see the details.</p>
                             </div>
                         )}
                     </div>
@@ -186,7 +186,7 @@ const BuildingDetailModal: React.FC<BuildingDetailModalProps> = ({ building, onC
             aria-labelledby="building-detail-title"
         >
             <div
-                className="bg-lime-50 rounded-2xl shadow-xl w-full max-w-4xl h-[80vh] p-6 relative flex flex-col transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale"
+                className="bg-lime-50 dark:bg-slate-950 rounded-2xl shadow-xl w-full max-w-4xl h-[80vh] p-6 relative flex flex-col transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale"
                 onClick={e => e.stopPropagation()}
                 style={{ animationFillMode: 'forwards' }}
             >
@@ -224,7 +224,7 @@ const galleryItems: GalleryItem[] = [
         id: 1, 
         title: 'Main Campus Building', 
         subtitle: 'Administrative Block', 
-        imageUrl: 'https://images.unsplash.com/photo-1562774053-61a2765c7ba3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageUrl: '/images/gallery/main_campus_building_1775165717748.png',
         buildingDetails: {
             floorCount: 8,
             floorData: {
@@ -243,7 +243,7 @@ const galleryItems: GalleryItem[] = [
         id: 2, 
         title: 'Central Library', 
         subtitle: '24/7 Study Space', 
-        imageUrl: 'https://plus.unsplash.com/premium_photo-1679829442036-13a8f47f26a1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageUrl: '/images/gallery/central_library_1775165735784.png',
         buildingDetails: {
             floorCount: 14,
             floorData: {
@@ -269,7 +269,7 @@ const galleryItems: GalleryItem[] = [
         id: 3, 
         title: 'SRM Tech Park', 
         subtitle: 'Innovation Hub', 
-        imageUrl: 'https://images.unsplash.com/photo-1579548122213-721c5f6368e7?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageUrl: '/images/gallery/tech_park_1775165753691.png',
         buildingDetails: {
             floorCount: 15,
             floorData: {
@@ -296,7 +296,7 @@ const galleryItems: GalleryItem[] = [
         id: 4, 
         title: 'Sports Complex', 
         subtitle: 'Fitness & Recreation', 
-        imageUrl: 'https://images.unsplash.com/photo-1549476464-3739221175a0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageUrl: '/images/gallery/sports_complex_1775165771956.png',
         buildingDetails: {
             floorCount: 4,
             floorData: {
@@ -311,7 +311,7 @@ const galleryItems: GalleryItem[] = [
         id: 5, 
         title: 'Student Hostels', 
         subtitle: 'Comfortable Living', 
-        imageUrl: 'https://images.unsplash.com/photo-1615875618485-2d6a54728ed2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageUrl: '/images/gallery/student_hostels_1775165785864.png',
         buildingDetails: {
             floorCount: 1, // Represents the main office building for all hostels
             floorData: {
@@ -334,7 +334,7 @@ const galleryItems: GalleryItem[] = [
         id: 6, 
         title: 'TP Ganesan Auditorium', 
         subtitle: 'Events & Conferences', 
-        imageUrl: 'https://images.unsplash.com/photo-1540099834354-a3164937583a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        imageUrl: '/images/gallery/tp_auditorium_1775165804156.png',
         isFeatured: true,
         featuredText: "Asia's Largest",
         buildingDetails: {
@@ -394,16 +394,16 @@ const CampusGallery: React.FC = () => {
     const [selectedBuilding, setSelectedBuilding] = useState<GalleryItem | null>(null);
     
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <div className="flex justify-center items-center mb-4">
                         <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Campus Gallery</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Campus Gallery</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-2xl mx-auto">Explore SRMIST Potheri through stunning visuals. Click on key buildings to see more.</p>
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Explore SRMIST Potheri through stunning visuals. Click on key buildings to see more.</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {galleryItems.map(item => (

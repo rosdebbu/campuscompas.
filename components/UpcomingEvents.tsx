@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 
 // --- ICONS ---
-const TimeIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
-const LocationIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
+const TimeIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-rose-500 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
+const LocationIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-rose-500 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>;
 const CloseIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>;
 const OrganizerIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.284-1.255-.758-1.685M12 12a3 3 0 100-6 3 3 0 000 6zM6 20v-2a3 3 0 015.356-1.857M6 20H2v-2a3 3 0 015-2.828" /></svg>;
 const ChevronLeftIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>;
@@ -27,12 +27,12 @@ interface Event {
 }
 
 const events: Event[] = [
-    { id: 'tech-1', title: 'AI & Machine Learning Conference', subtitle: 'A deep dive into the future of AI', time: '5:00 PM - 8:00 PM', date: '2024-11-10', location: 'TP Ganesan Auditorium', imageUrl: 'https://picsum.photos/seed/event1/500/300', category: 'Tech', action: 'Register', buttonColor: 'bg-rose-400 hover:bg-rose-500', description: 'Join industry experts and academic leaders as they discuss the future of Artificial Intelligence.', organizer: 'Dept. of Computer Science', coords: { lat: 12.8225, lon: 80.0441 } },
+    { id: 'tech-1', title: 'AI & Machine Learning Conference', subtitle: 'A deep dive into the future of AI', time: '5:00 PM - 8:00 PM', date: '2024-11-10', location: 'TP Ganesan Auditorium', imageUrl: 'https://picsum.photos/seed/event1/500/300', category: 'Tech', action: 'Register', buttonColor: 'bg-rose-400 hover:bg-rose-50 dark:bg-slate-8000', description: 'Join industry experts and academic leaders as they discuss the future of Artificial Intelligence.', organizer: 'Dept. of Computer Science', coords: { lat: 12.8225, lon: 80.0441 } },
     { id: 'cultural-1', title: 'Milan - Inaugural Night', subtitle: 'Celebrity Music Performances', time: '6:00 PM onwards', date: '2024-11-15', location: 'Main Football Ground', imageUrl: 'https://picsum.photos/seed/event2/500/300', category: 'Cultural', action: 'View Details', buttonColor: 'bg-teal-300 hover:bg-teal-400', description: 'The grand opening of our annual cultural fest, featuring top artists from around the country.', organizer: 'Student Council', coords: { lat: 12.8260, lon: 80.0475 } },
     { id: 'sports-1', title: 'Inter-Department Cricket Finals', subtitle: 'CSE vs Mechanical', time: '2:00 PM - 5:00 PM', date: '2024-11-20', location: 'Main Sports Ground', imageUrl: 'https://picsum.photos/seed/event3/500/300', category: 'Sports', action: 'View Details', buttonColor: 'bg-orange-300 hover:bg-orange-400', description: 'The thrilling final match to decide this year\'s cricket champion.', organizer: 'Dept. of Sports', coords: { lat: 12.8260, lon: 80.0475 } },
-    { id: 'workshop-1', title: 'React Hooks Workshop', subtitle: 'Beginner-friendly session', time: '10:00 AM - 1:00 PM', date: '2024-11-12', location: 'Tech Park, Lab 404', imageUrl: 'https://picsum.photos/seed/event4/500/300', category: 'Workshop', action: 'Register', buttonColor: 'bg-rose-400 hover:bg-rose-500', description: 'Learn the fundamentals of React Hooks in this hands-on workshop.', organizer: 'SRM Coding Club', coords: { lat: 12.8249, lon: 80.0468 } },
+    { id: 'workshop-1', title: 'React Hooks Workshop', subtitle: 'Beginner-friendly session', time: '10:00 AM - 1:00 PM', date: '2024-11-12', location: 'Tech Park, Lab 404', imageUrl: 'https://picsum.photos/seed/event4/500/300', category: 'Workshop', action: 'Register', buttonColor: 'bg-rose-400 hover:bg-rose-50 dark:bg-slate-8000', description: 'Learn the fundamentals of React Hooks in this hands-on workshop.', organizer: 'SRM Coding Club', coords: { lat: 12.8249, lon: 80.0468 } },
     { id: 'talk-1', title: 'Entrepreneurship in the Digital Age', subtitle: 'Guest lecture by CEO of Innovate Inc.', time: '2:00 PM - 3:30 PM', date: '2024-11-22', location: 'SJT Building, Room 405', imageUrl: 'https://picsum.photos/seed/event5/500/300', category: 'Talk', action: 'Register', buttonColor: 'bg-red-300 hover:bg-red-400', description: 'A special lecture by Ms. Aarti Sharma on her journey as an entrepreneur.', organizer: 'Career Development Center', coords: { lat: 12.8235, lon: 80.0453 } },
-    { id: 'tech-2', title: 'HackSRM 6.0 Kick-off', subtitle: '24-hour hackathon', time: 'All Day', date: '2024-12-05', location: 'Tech Park', imageUrl: 'https://picsum.photos/seed/event6/500/300', category: 'Tech', action: 'Register', buttonColor: 'bg-rose-400 hover:bg-rose-500', description: 'The biggest coding challenge on campus is back with exciting new tracks.', organizer: 'SRM HackerEarth', coords: { lat: 12.8249, lon: 80.0468 } },
+    { id: 'tech-2', title: 'HackSRM 6.0 Kick-off', subtitle: '24-hour hackathon', time: 'All Day', date: '2024-12-05', location: 'Tech Park', imageUrl: 'https://picsum.photos/seed/event6/500/300', category: 'Tech', action: 'Register', buttonColor: 'bg-rose-400 hover:bg-rose-50 dark:bg-slate-8000', description: 'The biggest coding challenge on campus is back with exciting new tracks.', organizer: 'SRM HackerEarth', coords: { lat: 12.8249, lon: 80.0468 } },
 ];
 const categories = ['All', 'Tech', 'Cultural', 'Sports', 'Workshop', 'Talk'];
 const dateFilters = ['All Dates', 'Today', 'This Week', 'This Month'];
@@ -40,15 +40,15 @@ const dateFilters = ['All Dates', 'Today', 'This Week', 'This Month'];
 // --- MODAL ---
 const DetailsModal: React.FC<{ event: Event; onClose: () => void, onRegister: (id: string) => void, isRegistered: boolean }> = ({ event, onClose, onRegister, isRegistered }) => (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-        <div className="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
-            <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600"><CloseIcon /></button>
-            <h2 className="text-3xl font-bold text-rose-900">{event.title}</h2>
-            <p className="text-rose-600 mt-1 text-lg">{event.subtitle}</p>
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
+            <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
+            <h2 className="text-3xl font-bold text-rose-900 dark:text-rose-100">{event.title}</h2>
+            <p className="text-rose-600 dark:text-rose-300 mt-1 text-lg">{event.subtitle}</p>
             <div className="mt-6 text-left space-y-4">
-                <div className="flex items-center text-rose-800"><OrganizerIcon /> <strong>Organizer:</strong> &nbsp;{event.organizer}</div>
-                <div className="flex items-center text-rose-800"><TimeIcon /> {new Date(event.date).toDateString()} @ {event.time}</div>
-                <div className="flex items-center text-rose-800"><LocationIcon /> {event.location}</div>
-                <div className="bg-lime-50 p-4 rounded-lg border border-lime-200"><p className="text-rose-700">{event.description}</p></div>
+                <div className="flex items-center text-rose-800 dark:text-rose-200"><OrganizerIcon /> <strong>Organizer:</strong> &nbsp;{event.organizer}</div>
+                <div className="flex items-center text-rose-800 dark:text-rose-200"><TimeIcon /> {new Date(event.date).toDateString()} @ {event.time}</div>
+                <div className="flex items-center text-rose-800 dark:text-rose-200"><LocationIcon /> {event.location}</div>
+                <div className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700"><p className="text-rose-700">{event.description}</p></div>
             </div>
             <button onClick={() => onRegister(event.id)} disabled={isRegistered} className={`mt-6 w-full py-3 text-white font-semibold rounded-lg shadow transition-colors ${isRegistered ? 'bg-teal-400' : event.buttonColor}`}>
                 {isRegistered ? 'Registered' : event.action}
@@ -65,13 +65,13 @@ const EventCard: React.FC<{ event: Event; onAction: (event: Event) => void; isRe
         'Talk': 'bg-green-100 text-green-800'
     };
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 flex flex-col">
+        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 flex flex-col">
             <img src={event.imageUrl} alt={event.title} className="w-full h-40 object-cover" />
             <div className="p-4 flex flex-col flex-grow">
                 <div>
                     <span className={`text-xs font-semibold px-2 py-1 rounded-full ${categoryColors[event.category]}`}>{event.category}</span>
-                    <h3 className="font-bold text-xl text-rose-900 mt-2">{event.title}</h3>
-                    <p className="text-sm text-rose-600 mb-3">{event.subtitle}</p>
+                    <h3 className="font-bold text-xl text-rose-900 dark:text-rose-100 mt-2">{event.title}</h3>
+                    <p className="text-sm text-rose-600 dark:text-rose-300 mb-3">{event.subtitle}</p>
                     <div className="text-sm text-rose-700 space-y-1">
                         <span className="flex items-center"><TimeIcon /> {new Date(event.date).toDateString()}</span>
                         <span className="flex items-center"><LocationIcon /> {event.location}</span>
@@ -117,22 +117,22 @@ const CalendarView: React.FC<{ events: Event[]; onEventClick: (event: Event) => 
     };
 
     return (
-        <div className="bg-white rounded-2xl p-6 shadow-lg border">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border">
             <div className="flex justify-between items-center mb-4">
-                <button onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-lime-100"><ChevronLeftIcon /></button>
-                <h3 className="text-xl font-bold text-rose-900">{currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h3>
-                <button onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-lime-100"><ChevronRightIcon /></button>
+                <button onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-lime-100 dark:bg-slate-800"><ChevronLeftIcon /></button>
+                <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100">{currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}</h3>
+                <button onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-lime-100 dark:bg-slate-800"><ChevronRightIcon /></button>
             </div>
             <div className="grid grid-cols-7 gap-1 text-center font-semibold text-rose-700 mb-2">
                 {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => <div key={day} className="py-2">{day}</div>)}
             </div>
             <div className="grid grid-cols-7 gap-2">
                 {calendarGrid.map((day, i) => (
-                    <div key={i} className={`h-28 p-1 border rounded-lg overflow-hidden ${day ? 'bg-white' : 'bg-lime-100'} ${day && day.toDateString() === new Date().toDateString() ? 'border-2 border-rose-400' : 'border-lime-200'}`}>
-                        {day && <span className="font-semibold text-rose-800 text-xs">{day.getDate()}</span>}
+                    <div key={i} className={`h-28 p-1 border rounded-lg overflow-hidden ${day ? 'bg-white dark:bg-slate-900' : 'bg-lime-100 dark:bg-slate-800'} ${day && day.toDateString() === new Date().toDateString() ? 'border-2 border-rose-400' : 'border-lime-200 dark:border-slate-700'}`}>
+                        {day && <span className="font-semibold text-rose-800 dark:text-rose-200 text-xs">{day.getDate()}</span>}
                         <div className="space-y-1 mt-1 overflow-y-auto max-h-20">
                             {(day && eventsByDate[day.toISOString().split('T')[0]] || []).map(event => (
-                                <div key={event.id} onClick={() => onEventClick(event)} className="p-1 rounded text-xs bg-rose-100 text-rose-800 cursor-pointer hover:bg-rose-200">
+                                <div key={event.id} onClick={() => onEventClick(event)} className="p-1 rounded text-xs bg-rose-100 text-rose-800 dark:text-rose-200 cursor-pointer hover:bg-rose-200">
                                     <p className="font-semibold truncate">{event.title}</p>
                                 </div>
                             ))}
@@ -158,13 +158,13 @@ const MapView: React.FC<{ events: Event[]; onEventClick: (event: Event) => void 
     
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1 h-[600px] bg-white rounded-2xl shadow-lg border p-4 flex flex-col">
-                <h3 className="text-xl font-bold text-rose-900 mb-4 px-2">Events List</h3>
+            <div className="lg:col-span-1 h-[600px] bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-4 flex flex-col">
+                <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-4 px-2">Events List</h3>
                 <div className="flex-grow overflow-y-auto pr-2 space-y-3">
                     {events.map(event => (
-                        <div key={event.id} onClick={() => handleEventSelect(event)} className={`p-3 rounded-lg cursor-pointer border-2 ${selectedEventId === event.id ? 'border-rose-400 bg-lime-50' : 'bg-white border-transparent hover:border-lime-300'}`}>
-                            <p className="font-semibold text-rose-900">{event.title}</p>
-                            <p className="text-sm text-rose-600">{event.location}</p>
+                        <div key={event.id} onClick={() => handleEventSelect(event)} className={`p-3 rounded-lg cursor-pointer border-2 ${selectedEventId === event.id ? 'border-rose-400 bg-lime-50 dark:bg-slate-950' : 'bg-white dark:bg-slate-900 border-transparent hover:border-lime-300'}`}>
+                            <p className="font-semibold text-rose-900 dark:text-rose-100">{event.title}</p>
+                            <p className="text-sm text-rose-600 dark:text-rose-300">{event.location}</p>
                         </div>
                     ))}
                 </div>
@@ -212,23 +212,23 @@ const UpcomingEvents: React.FC = () => {
     };
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-slate-900">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                     <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Upcoming Campus Events</h2>
-                     <p className="text-lg text-rose-600 max-w-2xl mx-auto">Discover, filter, and plan your schedule with our interactive event board.</p>
+                     <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Upcoming Campus Events</h2>
+                     <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Discover, filter, and plan your schedule with our interactive event board.</p>
                 </div>
 
-                <div className="bg-lime-50 rounded-2xl p-4 mb-8 space-y-4 border">
+                <div className="bg-lime-50 dark:bg-slate-950 rounded-2xl p-4 mb-8 space-y-4 border">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <input type="text" placeholder="Search events..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="w-full p-3 rounded-lg border-lime-200 focus:ring-rose-400 focus:border-rose-400"/>
-                        <select value={activeCategory} onChange={e => setActiveCategory(e.target.value)} className="w-full p-3 rounded-lg border-lime-200 focus:ring-rose-400 focus:border-rose-400"><option disabled>Category</option>{categories.map(c => <option key={c}>{c}</option>)}</select>
-                        <select value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full p-3 rounded-lg border-lime-200 focus:ring-rose-400 focus:border-rose-400"><option disabled>Date</option>{dateFilters.map(d => <option key={d}>{d}</option>)}</select>
+                        <input type="text" placeholder="Search events..." value={searchTerm} onChange={e => setSearchTerm(e.target.value)} className="w-full p-3 rounded-lg border-lime-200 dark:border-slate-700 focus:ring-rose-400 focus:border-rose-400"/>
+                        <select value={activeCategory} onChange={e => setActiveCategory(e.target.value)} className="w-full p-3 rounded-lg border-lime-200 dark:border-slate-700 focus:ring-rose-400 focus:border-rose-400"><option disabled>Category</option>{categories.map(c => <option key={c}>{c}</option>)}</select>
+                        <select value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full p-3 rounded-lg border-lime-200 dark:border-slate-700 focus:ring-rose-400 focus:border-rose-400"><option disabled>Date</option>{dateFilters.map(d => <option key={d}>{d}</option>)}</select>
                     </div>
-                     <div className="flex justify-center items-center bg-lime-100 p-1 rounded-lg">
-                        <button onClick={() => setView('card')} className={`flex-1 py-2 rounded-md font-semibold ${view==='card' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}>Card View</button>
-                        <button onClick={() => setView('calendar')} className={`flex-1 py-2 rounded-md font-semibold ${view==='calendar' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}>Calendar View</button>
-                        <button onClick={() => setView('map')} className={`flex-1 py-2 rounded-md font-semibold ${view==='map' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}>Map View</button>
+                     <div className="flex justify-center items-center bg-lime-100 dark:bg-slate-800 p-1 rounded-lg">
+                        <button onClick={() => setView('card')} className={`flex-1 py-2 rounded-md font-semibold ${view==='card' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>Card View</button>
+                        <button onClick={() => setView('calendar')} className={`flex-1 py-2 rounded-md font-semibold ${view==='calendar' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>Calendar View</button>
+                        <button onClick={() => setView('map')} className={`flex-1 py-2 rounded-md font-semibold ${view==='map' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>Map View</button>
                     </div>
                 </div>
                 
@@ -241,9 +241,9 @@ const UpcomingEvents: React.FC = () => {
                 {view === 'map' && <MapView events={filteredEvents} onEventClick={setModalEvent} />}
 
                 {filteredEvents.length === 0 && (
-                    <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-                        <p className="text-xl text-rose-800 font-semibold">No events match your criteria.</p>
-                        <p className="text-rose-500">Try adjusting your filters.</p>
+                    <div className="text-center py-12 bg-white dark:bg-slate-900 rounded-lg shadow-sm">
+                        <p className="text-xl text-rose-800 dark:text-rose-200 font-semibold">No events match your criteria.</p>
+                        <p className="text-rose-500 dark:text-rose-400">Try adjusting your filters.</p>
                     </div>
                 )}
             </div>

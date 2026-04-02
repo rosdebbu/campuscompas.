@@ -1,6 +1,21 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import type { NotificationItem } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
+
+const ThemeToggleIcon: React.FC<{ theme: 'light' | 'dark' }> = ({ theme }) => {
+    if (theme === 'light') {
+        return (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        );
+    }
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M12 12a5 5 0 100-10 5 5 0 000 10z" />
+        </svg>
+    );
+};
 
 const LogoIcon: React.FC = () => (
     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2">
@@ -89,6 +104,7 @@ const mockNotifications: NotificationItem[] = [
 ];
 
 const Header: React.FC<HeaderProps> = ({ user, onProfileClick }) => {
+    const { theme, toggleTheme } = useTheme();
     const [weather, setWeather] = useState<{
         current: { temp: number; condition: string } | null;
         forecast: ForecastDay[];
@@ -149,7 +165,7 @@ const Header: React.FC<HeaderProps> = ({ user, onProfileClick }) => {
 
 
     return (
-        <header className="bg-white py-3 px-4 sm:px-6 lg:px-8 shadow-sm sticky top-0 z-50">
+        <header className="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md py-4 px-4 sm:px-6 lg:px-8 border-b border-rose-100 dark:border-slate-800 sticky top-0 z-50 transition-colors duration-300">
              <style>{`
                 @keyframes fade-in-down {
                     from {
@@ -170,8 +186,8 @@ const Header: React.FC<HeaderProps> = ({ user, onProfileClick }) => {
                 <div className="flex items-center">
                     <LogoIcon />
                     <div>
-                        <h1 className="text-lg font-bold text-rose-900">LocalAlert Pro</h1>
-                        <p className="text-xs text-rose-600">SRMIST Potheri • Smart Campus</p>
+                        <h1 className="text-lg font-bold text-rose-900 dark:text-rose-100">CampusCompass</h1>
+                        <p className="text-xs text-rose-600 dark:text-slate-400">SRMIST Potheri • Smart Campus</p>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -258,12 +274,18 @@ const Header: React.FC<HeaderProps> = ({ user, onProfileClick }) => {
                             </div>
                         )}
                     </div>
+                    <button 
+                        onClick={toggleTheme} 
+                        className="p-2 rounded-full hover:bg-lime-100 dark:hover:bg-slate-800 transition-colors" 
+                        aria-label="Toggle theme">
+                        <ThemeToggleIcon theme={theme} />
+                    </button>
                     <button onClick={onProfileClick} className="relative" aria-label="Open user menu">
-                        <div className="w-8 h-8 rounded-full bg-rose-400 text-white flex items-center justify-center font-bold text-sm">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-400 to-orange-400 text-white flex items-center justify-center font-bold text-sm shadow-md">
                            {user ? user.initials : 'DB'}
                         </div>
                         {user && (
-                            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-teal-300 ring-2 ring-white" />
+                            <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-teal-300 ring-2 ring-white dark:ring-slate-950" />
                         )}
                     </button>
                 </div>

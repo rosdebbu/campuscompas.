@@ -179,22 +179,22 @@ const CICDPipelineBuilder: React.FC = () => {
             <div className="text-center mb-12">
                 <div className="flex justify-center items-center mb-4">
                     <PipelineIcon />
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">CI/CD Pipeline Builder</h2>
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">CI/CD Pipeline Builder</h2>
                 </div>
-                <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                     Automate your workflow from testing to deployment. Learn the power of GitHub Actions and build pipelines like a pro.
                 </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {Object.values(missions).map(mission => (
-                    <div key={mission.id} className="bg-white p-6 rounded-2xl shadow-lg border border-lime-200 text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <div key={mission.id} className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-lg border border-lime-200 dark:border-slate-700 text-center flex flex-col items-center transform hover:-translate-y-2 transition-transform duration-300">
                         <div className="relative">
                             <mission.icon className="h-12 w-12 text-rose-400" />
-                            {completedMissions.has(mission.id) && <CheckCircleIcon className="absolute -top-1 -right-1 h-6 w-6 text-teal-500 bg-white rounded-full" />}
+                            {completedMissions.has(mission.id) && <CheckCircleIcon className="absolute -top-1 -right-1 h-6 w-6 text-teal-500 bg-white dark:bg-slate-900 rounded-full" />}
                         </div>
-                        <h3 className="text-xl font-bold text-rose-900 mt-4">{mission.title}</h3>
-                        <p className="text-sm text-rose-600 mt-2 flex-grow">{mission.description}</p>
-                        <button onClick={() => setActiveMissionId(mission.id)} className="mt-6 w-full py-2 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-500 transition-colors">
+                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mt-4">{mission.title}</h3>
+                        <p className="text-sm text-rose-600 dark:text-rose-300 mt-2 flex-grow">{mission.description}</p>
+                        <button onClick={() => setActiveMissionId(mission.id)} className="mt-6 w-full py-2 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
                             Start Mission
                         </button>
                     </div>
@@ -206,21 +206,21 @@ const CICDPipelineBuilder: React.FC = () => {
     const MissionDetailView = () => {
         if (!activeMission) return null;
         return (
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-lime-200">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-6 border border-lime-200 dark:border-slate-700">
                 <div className="flex justify-between items-start mb-6">
                     <div>
-                        <h2 className="text-3xl font-bold text-rose-900">{activeMission.title}</h2>
-                        <p className="text-rose-600 max-w-2xl">{activeMission.description}</p>
+                        <h2 className="text-3xl font-bold text-rose-900 dark:text-rose-100">{activeMission.title}</h2>
+                        <p className="text-rose-600 dark:text-rose-300 max-w-2xl">{activeMission.description}</p>
                     </div>
-                    <button onClick={() => setActiveMissionId(null)} className="text-rose-500 font-semibold hover:underline flex-shrink-0 ml-4">&larr; Back to Missions</button>
+                    <button onClick={() => setActiveMissionId(null)} className="text-rose-500 dark:text-rose-400 font-semibold hover:underline flex-shrink-0 ml-4">&larr; Back to Missions</button>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[500px]">
                     <div>
-                        <h3 className="font-semibold text-rose-800 mb-2">Workflow File: <code className="bg-lime-200 text-lime-800 p-1 rounded-sm text-xs">.github/workflows/main.yml</code></h3>
+                        <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-2">Workflow File: <code className="bg-lime-200 text-lime-800 p-1 rounded-sm text-xs">.github/workflows/main.yml</code></h3>
                         <CodeBlock>{activeMission.yaml}</CodeBlock>
                     </div>
                     <div>
-                        <h3 className="font-semibold text-rose-800 mb-2">Simulated Log Output</h3>
+                        <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-2">Simulated Log Output</h3>
                         <Terminal logs={activeMission.logs} />
                     </div>
                 </div>
@@ -234,7 +234,7 @@ const CICDPipelineBuilder: React.FC = () => {
     };
     
     return (
-        <section className="py-20 bg-lime-50">
+        <section className="py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 {activeMission ? <MissionDetailView /> : <MissionSelectionView />}
             </div>

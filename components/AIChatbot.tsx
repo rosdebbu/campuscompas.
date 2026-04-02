@@ -126,45 +126,56 @@ const AIChatbot: React.FC = () => {
 
     return (
         <>
+            {/* Floating Action Button */}
             <div className="fixed bottom-6 right-6 z-50">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="bg-rose-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-rose-600 transition-all transform hover:scale-110"
+                    className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-110 border-2 border-white/20 dark:border-slate-700/50"
                     aria-label="Open AI Chatbot"
                 >
-                    <ChatIcon />
+                    {isOpen ? <CloseIcon /> : <ChatIcon />}
                 </button>
             </div>
 
+            {/* Chatbot Window */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-96 h-[32rem] bg-white rounded-2xl shadow-2xl flex flex-col z-50 transform transition-all duration-300 ease-out origin-bottom-right scale-95 opacity-0 animate-fade-in-scale">
+                <div className="fixed bottom-28 right-6 w-[22rem] sm:w-[26rem] h-[36rem] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl flex flex-col z-50 transform transition-all duration-300 ease-out origin-bottom-right scale-95 opacity-0 animate-fade-in-scale border border-slate-100 dark:border-slate-800 overflow-hidden">
                     {/* Header */}
-                    <div className="flex justify-between items-center p-4 bg-rose-400 text-white rounded-t-2xl">
-                        <h3 className="font-bold text-lg">Campus Compass AI</h3>
-                        <button onClick={() => setIsOpen(false)} aria-label="Close chat">
+                    <div className="flex justify-between items-center p-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-white/20 rounded-full backdrop-blur-sm">
+                                <CompassIcon className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg leading-tight">CampusCompass AI</h3>
+                                <p className="text-xs text-cyan-100">Always online & ready to help</p>
+                            </div>
+                        </div>
+                        <button onClick={() => setIsOpen(false)} aria-label="Close chat" className="hover:bg-white/20 p-2 rounded-full transition-colors">
                             <CloseIcon />
                         </button>
                     </div>
 
                     {/* Chat Messages */}
-                    <div ref={chatBoxRef} className="flex-grow p-4 overflow-y-auto space-y-4">
+                    <div ref={chatBoxRef} className="flex-grow p-5 overflow-y-auto space-y-5 custom-scrollbar">
                         {messages.map((msg, index) => (
-                             <div key={index} className={`flex items-start gap-2.5 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                             <div key={index} className={`flex items-end gap-3 ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                                 {msg.sender === 'ai' && (
-                                    <div className="w-8 h-8 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center flex-shrink-0">
-                                        <CompassIcon className="w-5 h-5" />
+                                    <div className="w-8 h-8 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 flex items-center justify-center flex-shrink-0 mb-1">
+                                        <CompassIcon className="w-4 h-4" />
                                     </div>
                                 )}
-                                <div className={`max-w-[85%] px-4 py-2 rounded-2xl ${msg.sender === 'user' ? 'bg-rose-400 text-white rounded-br-none' : 'bg-lime-100 text-rose-900 rounded-bl-none'}`}>
+                                <div className={`max-w-[80%] px-4 py-3 text-[15px] leading-relaxed shadow-sm ${msg.sender === 'user' ? 'bg-gradient-to-br from-cyan-500 to-blue-600 text-white rounded-2xl rounded-br-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-2xl rounded-bl-sm border border-slate-200 dark:border-slate-700/50'}`}>
                                     {msg.sender === 'ai' ? <MarkdownRenderer text={msg.text} /> : msg.text}
                                 </div>
                             </div>
                         ))}
 
                         {showStarters && messages.length === 1 && (
-                            <div className="space-y-2 pt-2 animate-fade-in-scale" style={{ animationDelay: '0.5s', animationFillMode: 'backwards' }}>
+                            <div className="space-y-2 pt-4 px-2 animate-fade-in-scale" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mb-3 uppercase tracking-wide">Suggested questions</p>
                                  {conversationStarters.map((prompt, i) => (
-                                     <button key={i} onClick={() => handleStarterClick(prompt)} className="w-full text-left text-sm text-rose-600 bg-white border border-rose-200 rounded-lg p-3 hover:bg-lime-50 transition-colors">
+                                     <button key={i} onClick={() => handleStarterClick(prompt)} className="w-full text-left text-sm text-cyan-700 dark:text-cyan-300 bg-white dark:bg-slate-900/50 border border-cyan-200 dark:border-cyan-800/50 rounded-xl p-3 hover:bg-cyan-50 dark:hover:bg-slate-800 transition-colors shadow-sm mb-2 hover:border-cyan-400 dark:hover:border-cyan-500">
                                          {prompt}
                                      </button>
                                  ))}
@@ -172,32 +183,34 @@ const AIChatbot: React.FC = () => {
                         )}
 
                         {isLoading && (
-                            <div className="flex items-start gap-2.5 justify-start">
-                                 <div className="w-8 h-8 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center flex-shrink-0">
-                                    <CompassIcon className="w-5 h-5" />
+                            <div className="flex items-end gap-3 justify-start">
+                                 <div className="w-8 h-8 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 flex items-center justify-center flex-shrink-0 mb-1">
+                                    <CompassIcon className="w-4 h-4" />
                                 </div>
-                                <div className="max-w-xs px-4 py-3 rounded-2xl bg-lime-100 text-rose-900 rounded-bl-none flex items-center">
-                                    <span className="text-sm text-rose-600 italic">Campus Compass is typing...</span>
+                                <div className="max-w-[80%] px-5 py-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-sm flex items-center gap-1.5 shadow-sm border border-slate-200 dark:border-slate-700/50">
+                                    <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce"></span>
+                                    <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></span>
+                                    <span className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></span>
                                 </div>
                             </div>
                         )}
                     </div>
 
                     {/* Input Form */}
-                    <div className="p-4 border-t border-rose-200">
+                    <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 relative">
                         <form onSubmit={handleSendMessage} className="relative flex items-center">
                             <input
                                 type="text"
-                                placeholder="Ask me anything..."
+                                placeholder="Message CampusCompass..."
                                 value={userInput}
                                 onChange={(e) => setUserInput(e.target.value)}
-                                className="w-full bg-lime-100 rounded-full py-3 px-5 pr-14 focus:outline-none focus:ring-2 focus:ring-rose-400 text-rose-800 placeholder-rose-400"
+                                className="w-full bg-slate-50 dark:bg-slate-800 rounded-3xl py-3.5 pl-5 pr-14 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 border border-slate-200 dark:border-slate-700 transition-all font-medium"
                             />
                             <button
                                 type="submit"
-                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-rose-400 hover:bg-rose-500 text-white w-10 h-10 rounded-full flex items-center justify-center disabled:bg-rose-300"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white w-9 h-9 rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed shadow-md transition-colors"
                                 aria-label="Send Message"
-                                disabled={isLoading}
+                                disabled={isLoading || !userInput.trim()}
                             >
                                 <SendIcon />
                             </button>
@@ -205,10 +218,25 @@ const AIChatbot: React.FC = () => {
                     </div>
                      <style>{`
                         @keyframes fade-in-scale {
-                            from { transform: scale(0.95); opacity: 0; }
-                            to { transform: scale(1); opacity: 1; }
+                            from { transform: scale(0.92) translateY(10px); opacity: 0; }
+                            to { transform: scale(1) translateY(0); opacity: 1; }
                         }
-                        .animate-fade-in-scale { animation: fade-in-scale 0.2s ease-out forwards; }
+                        .animate-fade-in-scale { animation: fade-in-scale 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+                        
+                        /* Custom subtle scrollbar for the chat area */
+                        .custom-scrollbar::-webkit-scrollbar {
+                            width: 6px;
+                        }
+                        .custom-scrollbar::-webkit-scrollbar-track {
+                            background: transparent;
+                        }
+                        .custom-scrollbar::-webkit-scrollbar-thumb {
+                            background-color: rgba(156, 163, 175, 0.3);
+                            border-radius: 10px;
+                        }
+                        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+                            background-color: rgba(75, 85, 99, 0.5);
+                        }
                     `}</style>
                 </div>
             )}

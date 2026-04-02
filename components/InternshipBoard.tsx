@@ -28,43 +28,43 @@ const initialApplications: TrackedApplication[] = [
 // --- MODAL ---
 const DetailsModal: React.FC<{ listing: InternshipListing, onClose: () => void, onApply: (listingId: number) => void }> = ({ listing, onClose, onApply }) => (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-        <div className="bg-white rounded-2xl shadow-xl w-full max-w-3xl p-8 relative max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
-            <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600"><CloseIcon /></button>
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-3xl p-8 relative max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
+            <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
             <div className="flex items-center mb-6">
                 <img src={listing.logoUrl} alt={`${listing.company} logo`} className="w-16 h-16 mr-4 object-contain" />
                 <div>
-                    <h2 className="text-3xl font-bold text-rose-900">{listing.title}</h2>
-                    <p className="text-lg text-rose-600">{listing.company}</p>
+                    <h2 className="text-3xl font-bold text-rose-900 dark:text-rose-100">{listing.title}</h2>
+                    <p className="text-lg text-rose-600 dark:text-rose-300">{listing.company}</p>
                 </div>
             </div>
             <div className="overflow-y-auto pr-4 space-y-6">
                 <div className="flex flex-wrap gap-4 text-sm">
-                    <span className="bg-lime-100 text-lime-800 px-3 py-1 rounded-full font-semibold">{listing.location}</span>
+                    <span className="bg-lime-100 dark:bg-slate-800 text-lime-800 px-3 py-1 rounded-full font-semibold">{listing.location}</span>
                     <span className="bg-teal-100 text-teal-800 px-3 py-1 rounded-full font-semibold">{listing.stipend}</span>
-                    <span className="bg-rose-100 text-rose-800 px-3 py-1 rounded-full font-semibold">{listing.type}</span>
+                    <span className="bg-rose-100 text-rose-800 dark:text-rose-200 px-3 py-1 rounded-full font-semibold">{listing.type}</span>
                 </div>
                 <div>
-                    <h3 className="font-bold text-rose-800 text-lg mb-2">Job Description</h3>
+                    <h3 className="font-bold text-rose-800 dark:text-rose-200 text-lg mb-2">Job Description</h3>
                     <p className="text-rose-700">{listing.description}</p>
                 </div>
                 <div>
-                    <h3 className="font-bold text-rose-800 text-lg mb-2">Requirements</h3>
+                    <h3 className="font-bold text-rose-800 dark:text-rose-200 text-lg mb-2">Requirements</h3>
                     <ul className="list-disc list-inside text-rose-700 space-y-1">
                         {listing.requirements.map(req => <li key={req}>{req}</li>)}
                     </ul>
                 </div>
                 {listing.reviews.length > 0 && (
                     <div>
-                        <h3 className="font-bold text-rose-800 text-lg mb-2">Insider Reviews</h3>
+                        <h3 className="font-bold text-rose-800 dark:text-rose-200 text-lg mb-2">Insider Reviews</h3>
                         <div className="space-y-4">
                             {listing.reviews.map(review => (
-                                <div key={review.year} className="bg-lime-50 p-4 rounded-lg border border-lime-200">
+                                <div key={review.year} className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
                                     <div className="flex justify-between items-center">
-                                        <p className="font-semibold text-rose-800">{review.reviewer} ({review.year})</p>
+                                        <p className="font-semibold text-rose-800 dark:text-rose-200">{review.reviewer} ({review.year})</p>
                                         <div className="flex">{[...Array(5)].map((_, i) => <StarIcon key={i} filled={i < review.rating} />)}</div>
                                     </div>
                                     <p className="text-rose-700 mt-2 italic">"{review.review}"</p>
-                                    <p className="text-rose-700 mt-2"><strong className="text-rose-800">Interview Tips:</strong> {review.interviewTips}</p>
+                                    <p className="text-rose-700 mt-2"><strong className="text-rose-800 dark:text-rose-200">Interview Tips:</strong> {review.interviewTips}</p>
                                 </div>
                             ))}
                         </div>
@@ -72,7 +72,7 @@ const DetailsModal: React.FC<{ listing: InternshipListing, onClose: () => void, 
                 )}
             </div>
             <div className="mt-auto pt-6">
-                <button onClick={() => onApply(listing.id)} className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow-md hover:bg-rose-500 transition-colors flex items-center justify-center">
+                <button onClick={() => onApply(listing.id)} className="w-full py-3 bg-rose-400 text-white font-semibold rounded-lg shadow-md hover:bg-rose-50 dark:bg-slate-8000 transition-colors flex items-center justify-center">
                     <CheckIcon /> One-Click Apply with Portfolio
                 </button>
             </div>
@@ -107,12 +107,12 @@ const InternshipBoard: React.FC = () => {
     const BrowseView = () => (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {mockListings.map(listing => (
-                <button key={listing.id} onClick={() => setSelectedListing(listing)} className="bg-white rounded-lg shadow-md p-6 text-left transform hover:-translate-y-1 transition-transform duration-300 border border-lime-200 flex items-start gap-4">
+                <button key={listing.id} onClick={() => setSelectedListing(listing)} className="bg-white dark:bg-slate-900 rounded-lg shadow-md p-6 text-left transform hover:-translate-y-1 transition-transform duration-300 border border-lime-200 dark:border-slate-700 flex items-start gap-4">
                     <img src={listing.logoUrl} alt={`${listing.company} logo`} className="w-12 h-12 object-contain flex-shrink-0" />
                     <div className="flex-grow">
-                        <p className="text-sm text-rose-500">{listing.company}</p>
-                        <h3 className="text-lg font-bold text-rose-900">{listing.title}</h3>
-                        <p className="text-sm text-rose-600 mt-1">{listing.location} • {listing.stipend}</p>
+                        <p className="text-sm text-rose-500 dark:text-rose-400">{listing.company}</p>
+                        <h3 className="text-lg font-bold text-rose-900 dark:text-rose-100">{listing.title}</h3>
+                        <p className="text-sm text-rose-600 dark:text-rose-300 mt-1">{listing.location} • {listing.stipend}</p>
                     </div>
                 </button>
             ))}
@@ -123,13 +123,13 @@ const InternshipBoard: React.FC = () => {
         <div className="w-full h-full overflow-x-auto">
             <div className="flex gap-6 min-w-max h-full">
                 {applicationStatuses.map(status => (
-                    <div key={status} className="w-72 bg-lime-100 rounded-xl p-3 flex-shrink-0 flex flex-col">
-                        <h3 className="font-bold text-rose-800 mb-3 px-1">{status}</h3>
+                    <div key={status} className="w-72 bg-lime-100 dark:bg-slate-800 rounded-xl p-3 flex-shrink-0 flex flex-col">
+                        <h3 className="font-bold text-rose-800 dark:text-rose-200 mb-3 px-1">{status}</h3>
                         <div className="space-y-3 overflow-y-auto flex-grow">
                            {applications.filter(app => app.status === status).map(app => (
-                               <div key={app.id} className="bg-white p-3 rounded-lg shadow-sm">
-                                   <p className="font-semibold text-rose-800">{app.listing.title}</p>
-                                   <p className="text-sm text-rose-500">{app.listing.company}</p>
+                               <div key={app.id} className="bg-white dark:bg-slate-900 p-3 rounded-lg shadow-sm">
+                                   <p className="font-semibold text-rose-800 dark:text-rose-200">{app.listing.title}</p>
+                                   <p className="text-sm text-rose-500 dark:text-rose-400">{app.listing.company}</p>
                                </div>
                            ))}
                         </div>
@@ -140,22 +140,22 @@ const InternshipBoard: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-50">
+        <section className="py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                      <div className="flex justify-center items-center mb-4">
                         <BriefcaseIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900">Internship & Co-op Board</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Internship & Co-op Board</h2>
                     </div>
-                    <p className="text-lg text-rose-600 max-w-3xl mx-auto">
+                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Your first step into the tech industry. Discover paid internships and co-ops with companies, vetted for students.
                     </p>
                 </div>
 
-                <div className="max-w-7xl mx-auto bg-white rounded-2xl shadow-lg p-6 min-h-[600px] flex flex-col">
+                <div className="max-w-7xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-6 min-h-[600px] flex flex-col">
                     <div className="flex-shrink-0 mb-4 bg-lime-50/50 p-1.5 rounded-xl flex items-center justify-center gap-2">
-                         <button onClick={() => setView('browse')} className={`flex-1 py-2.5 rounded-lg font-semibold transition-colors ${view === 'browse' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}>Browse Internships</button>
-                         <button onClick={() => setView('tracker')} className={`flex-1 py-2.5 rounded-lg font-semibold transition-colors ${view === 'tracker' ? 'bg-white shadow text-rose-600' : 'text-rose-500'}`}>My Applications</button>
+                         <button onClick={() => setView('browse')} className={`flex-1 py-2.5 rounded-lg font-semibold transition-colors ${view === 'browse' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>Browse Internships</button>
+                         <button onClick={() => setView('tracker')} className={`flex-1 py-2.5 rounded-lg font-semibold transition-colors ${view === 'tracker' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>My Applications</button>
                     </div>
 
                     <div className="flex-grow min-h-0">
