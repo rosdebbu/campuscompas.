@@ -135,7 +135,7 @@ const InteractiveMap: React.FC = () => {
     };
 
     return (
-        <section id="transport" className="py-20 bg-white dark:bg-slate-900">
+        <section id="transport" className="py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
             {arModeActive && selectedLocation && (
                 <ARNavigationView
                     destination={selectedLocation.name}
@@ -143,53 +143,50 @@ const InteractiveMap: React.FC = () => {
                 />
             )}
 
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <div className="flex justify-center items-center mb-4">
-                        <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m0 10V7m0 10L9 7" />
-                        </svg>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Interactive Campus Map</h2>
-                    </div>
-                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Select a category and explore points of interest using the interactive sidebar and map.</p>
+            <div className="container mx-auto px-4 max-w-7xl">
+                <div className="text-center mb-16">
+                    <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-sm font-semibold mb-4 tracking-wide border border-blue-200 dark:border-blue-800">
+                        Campus Navigation
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-500 dark:from-white dark:to-slate-300 mb-6 font-space">
+                        Interactive Campus Map
+                    </h2>
+                    <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                        Explore points of interest and find your way around SRMIST using our interactive directory and live map.
+                    </p>
                 </div>
 
-                <div className="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4">
+                {/* Filter Toggles */}
+                <div className="mb-10 flex flex-wrap justify-center gap-3">
                     {mapFilters.map(filter => (
                         <button
                             key={filter.id}
                             onClick={() => handleFilterChange(filter.id as MapLocation['category'])}
-                            className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 flex items-center gap-2 ${activeFilter === filter.id ? 'bg-rose-400 text-white shadow-md' : 'bg-lime-100 dark:bg-slate-800 text-rose-700 hover:bg-lime-200'}`}
+                            className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 flex items-center gap-2 border shadow-sm ${
+                                activeFilter === filter.id 
+                                ? 'bg-blue-600 text-white border-blue-600 dark:bg-blue-500 dark:border-blue-500 shadow-blue-500/30' 
+                                : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-blue-300 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer'
+                            }`}
                         >
-                          <filter.icon className="h-5 w-5" />  {filter.label}
+                          <filter.icon className={`h-5 w-5 ${activeFilter === filter.id ? 'text-white' : filter.color}`} />  {filter.label}
                         </button>
                     ))}
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Left: Map */}
-                    <div className="lg:w-2/3 w-full h-[600px] rounded-2xl shadow-lg border overflow-hidden relative bg-lime-50 dark:bg-slate-950">
+                    <div className="lg:w-[60%] xl:w-2/3 w-full h-[650px] rounded-3xl shadow-xl overflow-hidden relative bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800">
                         {isMapLoading && (
-                            <div className="absolute inset-0 bg-white/70 z-20 flex items-center justify-center" role="status">
-                                <svg className="animate-spin h-10 w-10 text-rose-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            </div>
-                        )}
-                        {!selectedLocation && !isMapLoading && (
-                             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center p-4">
-                                <MapPlaceholderIcon />
-                                <h3 className="text-xl font-semibold text-rose-800 dark:text-rose-200 mt-4">Explore the Campus</h3>
-                                <p className="text-rose-600 dark:text-rose-300 max-w-xs mt-1">Select a location from the list to view it on the map.</p>
+                            <div className="absolute inset-0 bg-white/70 dark:bg-slate-900/80 backdrop-blur-sm z-20 flex flex-col items-center justify-center transition-opacity" role="status">
+                                <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                                <span className="mt-4 text-blue-800 dark:text-blue-200 font-medium">Loading map...</span>
                             </div>
                         )}
                         <iframe
                             key={mapUrl}
                             width="100%"
                             height="100%"
-                            className={`transition-opacity duration-500 ${isMapLoading ? 'opacity-50' : 'opacity-100'}`}
-                            style={{ border: 0 }}
+                            className="w-full h-full border-0 absolute inset-0 z-10"
                             loading="lazy"
                             allowFullScreen
                             referrerPolicy="no-referrer-when-downgrade"
@@ -200,57 +197,108 @@ const InteractiveMap: React.FC = () => {
                     </div>
                     
                     {/* Right: Sidebar */}
-                    <div className="lg:w-1/3 w-full h-[600px] bg-lime-50 dark:bg-slate-950 rounded-2xl shadow-lg border p-4 flex flex-col">
-                        <h3 className="text-xl font-bold text-rose-900 dark:text-rose-100 mb-2 px-2 capitalize">{activeFilter} Locations</h3>
-                         <div className="relative mb-4">
-                            <input 
-                                type="text"
-                                placeholder="Search in category..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full py-2 pl-10 pr-4 rounded-full text-rose-800 dark:text-rose-200 placeholder-rose-400 bg-white dark:bg-slate-900 border-2 border-lime-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-300"
-                            />
-                            <svg className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-rose-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    <div className="lg:w-[40%] xl:w-1/3 w-full h-[650px] bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col">
+                        <div className="mb-6">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 capitalize flex items-center">
+                                <span className="w-2 h-6 bg-blue-500 rounded-full mr-3"></span>
+                                {activeFilter} Locations
+                            </h3>
+                            <div className="relative">
+                                <input 
+                                    type="text"
+                                    placeholder="Search specific locations..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="w-full py-3.5 pl-12 pr-4 rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all font-medium shadow-sm"
+                                />
+                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            </div>
                         </div>
 
-                        <div className="flex-grow overflow-y-auto pr-2 space-y-3">
+                        <div className="flex-grow overflow-y-auto pr-2 space-y-4 custom-scrollbar">
                             {searchedLocations.length > 0 ? searchedLocations.map(location => {
                                 const categoryInfo = mapFilters.find(f => f.id === location.category);
                                 const Icon = categoryInfo?.icon || LandmarkIcon;
+                                const isActive = selectedLocation?.id === location.id;
                                 
                                 return (
                                 <div 
                                     key={location.id} 
                                     onClick={() => handleSelectLocation(location)}
-                                    className={`p-3 rounded-lg transition-all duration-300 cursor-pointer border-2 bg-white dark:bg-slate-900 ${selectedLocation?.id === location.id ? 'border-rose-400 shadow-md' : 'border-transparent hover:shadow-sm hover:border-lime-300'}`}
+                                    className={`p-4 rounded-2xl transition-all duration-300 cursor-pointer border-2 bg-white dark:bg-slate-900 group ${
+                                        isActive 
+                                        ? 'border-blue-500 dark:border-blue-400 shadow-md ring-4 ring-blue-500/10 dark:ring-blue-400/10' 
+                                        : 'border-slate-100 dark:border-slate-800/80 hover:border-blue-200 dark:hover:border-blue-800/50 hover:shadow-sm'
+                                    }`}
                                 >
-                                    <div className="flex items-start gap-3">
-                                        <div className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-lime-100 dark:bg-slate-800 ${categoryInfo?.color}`}>
-                                            <Icon />
+                                    <div className="flex items-start gap-4">
+                                        <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                                            isActive 
+                                            ? 'bg-blue-600 text-white' 
+                                            : 'bg-slate-100 dark:bg-slate-800 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30'
+                                        } text-slate-600 dark:text-slate-400 transition-colors`}>
+                                            <Icon className={`h-6 w-6 ${isActive ? 'text-white' : categoryInfo?.color}`} />
                                         </div>
-                                        <div>
-                                            <h4 className="font-semibold text-rose-900 dark:text-rose-100">{location.name}</h4>
-                                            <p className="text-sm text-rose-600 dark:text-rose-300">{location.description}</p>
+                                        <div className="flex-1 mt-0.5">
+                                            <h4 className={`font-bold transition-colors ${isActive ? 'text-blue-700 dark:text-blue-400' : 'text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400'}`}>
+                                                {location.name}
+                                            </h4>
+                                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">{location.description}</p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center space-x-2 mt-3">
-                                        <button onClick={(e) => {e.stopPropagation(); handleSelectLocation(location)}} className="flex-1 text-sm bg-rose-400 text-white font-semibold py-2 px-3 rounded-md flex items-center justify-center hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
-                                            <LocateIcon /> Locate on Map
+                                    
+                                    {isActive && (
+                                    <div className="flex items-center gap-3 mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 animate-fade-in">
+                                        <button 
+                                            onClick={(e) => {e.stopPropagation(); handleSelectLocation(location)}} 
+                                            className="flex-1 text-sm bg-blue-50 hover:bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 dark:hover:bg-blue-500/30 font-semibold py-2.5 px-3 rounded-lg flex items-center justify-center transition-colors border border-blue-200 dark:border-blue-500/30"
+                                        >
+                                            <LocateIcon /> Pin Selected
                                         </button>
-                                        <button onClick={(e) => {e.stopPropagation(); handleArNavigate(location.name)}} className="flex-1 text-sm bg-red-300 text-white font-semibold py-2 px-3 rounded-md flex items-center justify-center hover:bg-red-400 transition-colors">
-                                            <ARIcon /> AR Navigate
+                                        <button 
+                                            onClick={(e) => {e.stopPropagation(); handleArNavigate(location.name)}} 
+                                            className="flex-1 text-sm bg-slate-900 hover:bg-black dark:bg-slate-700 dark:hover:bg-slate-600 text-white font-semibold py-2.5 px-3 rounded-lg flex items-center justify-center transition-colors border border-transparent shadow-sm"
+                                        >
+                                            <ARIcon /> Try AR View
                                         </button>
                                     </div>
+                                    )}
                                 </div>
                             )}) : (
-                                <div className="text-center p-8 text-rose-600 dark:text-rose-300">
-                                    <p>No locations found matching your search.</p>
+                                <div className="text-center py-10 px-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                                    <div className="mx-auto w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
+                                        <svg className="h-8 w-8 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 10a1 1 0 011-1h4a1 1 0 110 2h-4a1 1 0 01-1-1z" /></svg>
+                                    </div>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">No results found</h3>
+                                    <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">We couldn't find any location matching your search. Try different keywords.</p>
                                 </div>
                             )}
                         </div>
                     </div>
                 </div>
             </div>
+            <style>{`
+                .animate-fade-in {
+                    animation: fadeIn 0.3s ease-in-out;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-5px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background-color: rgba(156, 163, 175, 0.3);
+                    border-radius: 10px;
+                }
+                .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background-color: rgba(75, 85, 99, 0.5);
+                }
+            `}</style>
         </section>
     );
 };
