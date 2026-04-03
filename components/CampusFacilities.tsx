@@ -259,14 +259,14 @@ const CampusFacilities: React.FC = () => {
     };
     
     const renderCategorySelection = () => (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {categories.map(category => {
                 const savedCount = savedPlaces[category.id]?.length || 0;
                 return (
-                    <div key={category.id} className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-6 text-center flex flex-col justify-between">
+                    <div key={category.id} className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-5 sm:p-6 text-center flex flex-col justify-between">
                         <div>
-                            <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100">{category.title}</h3>
-                            <p className="text-rose-600 dark:text-rose-300 mb-6">{category.subtitle}</p>
+                            <h3 className="text-xl sm:text-2xl font-bold text-rose-900 dark:text-rose-100">{category.title}</h3>
+                            <p className="text-sm sm:text-base text-rose-600 dark:text-rose-300 mb-4 sm:mb-6">{category.subtitle}</p>
                         </div>
                         <div className="flex flex-col space-y-3">
                             <button onClick={() => handleAction(category, 'results')} className="w-full px-6 py-3 bg-rose-400 text-white font-semibold rounded-full hover:bg-rose-50 dark:bg-slate-8000 transition-colors">
@@ -283,17 +283,17 @@ const CampusFacilities: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-100 dark:bg-slate-800">
+        <section className="py-12 sm:py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 {!activeCategory && (
-                     <div className="text-center mb-12">
-                         <div className="flex justify-center items-center mb-4">
-                            <svg className="h-8 w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <div className="text-center mb-8 sm:mb-12">
+                         <div className="flex justify-center items-center mb-3 sm:mb-4">
+                            <svg className="h-6 w-6 sm:h-8 sm:w-8 text-rose-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                             </svg>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Campus Facilities</h2>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Campus Facilities</h2>
                         </div>
-                        <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Discover and save key places around campus.</p>
+                        <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Discover and save key places around campus.</p>
                          <button 
                             onClick={() => setIsSuggestModalOpen(true)}
                             className="mt-4 inline-flex items-center px-6 py-2 bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-300 font-semibold rounded-full border border-rose-200 hover:bg-rose-50 dark:bg-slate-800 transition-colors shadow-sm"

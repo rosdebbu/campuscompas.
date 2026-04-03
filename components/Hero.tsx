@@ -8,17 +8,17 @@ const Hero: React.FC = () => {
             <div className="absolute -top-24 -right-24 w-96 h-96 bg-rose-200 dark:bg-rose-900/40 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-50 animate-blob pointer-events-none"></div>
             <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-lime-200 dark:bg-lime-900/40 rounded-full mix-blend-multiply dark:mix-blend-lighten filter blur-3xl opacity-50 animate-blob animation-delay-2000 pointer-events-none"></div>
             
-            <div className="container relative mx-auto px-4 py-16 sm:py-24 z-10">
+            <div className="container relative mx-auto px-4 py-10 sm:py-16 md:py-24 z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Column: Text and Search */}
                     <div className="text-center lg:text-left">
                         <span className="inline-block py-1 px-3 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300 text-sm font-semibold mb-4 tracking-wide border border-rose-200 dark:border-rose-800 backdrop-blur-md">
                             Next-Gen Campus Experience
                         </span>
-                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 to-rose-600 dark:from-white dark:to-slate-300 leading-tight">
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 to-rose-600 dark:from-white dark:to-slate-300 leading-tight">
                             Your Campus <br/><span className="text-teal-500 dark:text-teal-400">Compass</span>
                         </h1>
-                        <p className="mt-6 text-lg sm:text-xl max-w-xl mx-auto lg:mx-0 text-slate-600 dark:text-slate-400">
+                        <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 text-slate-600 dark:text-slate-400">
                             Navigate SRMIST Potheri with AI-powered assistance, real-time events, and personalized insights.
                         </p>
                         <div className="mt-8 w-full max-w-lg mx-auto lg:mx-0 relative group">
@@ -34,11 +34,11 @@ const Hero: React.FC = () => {
                                 </svg>
                             </button>
                         </div>
-                        <div className="mt-8 flex items-center justify-center lg:justify-start space-x-4 text-sm text-slate-500 dark:text-slate-400">
+                        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-sm text-slate-500 dark:text-slate-400">
                             <span>Popular:</span>
-                            <div className="flex space-x-2">
+                            <div className="flex flex-wrap justify-center gap-2">
                                 {['Tech Park', 'Java Canteen', 'Library'].map(tag => (
-                                    <span key={tag} className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-lime-100 dark:hover:bg-lime-900 cursor-pointer transition-colors border border-transparent hover:border-lime-200 dark:hover:border-lime-800 text-rose-700 dark:text-rose-300">
+                                    <span key={tag} className="px-3 py-1 text-xs sm:text-sm rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-lime-100 dark:hover:bg-lime-900 cursor-pointer transition-colors border border-transparent hover:border-lime-200 dark:hover:border-lime-800 text-rose-700 dark:text-rose-300">
                                         {tag}
                                     </span>
                                 ))}
