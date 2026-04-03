@@ -28,7 +28,7 @@ const initialApplications: TrackedApplication[] = [
 // --- MODAL ---
 const DetailsModal: React.FC<{ listing: InternshipListing, onClose: () => void, onApply: (listingId: number) => void }> = ({ listing, onClose, onApply }) => (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-3xl p-8 relative max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-3xl p-4 sm:p-8 relative max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
             <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
             <div className="flex items-center mb-6">
                 <img src={listing.logoUrl} alt={`${listing.company} logo`} className="w-16 h-16 mr-4 object-contain" />
@@ -140,22 +140,22 @@ const InternshipBoard: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-50 dark:bg-slate-950">
+        <section className="py-12 md:py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
+                <div className="text-center mb-8 md:mb-12">
                      <div className="flex justify-center items-center mb-4">
                         <BriefcaseIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Internship & Co-op Board</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Internship & Co-op Board</h2>
                     </div>
-                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
+                    <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Your first step into the tech industry. Discover paid internships and co-ops with companies, vetted for students.
                     </p>
                 </div>
 
-                <div className="max-w-7xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-6 min-h-[600px] flex flex-col">
-                    <div className="flex-shrink-0 mb-4 bg-lime-50/50 p-1.5 rounded-xl flex items-center justify-center gap-2">
-                         <button onClick={() => setView('browse')} className={`flex-1 py-2.5 rounded-lg font-semibold transition-colors ${view === 'browse' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>Browse Internships</button>
-                         <button onClick={() => setView('tracker')} className={`flex-1 py-2.5 rounded-lg font-semibold transition-colors ${view === 'tracker' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>My Applications</button>
+                <div className="max-w-7xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-4 sm:p-6 min-h-[600px] flex flex-col">
+                    <div className="flex-shrink-0 mb-4 bg-lime-50/50 p-1.5 rounded-xl flex flex-col sm:flex-row items-center justify-center gap-2">
+                         <button onClick={() => setView('browse')} className={`w-full sm:w-auto flex-1 py-2.5 px-4 rounded-lg font-semibold transition-colors ${view === 'browse' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>Browse Internships</button>
+                         <button onClick={() => setView('tracker')} className={`w-full sm:w-auto flex-1 py-2.5 px-4 rounded-lg font-semibold transition-colors ${view === 'tracker' ? 'bg-white dark:bg-slate-900 shadow text-rose-600 dark:text-rose-300' : 'text-rose-500 dark:text-rose-400'}`}>My Applications</button>
                     </div>
 
                     <div className="flex-grow min-h-0">

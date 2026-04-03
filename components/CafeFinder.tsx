@@ -131,15 +131,15 @@ const CafeFinder: React.FC = () => {
         const cafesToShow = view === 'results' ? mockCafes : savedCafes;
         const title = view === 'results' ? 'Cafes Near You' : 'Your Saved Cafes';
         return (
-          <div className="w-full">
+            <div className="w-full">
             <div className="flex justify-between items-center mb-6 px-2">
-                 <h2 className="text-3xl font-bold text-rose-900 dark:text-rose-100">{title}</h2>
-                 <button onClick={() => setView('idle')} className="text-rose-500 dark:text-rose-400 font-semibold hover:underline">
+                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-rose-900 dark:text-rose-100">{title}</h2>
+                 <button onClick={() => setView('idle')} className="text-sm sm:text-base text-rose-500 dark:text-rose-400 font-semibold hover:underline">
                     &larr; Back
                  </button>
             </div>
             {cafesToShow.length > 0 ? (
-                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {cafesToShow.map(cafe => (
                         <CafeCard key={cafe.id} cafe={cafe} isSaved={savedCafeIds.has(cafe.id)} onSaveToggle={handleSaveToggle} />
                     ))}
@@ -176,16 +176,16 @@ const CafeFinder: React.FC = () => {
   };
 
   return (
-    <section id="food" className="py-20 bg-lime-50 dark:bg-slate-950">
+    <section id="food" className="py-12 md:py-20 bg-lime-50 dark:bg-slate-950">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-           <div className="flex justify-center items-center mb-4">
-               <svg className="h-8 w-8 text-rose-400 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center mb-8 md:mb-12">
+           <div className="flex justify-center items-center mb-3 sm:mb-4">
+               <svg className="h-6 w-6 sm:h-8 sm:w-8 text-rose-400 mr-2 sm:mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2a1 1 0 011 1v8a1 1 0 01-1 1h-2a1 1 0 01-1-1z" />
                </svg>
-               <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Cafe Curator</h2>
+               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Cafe Curator</h2>
            </div>
-           <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Discover and keep track of the best coffee spots around campus.</p>
+           <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Discover and keep track of the best coffee spots around campus.</p>
         </div>
         {renderContent()}
       </div>

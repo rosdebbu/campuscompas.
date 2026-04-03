@@ -53,9 +53,9 @@ const ContributionGuideModal: React.FC<{ onClose: () => void }> = ({ onClose }) 
     ];
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-2xl p-8 relative max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-2xl p-4 sm:p-8 relative max-h-[90vh] flex flex-col" onClick={e => e.stopPropagation()}>
                 <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
-                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-4 text-center">How to Contribute to Open Source</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-rose-900 dark:text-rose-100 mb-4 text-center">How to Contribute to Open Source</h2>
                 <div className="overflow-y-auto pr-4 space-y-4">
                     {steps.map(step => (
                         <div key={step.title} className="bg-lime-50 dark:bg-slate-950 p-4 rounded-lg border border-lime-200 dark:border-slate-700">
@@ -81,14 +81,14 @@ const OpenSourceExplorer: React.FC = () => {
     }, [selectedLanguage]);
 
     return (
-        <section className="py-20 bg-lime-100 dark:bg-slate-800">
+        <section className="py-12 md:py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
+                <div className="text-center mb-8 md:mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <CodeIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Open Source Explorer</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Open Source Explorer</h2>
                     </div>
-                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Find beginner-friendly issues and make your first contribution to open source projects.</p>
+                    <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Find beginner-friendly issues and make your first contribution to open source projects.</p>
                     <button onClick={() => setIsGuideOpen(true)} className="mt-4 inline-flex items-center text-rose-500 dark:text-rose-400 font-semibold hover:underline">
                         <BookIcon /> How to Contribute Guide
                     </button>

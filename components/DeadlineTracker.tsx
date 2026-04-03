@@ -56,9 +56,9 @@ const AddBlockModal: React.FC<AddBlockModalProps> = ({ onClose, onAdd, courses, 
 
     return (
         <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4" onClick={onClose}>
-            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative" onClick={e => e.stopPropagation()}>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-4 sm:p-8 relative max-h-[90vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
                 <button onClick={onClose} className="absolute top-4 right-4 text-rose-400 hover:text-rose-600 dark:text-rose-300"><CloseIcon /></button>
-                <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Add Study Block</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-rose-900 dark:text-rose-100 mb-6 text-center">Add Study Block</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label htmlFor="course" className="text-sm font-medium text-rose-800 dark:text-rose-200">Course</label>
@@ -202,17 +202,17 @@ const PersonalizedStudyPlanner: React.FC = () => {
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => new Date(0, i).toLocaleString('default', { month: 'long' })), []);
 
     return (
-        <section className="py-20 bg-lime-50 dark:bg-slate-950">
+        <section className="py-12 md:py-20 bg-lime-50 dark:bg-slate-950">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
+                <div className="text-center mb-8 md:mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <PlannerIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Personalized Study Planner</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Personalized Study Planner</h2>
                     </div>
-                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Organize your study schedule, track your progress, and conquer your goals.</p>
+                    <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Organize your study schedule, track your progress, and conquer your goals.</p>
                 </div>
 
-                <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
+                <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 lg:gap-8">
                     {/* Calendar */}
                     <div className="lg:w-2/3 bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-lg border">
                         <div className="flex justify-between items-center mb-4">
@@ -241,14 +241,14 @@ const PersonalizedStudyPlanner: React.FC = () => {
                             </div>
                             <button onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-lime-100 dark:bg-slate-800"><ChevronRightIcon /></button>
                         </div>
-                        <div className="grid grid-cols-7 gap-1 text-center font-semibold text-rose-700 mb-2">
+                        <div className="grid grid-cols-7 gap-1 text-center font-semibold text-rose-700 mb-2 text-xs sm:text-base">
                             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => <div key={day} className="py-2">{day}</div>)}
                         </div>
-                        <div className="grid grid-cols-7 gap-2">
+                        <div className="grid grid-cols-7 gap-1 sm:gap-2">
                             {calendarGrid.map((day, i) => (
-                                <div key={i} onClick={() => day && handleDayClick(day)} className={`h-32 p-2 border rounded-lg overflow-hidden ${day ? 'cursor-pointer bg-white dark:bg-slate-900 hover:bg-lime-50 dark:bg-slate-950' : 'bg-lime-100 dark:bg-slate-800'} ${day && formatDate(day) === formatDate(new Date()) ? 'border-2 border-rose-400' : 'border-lime-200 dark:border-slate-700'}`}>
-                                    {day && <span className="font-semibold text-rose-800 dark:text-rose-200 text-sm">{day.getDate()}</span>}
-                                    <div className="space-y-1 mt-1 overflow-y-auto max-h-24">
+                                <div key={i} onClick={() => day && handleDayClick(day)} className={`h-24 sm:h-32 p-1 sm:p-2 border rounded-lg overflow-hidden ${day ? 'cursor-pointer bg-white dark:bg-slate-900 hover:bg-lime-50 dark:bg-slate-950' : 'bg-lime-100 dark:bg-slate-800'} ${day && formatDate(day) === formatDate(new Date()) ? 'border-2 border-rose-400' : 'border-lime-200 dark:border-slate-700'}`}>
+                                    {day && <span className="font-semibold text-rose-800 dark:text-rose-200 text-xs sm:text-sm">{day.getDate()}</span>}
+                                    <div className="space-y-1 mt-1 overflow-y-auto h-full max-h-[calc(100%-1.25rem)]">
                                         {(day && blocksByDate[formatDate(day)] || []).map(block => {
                                             const course = mockCourses.find(c => c.id === block.courseId);
                                             return (

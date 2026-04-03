@@ -57,7 +57,7 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose, onSubmit }) => {
             aria-labelledby="feedback-modal-title"
         >
             <div 
-                className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-8 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale"
+                className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl w-full max-w-lg p-4 sm:p-8 relative transform transition-all duration-300 ease-out scale-95 opacity-0 animate-fade-in-scale max-h-[90vh] overflow-y-auto"
                 onClick={e => e.stopPropagation()}
                 style={{ animationFillMode: 'forwards' }}
             >
@@ -66,14 +66,14 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({ onClose, onSubmit }) => {
                 </button>
 
                 <div className="text-center">
-                    <h2 id="feedback-modal-title" className="text-3xl font-bold text-rose-900 dark:text-rose-100">Share Your Feedback</h2>
-                    <p className="text-rose-600 dark:text-rose-300 mt-2">We value your input. Help us improve CampusCompass!</p>
+                    <h2 id="feedback-modal-title" className="text-2xl sm:text-3xl font-bold text-rose-900 dark:text-rose-100">Share Your Feedback</h2>
+                    <p className="text-sm sm:text-base text-rose-600 dark:text-rose-300 mt-2">We value your input. Help us improve CampusCompass!</p>
                 </div>
 
-                <form className="mt-8 space-y-6" onSubmit={handleFormSubmit}>
+                <form className="mt-6 sm:mt-8 space-y-4 sm:space-y-6" onSubmit={handleFormSubmit}>
                     <div>
                         <label className="text-sm font-medium text-rose-800 dark:text-rose-200 mb-2 block">Feedback Type</label>
-                        <div className="grid grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                             {feedbackOptions.map(option => (
                                 <button
                                     key={option.name}

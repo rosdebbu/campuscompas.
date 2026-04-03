@@ -101,12 +101,12 @@ const PortfolioBuilder: React.FC = () => {
          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg p-8 text-center border">
             <div className="flex justify-center items-center mb-4">
                 <PortfolioIcon />
-                <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Portfolio Builder</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Portfolio Builder</h2>
             </div>
-            <p className="text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Connect your GitHub account to automatically curate and showcase your best projects.</p>
+            <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Connect your GitHub account to automatically curate and showcase your best projects.</p>
             <button 
                 onClick={() => setIsConnected(true)}
-                className="mt-8 inline-flex items-center px-8 py-4 bg-gray-800 text-white font-semibold rounded-full shadow-lg hover:bg-gray-900 transition-all transform hover:scale-105 duration-300"
+                className="mt-8 inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 text-white font-semibold rounded-full shadow-lg hover:bg-gray-900 transition-all transform hover:scale-105 duration-300"
             >
                 <GitHubIcon className="mr-3" /> Connect to GitHub
             </button>
@@ -114,11 +114,11 @@ const PortfolioBuilder: React.FC = () => {
     );
 
     const ConnectedState = () => (
-        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-6 space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-4 sm:p-6 space-y-6">
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                 <div>
-                     <h2 className="text-2xl font-bold text-rose-900 dark:text-rose-100">Your Developer Portfolio</h2>
-                     <p className="text-rose-600 dark:text-rose-300">Share this link with recruiters: 
+                     <h2 className="text-xl sm:text-2xl font-bold text-rose-900 dark:text-rose-100">Your Developer Portfolio</h2>
+                     <p className="text-sm sm:text-base text-rose-600 dark:text-rose-300">Share this link with recruiters: 
                          <a href="#" onClick={e=>e.preventDefault()} className="font-semibold text-teal-600 hover:underline ml-1">campasscompass.com/portfolio/{mockUser.username}</a>
                      </p>
                 </div>
@@ -140,7 +140,7 @@ const PortfolioBuilder: React.FC = () => {
                 </div>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 {/* Available Repos */}
                 <div>
                     <h3 className="font-semibold text-rose-800 dark:text-rose-200 mb-3">Available Repositories</h3>
@@ -187,7 +187,7 @@ const PortfolioBuilder: React.FC = () => {
     );
 
     return (
-        <section className="py-20 bg-lime-100 dark:bg-slate-800">
+        <section className="py-12 md:py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
                 {isConnected ? <ConnectedState /> : <DisconnectedState />}
             </div>

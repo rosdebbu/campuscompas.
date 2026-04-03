@@ -127,10 +127,10 @@ const AIChatbot: React.FC = () => {
     return (
         <>
             {/* Floating Action Button */}
-            <div className="fixed bottom-6 right-6 z-50">
+            <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-110 border-2 border-white/20 dark:border-slate-700/50"
+                    className="bg-gradient-to-br from-cyan-500 to-blue-600 text-white w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-110 border-2 border-white/20 dark:border-slate-700/50"
                     aria-label="Open AI Chatbot"
                 >
                     {isOpen ? <CloseIcon /> : <ChatIcon />}
@@ -139,7 +139,7 @@ const AIChatbot: React.FC = () => {
 
             {/* Chatbot Window */}
             {isOpen && (
-                <div className="fixed bottom-28 right-6 w-[22rem] sm:w-[26rem] h-[36rem] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl flex flex-col z-50 transform transition-all duration-300 ease-out origin-bottom-right scale-95 opacity-0 animate-fade-in-scale border border-slate-100 dark:border-slate-800 overflow-hidden">
+                <div className="fixed bottom-20 right-4 sm:bottom-28 sm:right-6 w-[calc(100vw-2rem)] sm:w-[26rem] h-[calc(100vh-100px)] sm:h-[36rem] max-h-[36rem] bg-white dark:bg-slate-900 rounded-3xl shadow-2xl flex flex-col z-50 transform transition-all duration-300 ease-out origin-bottom-right scale-95 opacity-0 animate-fade-in-scale border border-slate-100 dark:border-slate-800 overflow-hidden">
                     {/* Header */}
                     <div className="flex justify-between items-center p-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white">
                         <div className="flex items-center gap-3">

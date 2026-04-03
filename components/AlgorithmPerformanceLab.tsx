@@ -99,14 +99,14 @@ const AlgorithmPerformanceLab: React.FC = () => {
     };
 
     return (
-        <section className="py-20 bg-lime-100 dark:bg-slate-800">
+        <section className="py-12 md:py-20 bg-lime-100 dark:bg-slate-800">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
+                <div className="text-center mb-8 md:mb-12">
                     <div className="flex justify-center items-center mb-4">
                         <LabIcon />
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Algorithm Performance Lab</h2>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-rose-900 dark:text-rose-100">Algorithm Performance Lab</h2>
                     </div>
-                    <p className="text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
+                    <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-3xl mx-auto">
                         Correctness is just the beginning. Pit your algorithms against massive datasets and learn to write code that performs under pressure.
                     </p>
                 </div>
@@ -114,7 +114,7 @@ const AlgorithmPerformanceLab: React.FC = () => {
                 <div className="max-w-6xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-lg border p-6 sm:p-8 space-y-8">
                     {/* Challenge Description */}
                     <div>
-                        <h3 className="text-2xl font-bold text-rose-900 dark:text-rose-100">Challenge: Two Sum</h3>
+                        <h3 className="text-xl sm:text-2xl font-bold text-rose-900 dark:text-rose-100">Challenge: Two Sum</h3>
                         <p className="text-rose-700 mt-2">Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.</p>
                     </div>
 
@@ -132,7 +132,7 @@ const AlgorithmPerformanceLab: React.FC = () => {
 
                     {/* Benchmark Control */}
                     <div className="text-center">
-                        <button onClick={handleRunBenchmark} disabled={benchmarkStatus === 'running'} className="px-8 py-4 bg-rose-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:bg-rose-50 dark:bg-slate-8000 transition-all transform hover:scale-105 active:scale-95 duration-300 disabled:bg-rose-200 disabled:scale-100">
+                        <button onClick={handleRunBenchmark} disabled={benchmarkStatus === 'running'} className="px-6 py-3 sm:px-8 sm:py-4 bg-rose-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:bg-rose-50 dark:bg-slate-8000 transition-all transform hover:scale-105 active:scale-95 duration-300 disabled:bg-rose-200 disabled:scale-100">
                            {benchmarkStatus === 'running' ? 'Running Benchmark...' : 'Run Benchmark'}
                         </button>
                     </div>

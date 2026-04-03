@@ -21,7 +21,7 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ onFeedbackClick }) => {
     return (
         <footer className="bg-teal-900 border-t border-teal-800 dark:bg-slate-950 dark:border-slate-800 text-lime-100 transition-colors duration-300">
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 py-8 md:py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* About Section */}
                     <div className="md:col-span-1">

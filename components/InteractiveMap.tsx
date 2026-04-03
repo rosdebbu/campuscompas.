@@ -135,7 +135,7 @@ const InteractiveMap: React.FC = () => {
     };
 
     return (
-        <section id="transport" className="py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+        <section id="transport" className="py-12 md:py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
             {arModeActive && selectedLocation && (
                 <ARNavigationView
                     destination={selectedLocation.name}
@@ -144,11 +144,11 @@ const InteractiveMap: React.FC = () => {
             )}
 
             <div className="container mx-auto px-4 max-w-7xl">
-                <div className="text-center mb-16">
+                <div className="text-center mb-10 md:mb-16">
                     <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-sm font-semibold mb-4 tracking-wide border border-blue-200 dark:border-blue-800">
                         Campus Navigation
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-500 dark:from-white dark:to-slate-300 mb-6 font-space">
+                    <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-cyan-500 dark:from-white dark:to-slate-300 mb-4 md:mb-6 font-space">
                         Interactive Campus Map
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
@@ -173,7 +173,7 @@ const InteractiveMap: React.FC = () => {
                     ))}
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-8">
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                     {/* Left: Map */}
                     <div className="lg:w-[60%] xl:w-2/3 w-full h-[400px] lg:h-[650px] rounded-3xl shadow-xl overflow-hidden relative bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800">
                         {isMapLoading && (
