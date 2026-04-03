@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { GalleryItem, Hostel } from '../types';
 
 // --- Building Detail Modal ---
@@ -350,8 +351,10 @@ const galleryItems: GalleryItem[] = [
 
 // --- Sub-Components ---
 const GalleryCard: React.FC<{ item: GalleryItem; onClick: () => void }> = ({ item, onClick }) => (
-    <div 
-        className={`relative rounded-xl overflow-hidden shadow-lg group transform hover:scale-105 transition-transform duration-300 h-64 sm:h-80 ${item.buildingDetails ? 'cursor-pointer' : ''} ${item.isFeatured ? 'ring-4 ring-offset-2 ring-amber-400' : ''}`}
+    <motion.div 
+        variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+        transition={{ duration: 0.5 }}
+        className={`relative rounded-xl overflow-hidden shadow-lg group h-64 sm:h-80 ${item.buildingDetails ? 'cursor-pointer' : ''} ${item.isFeatured ? 'ring-4 ring-offset-2 ring-amber-400' : ''}`}
         onClick={onClick}
         role={item.buildingDetails ? 'button' : undefined}
         tabIndex={item.buildingDetails ? 0 : -1}
@@ -362,6 +365,8 @@ const GalleryCard: React.FC<{ item: GalleryItem; onClick: () => void }> = ({ ite
             }
         }}
         aria-label={item.buildingDetails ? `Explore details for ${item.title}` : item.title}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
     >
         <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
@@ -385,7 +390,7 @@ const GalleryCard: React.FC<{ item: GalleryItem; onClick: () => void }> = ({ ite
                 Explore
             </div>
         )}
-    </div>
+    </motion.div>
 );
 
 
@@ -405,7 +410,19 @@ const CampusGallery: React.FC = () => {
                     </div>
                     <p className="text-base sm:text-lg text-rose-600 dark:text-rose-300 max-w-2xl mx-auto">Explore SRMIST Potheri through stunning visuals. Click on key buildings to see more.</p>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <motion.div 
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: {
+                            opacity: 1,
+                            transition: { staggerChildren: 0.1 }
+                        }
+                    }}
+                >
                     {galleryItems.map(item => (
                         <GalleryCard 
                             key={item.id} 
@@ -417,7 +434,7 @@ const CampusGallery: React.FC = () => {
                             }}
                         />
                     ))}
-                </div>
+                </motion.div>
             </div>
 
             {selectedBuilding && <BuildingDetailModal building={selectedBuilding} onClose={() => setSelectedBuilding(null)} />}

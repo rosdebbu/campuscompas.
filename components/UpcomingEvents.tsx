@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // --- ICONS ---
 const TimeIcon: React.FC = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 text-rose-500 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>;
@@ -65,9 +66,15 @@ const EventCard: React.FC<{ event: Event; onAction: (event: Event) => void; isRe
         'Talk': 'bg-green-100 text-green-800'
     };
     return (
-        <div className="bg-white dark:bg-slate-900 rounded-lg shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300 flex flex-col">
-            <img src={event.imageUrl} alt={event.title} className="w-full h-40 object-cover" />
-            <div className="p-4 flex flex-col flex-grow">
+        <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            whileHover={{ y: -5 }}
+            className="glass rounded-lg overflow-hidden flex flex-col"
+        >
+            <img src={event.imageUrl} alt={event.title} className="w-full h-40 object-cover opacity-90 transition-opacity hover:opacity-100" />
+            <div className="p-4 flex flex-col flex-grow bg-white/50 dark:bg-slate-900/50">
                 <div>
                     <span className={`text-xs font-semibold px-2 py-1 rounded-full ${categoryColors[event.category]}`}>{event.category}</span>
                     <h3 className="font-bold text-xl text-rose-900 dark:text-rose-100 mt-2">{event.title}</h3>
@@ -78,12 +85,12 @@ const EventCard: React.FC<{ event: Event; onAction: (event: Event) => void; isRe
                     </div>
                 </div>
                 <div className="mt-auto pt-4">
-                    <button onClick={() => onAction(event)} disabled={isRegistered} className={`w-full py-2 rounded-lg text-white font-semibold transition-colors ${isRegistered ? 'bg-teal-400' : event.buttonColor}`}>
+                    <button onClick={() => onAction(event)} disabled={isRegistered} className={`w-full py-2 rounded-lg text-white font-semibold transition-colors shadow-sm cursor-pointer ${isRegistered ? 'bg-teal-400' : event.buttonColor}`}>
                         {isRegistered ? 'Registered' : 'RSVP / Details'}
                     </button>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
@@ -232,13 +239,31 @@ const UpcomingEvents: React.FC = () => {
                     </div>
                 </div>
                 
-                {view === 'card' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                        {filteredEvents.map(event => <EventCard key={event.id} event={event} onAction={setModalEvent} isRegistered={registeredEvents.has(event.id)} />)}
-                    </div>
-                )}
-                {view === 'calendar' && <CalendarView events={filteredEvents} onEventClick={setModalEvent} />}
-                {view === 'map' && <MapView events={filteredEvents} onEventClick={setModalEvent} />}
+                <div className="relative min-h-[400px]">
+                    <AnimatePresence mode="wait">
+                        {view === 'card' && (
+                            <motion.div 
+                                key="card"
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+                            >
+                                {filteredEvents.map(event => <EventCard key={event.id} event={event} onAction={setModalEvent} isRegistered={registeredEvents.has(event.id)} />)}
+                            </motion.div>
+                        )}
+                        {view === 'calendar' && (
+                            <motion.div key="calendar" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}>
+                                <CalendarView events={filteredEvents} onEventClick={setModalEvent} />
+                            </motion.div>
+                        )}
+                        {view === 'map' && (
+                            <motion.div key="map" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -30 }}>
+                                <MapView events={filteredEvents} onEventClick={setModalEvent} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
 
                 {filteredEvents.length === 0 && (
                     <div className="text-center py-12 bg-white dark:bg-slate-900 rounded-lg shadow-sm">

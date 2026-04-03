@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
 
 // --- ICONS ---
 
@@ -143,7 +144,13 @@ const InteractiveMap: React.FC = () => {
                 />
             )}
 
-            <div className="container mx-auto px-4 max-w-7xl">
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6 }}
+                className="container mx-auto px-4 max-w-7xl"
+            >
                 <div className="text-center mb-10 md:mb-16">
                     <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 text-sm font-semibold mb-4 tracking-wide border border-blue-200 dark:border-blue-800">
                         Campus Navigation
@@ -276,7 +283,7 @@ const InteractiveMap: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
             <style>{`
                 .animate-fade-in {
                     animation: fadeIn 0.3s ease-in-out;

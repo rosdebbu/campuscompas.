@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -135,6 +136,47 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose, onLogin }) => {
 };
 
 
+// --- Custom Cursor Component ---
+const CustomCursor: React.FC = () => {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isHovering, setIsHovering] = useState(false);
+
+    useEffect(() => {
+        const updateMousePosition = (e: MouseEvent) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
+        };
+        
+        const handleMouseOver = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const isClickable = window.getComputedStyle(target).cursor === 'pointer' || target.tagName.toLowerCase() === 'a' || target.tagName.toLowerCase() === 'button';
+            setIsHovering(isClickable);
+        };
+
+        window.addEventListener('mousemove', updateMousePosition);
+        window.addEventListener('mouseover', handleMouseOver);
+
+        return () => {
+            window.removeEventListener('mousemove', updateMousePosition);
+            window.removeEventListener('mouseover', handleMouseOver);
+        };
+    }, []);
+
+    return (
+        <div className={`hidden md:block pointer-events-none z-[9999] ${isHovering ? 'cursor-hover' : ''}`}>
+            <motion.div 
+                className="cursor-dot"
+                animate={{ x: mousePosition.x, y: mousePosition.y }}
+                transition={{ type: "tween", ease: "backOut", duration: 0 }}
+            />
+            <motion.div 
+                className="cursor-outline"
+                animate={{ x: mousePosition.x, y: mousePosition.y }}
+                transition={{ type: "tween", ease: "easeOut", duration: 0.15 }}
+            />
+        </div>
+    );
+};
+
 // --- Main App Component ---
 interface User {
   name: string;
@@ -159,7 +201,8 @@ const App: React.FC = () => {
   };
   
   return (
-    <div className="relative min-h-screen max-w-[100vw] overflow-x-hidden bg-lime-50 dark:bg-slate-950 text-rose-900 dark:text-slate-50 transition-colors duration-300 overflow-y-auto">
+    <div className="relative min-h-screen w-full overflow-x-hidden bg-lime-50 dark:bg-slate-950 text-rose-900 dark:text-slate-50 transition-colors duration-500 overflow-y-auto">
+      <CustomCursor />
       {/* Decorative Global Background with Custom Colors */}
       <div className="fixed inset-0 z-0 pointer-events-none opacity-40 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen filter blur-[120px]">
          <div className="absolute top-0 -left-10 w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-blob"></div>
@@ -173,34 +216,40 @@ const App: React.FC = () => {
           user={user}
           onProfileClick={() => setIsLoginModalOpen(true)} 
         />
-        <main>
-          <Hero />
-        <QuickNav />
-        <CampusGallery />
-        <CampusFacilities />
-        <SrmGlobalHospital />
-        <InteractiveMap />
-        <CafeFinder />
-        <CampusLifeEvents />
-        <UpcomingEvents />
-        <WeeklyDigest />
-        <PersonalizedStudyPlanner />
-        <GitHubWidget />
-        <OpenSourceExplorer />
-        <OpenSourceApprenticeship />
-        <PortfolioBuilder />
-        <WeekendProjectGenerator />
-        <AICodeExplainer />
-        <CampusGigBoard />
-        <InternshipBoard />
-        <TechArticleHub />
-        <CICDPipelineBuilder />
-        <ApiIntegrationLab />
-        <AlgorithmPerformanceLab />
-        <CampusNews />
-        <CommunityForum />
-        <LostAndFound />
-      </main>
+        <AnimatePresence>
+          <motion.main
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <Hero />
+            <QuickNav />
+            <CampusGallery />
+            <CampusFacilities />
+            <SrmGlobalHospital />
+            <InteractiveMap />
+            <CafeFinder />
+            <CampusLifeEvents />
+            <UpcomingEvents />
+            <WeeklyDigest />
+            <PersonalizedStudyPlanner />
+            <GitHubWidget />
+            <OpenSourceExplorer />
+            <OpenSourceApprenticeship />
+            <PortfolioBuilder />
+            <WeekendProjectGenerator />
+            <AICodeExplainer />
+            <CampusGigBoard />
+            <InternshipBoard />
+            <TechArticleHub />
+            <CICDPipelineBuilder />
+            <ApiIntegrationLab />
+            <AlgorithmPerformanceLab />
+            <CampusNews />
+            <CommunityForum />
+            <LostAndFound />
+          </motion.main>
+        </AnimatePresence>
       <Footer onFeedbackClick={() => setIsFeedbackModalOpen(true)} />
       
       {/* Modals and Overlays */}

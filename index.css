@@ -4,11 +4,27 @@
 
 @layer base {
   body {
-    @apply bg-lime-50 text-rose-900 transition-colors duration-500;
+    @apply bg-lime-50 text-rose-900 transition-colors duration-500 overflow-x-hidden cursor-none; /* Hide default cursor */
+    /* Add subtle ambient mesh background */
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(113,85%,88%,0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(339,95%,88%,0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(190,85%,85%,0.3) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(39,95%,85%,0.3) 0px, transparent 50%);
   }
   
   .dark body {
     @apply bg-slate-950 text-slate-50;
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(220,50%,15%,1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(339,30%,15%,1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsla(190,30%,15%,1) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsla(39,30%,15%,1) 0px, transparent 50%);
+  }
+  
+  /* Fallback cursor for elements just in case, though JS will handle most */
+  a, button, input {
+    cursor: none;
   }
 }
 
@@ -55,6 +71,26 @@ button, a, input {
 
 ::selection {
   @apply bg-blue-500/30 text-blue-900 dark:text-blue-100;
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 shadow-lg;
+}
+
+/* Custom Interactive Cursor styling */
+.cursor-dot {
+  @apply fixed top-0 left-0 w-3 h-3 bg-rose-500 rounded-full pointer-events-none z-[9999] mix-blend-difference;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-outline {
+  @apply fixed top-0 left-0 w-8 h-8 border border-rose-500 rounded-full pointer-events-none z-[9998] transition-transform duration-300 ease-out;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-hover .cursor-outline {
+  @apply w-12 h-12 bg-rose-500/10 border-rose-400;
 }
 
 @keyframes blob {

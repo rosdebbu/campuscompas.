@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
     return (
@@ -11,17 +12,40 @@ const Hero: React.FC = () => {
             <div className="container relative mx-auto px-4 py-10 sm:py-16 md:py-24 z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Column: Text and Search */}
-                    <div className="text-center lg:text-left">
-                        <span className="inline-block py-1 px-3 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300 text-sm font-semibold mb-4 tracking-wide border border-rose-200 dark:border-rose-800 backdrop-blur-md">
+                    <motion.div 
+                        className="text-center lg:text-left"
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: { staggerChildren: 0.15 }
+                            }
+                        }}
+                    >
+                        <motion.span 
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                            className="inline-block py-1 px-3 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900/50 dark:text-rose-300 text-sm font-semibold mb-4 tracking-wide border border-rose-200 dark:border-rose-800 backdrop-blur-md"
+                        >
                             Next-Gen Campus Experience
-                        </span>
-                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 to-rose-600 dark:from-white dark:to-slate-300 leading-tight">
+                        </motion.span>
+                        <motion.h1 
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                            className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-900 to-rose-600 dark:from-white dark:to-slate-300 leading-tight tracking-tight"
+                        >
                             Your Campus <br/><span className="text-teal-500 dark:text-teal-400">Compass</span>
-                        </h1>
-                        <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 text-slate-600 dark:text-slate-400">
+                        </motion.h1>
+                        <motion.p 
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                            className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 text-slate-600 dark:text-slate-400 leading-relaxed"
+                        >
                             Navigate SRMIST Potheri with AI-powered assistance, real-time events, and personalized insights.
-                        </p>
-                        <div className="mt-8 w-full max-w-lg mx-auto lg:mx-0 relative group">
+                        </motion.p>
+                        <motion.div 
+                            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }}
+                            className="mt-8 w-full max-w-lg mx-auto lg:mx-0 relative group"
+                        >
                             <div className="absolute inset-0 bg-gradient-to-r from-rose-400 to-teal-400 rounded-full blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
                             <input
                                 type="text"
@@ -33,8 +57,11 @@ const Hero: React.FC = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </button>
-                        </div>
-                        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-sm text-slate-500 dark:text-slate-400">
+                        </motion.div>
+                        <motion.div 
+                            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+                            className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 text-sm text-slate-500 dark:text-slate-400"
+                        >
                             <span>Popular:</span>
                             <div className="flex flex-wrap justify-center gap-2">
                                 {['Tech Park', 'Java Canteen', 'Library'].map(tag => (
@@ -43,15 +70,18 @@ const Hero: React.FC = () => {
                                     </span>
                                 ))}
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                     {/* Right Column: Image */}
                     <div className="hidden lg:block relative">
                         <div className="absolute inset-0 bg-gradient-to-tr from-rose-400 to-teal-400 rounded-3xl transform rotate-3 scale-105 opacity-20 dark:opacity-30 blur-lg"></div>
-                        <img 
+                        <motion.img 
+                            initial={{ y: 0 }}
+                            animate={{ y: [-15, 15, -15] }}
+                            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
                             src="/images/hero_tech_park.jpg" 
                             alt="SRMIST KTR campus - Tech Park" 
-                            className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white dark:border-slate-800"
+                            className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white/40 dark:border-slate-800/40 glass"
                         />
                     </div>
                 </div>

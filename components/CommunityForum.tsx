@@ -1,4 +1,5 @@
 import React, { useState, useRef, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // --- TYPES ---
 type Badge = 'Idea Starter' | 'Community Voice' | 'Problem Solver' | 'Campus Guide';
@@ -498,22 +499,36 @@ const CommunityForum: React.FC = () => {
 
                 <div className="w-full bg-slate-200/50 dark:bg-slate-800/30 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-4 md:p-8 h-[600px] md:h-[850px] flex flex-col">
                     {/* Tabs */}
-                    <div className="flex-shrink-0 mb-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-2 rounded-2xl flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 border border-slate-100 dark:border-slate-800/50 shadow-sm mx-auto w-full max-w-3xl">
-                        <button onClick={() => setActiveTab('discussion')} className={`flex-1 py-2 px-2 sm:py-3 sm:px-4 text-sm sm:text-base rounded-xl font-bold flex items-center justify-center gap-1.5 sm:gap-2.5 transition-all duration-300 ${activeTab === 'discussion' ? 'bg-gradient-to-r from-blue-600 to-cyan-500 shadow-md text-white scale-105' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                    <div className="flex-shrink-0 mb-8 glass p-2 rounded-2xl flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 mx-auto w-full max-w-3xl">
+                        <button onClick={() => setActiveTab('discussion')} className={`flex-1 relative py-2 px-2 sm:py-3 sm:px-4 text-sm sm:text-base rounded-xl font-bold flex items-center justify-center gap-1.5 sm:gap-2.5 transition-all duration-300 ${activeTab === 'discussion' ? 'text-white' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                            {activeTab === 'discussion' && <motion.div layoutId="forumTab" className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl shadow-md -z-10" />}
                             <DiscussionIcon /> Discussion
                         </button>
-                        <button onClick={() => setActiveTab('pipeline')} className={`flex-1 py-2 px-2 sm:py-3 sm:px-4 text-sm sm:text-base rounded-xl font-bold flex items-center justify-center gap-1.5 sm:gap-2.5 transition-all duration-300 ${activeTab === 'pipeline' ? 'bg-gradient-to-r from-blue-600 to-cyan-500 shadow-md text-white scale-105' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                        <button onClick={() => setActiveTab('pipeline')} className={`flex-1 relative py-2 px-2 sm:py-3 sm:px-4 text-sm sm:text-base rounded-xl font-bold flex items-center justify-center gap-1.5 sm:gap-2.5 transition-all duration-300 ${activeTab === 'pipeline' ? 'text-white' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                            {activeTab === 'pipeline' && <motion.div layoutId="forumTab" className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl shadow-md -z-10" />}
                             <PipelineIcon /> Idea Pipeline
                         </button>
-                        <button onClick={() => setActiveTab('leaders')} className={`flex-1 py-2 px-2 sm:py-3 sm:px-4 text-sm sm:text-base rounded-xl font-bold flex items-center justify-center gap-1.5 sm:gap-2.5 transition-all duration-300 ${activeTab === 'leaders' ? 'bg-gradient-to-r from-blue-600 to-cyan-500 shadow-md text-white scale-105' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                        <button onClick={() => setActiveTab('leaders')} className={`flex-1 relative py-2 px-2 sm:py-3 sm:px-4 text-sm sm:text-base rounded-xl font-bold flex items-center justify-center gap-1.5 sm:gap-2.5 transition-all duration-300 ${activeTab === 'leaders' ? 'text-white' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                            {activeTab === 'leaders' && <motion.div layoutId="forumTab" className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl shadow-md -z-10" />}
                             <TrophyIcon /> Leaders
                         </button>
                     </div>
 
-                    <div className="flex-grow min-h-0">
-                      {activeTab === 'discussion' && renderDiscussion()}
-                      {activeTab === 'pipeline' && renderPipeline()}
-                      {activeTab === 'leaders' && renderLeaders()}
+                    <div className="flex-grow min-h-0 relative">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeTab}
+                                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                                transition={{ duration: 0.3 }}
+                                className="h-full w-full"
+                            >
+                                {activeTab === 'discussion' && renderDiscussion()}
+                                {activeTab === 'pipeline' && renderPipeline()}
+                                {activeTab === 'leaders' && renderLeaders()}
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </div>
             </div>
