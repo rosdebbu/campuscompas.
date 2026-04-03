@@ -496,7 +496,7 @@ const CommunityForum: React.FC = () => {
                      </p>
                 </div>
 
-                <div className="w-full bg-slate-200/50 dark:bg-slate-800/30 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-4 md:p-8 h-[850px] flex flex-col">
+                <div className="w-full bg-slate-200/50 dark:bg-slate-800/30 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-4 md:p-8 h-[600px] md:h-[850px] flex flex-col">
                     {/* Tabs */}
                     <div className="flex-shrink-0 mb-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-2 rounded-2xl flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 border border-slate-100 dark:border-slate-800/50 shadow-sm mx-auto w-full max-w-3xl">
                         <button onClick={() => setActiveTab('discussion')} className={`flex-1 py-3 px-4 rounded-xl font-bold flex items-center justify-center gap-2.5 transition-all duration-300 ${activeTab === 'discussion' ? 'bg-gradient-to-r from-blue-600 to-cyan-500 shadow-md text-white scale-105' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}>

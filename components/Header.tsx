@@ -186,15 +186,15 @@ const Header: React.FC<HeaderProps> = ({ user, onProfileClick }) => {
                 <div className="flex items-center">
                     <LogoIcon />
                     <div>
-                        <h1 className="text-lg font-bold text-rose-900 dark:text-rose-100">CampusCompass</h1>
-                        <p className="text-xs text-rose-600 dark:text-slate-400">SRMIST Potheri • Smart Campus</p>
+                        <h1 className="text-lg font-bold text-rose-900 dark:text-rose-100 hidden sm:block">CampusCompass</h1>
+                        <p className="text-xs text-rose-600 dark:text-slate-400 hidden lg:block">SRMIST Potheri • Smart Campus</p>
                     </div>
                 </div>
                 <div className="flex items-center space-x-4">
                      <div className="relative">
                         <button 
                             onClick={() => setIsForecastOpen(prev => !prev)}
-                            className="flex items-center space-x-2 text-sm text-rose-700 w-36 justify-end p-2 rounded-lg hover:bg-lime-100 transition-colors"
+                            className="flex items-center space-x-2 text-sm text-rose-700 sm:w-36 justify-end p-2 rounded-lg hover:bg-lime-100 transition-colors"
                             aria-expanded={isForecastOpen}
                             aria-controls="weather-forecast-popup"
                         >
@@ -206,7 +206,7 @@ const Header: React.FC<HeaderProps> = ({ user, onProfileClick }) => {
                             ) : (
                                 <>
                                     <WeatherIcon condition={weather.current.condition} />
-                                    <span>{weather.current.temp}°C {weather.current.condition}</span>
+                                    <span>{weather.current.temp}°C <span className="hidden sm:inline">{weather.current.condition}</span></span>
                                 </>
                             )}
                         </button>

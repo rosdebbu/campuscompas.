@@ -175,7 +175,7 @@ const InteractiveMap: React.FC = () => {
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Left: Map */}
-                    <div className="lg:w-[60%] xl:w-2/3 w-full h-[650px] rounded-3xl shadow-xl overflow-hidden relative bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800">
+                    <div className="lg:w-[60%] xl:w-2/3 w-full h-[400px] lg:h-[650px] rounded-3xl shadow-xl overflow-hidden relative bg-slate-200 dark:bg-slate-800 border border-slate-200 dark:border-slate-800">
                         {isMapLoading && (
                             <div className="absolute inset-0 bg-white/70 dark:bg-slate-900/80 backdrop-blur-sm z-20 flex flex-col items-center justify-center transition-opacity" role="status">
                                 <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
@@ -197,7 +197,7 @@ const InteractiveMap: React.FC = () => {
                     </div>
                     
                     {/* Right: Sidebar */}
-                    <div className="lg:w-[40%] xl:w-1/3 w-full h-[650px] bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col">
+                    <div className="lg:w-[40%] xl:w-1/3 w-full h-[400px] lg:h-[650px] bg-white/50 dark:bg-slate-900/50 backdrop-blur-xl rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 p-5 flex flex-col">
                         <div className="mb-6">
                             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 capitalize flex items-center">
                                 <span className="w-2 h-6 bg-blue-500 rounded-full mr-3"></span>

@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-lime-50 text-rose-900 transition-colors duration-300;
+    @apply bg-lime-50 text-rose-900 transition-colors duration-500;
   }
   
   .dark body {
@@ -12,18 +12,49 @@
   }
 }
 
+/* Global premium matte noise texture */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+}
+
+.dark body::after {
+  opacity: 0.035;
+}
+
+/* Fluid premium hover physics */
+*, *::before, *::after {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button, a, input {
+  @apply transition-all duration-300;
+}
+
 /* Custom premium scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  @apply bg-slate-100 dark:bg-slate-900;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-rose-300 dark:bg-slate-700 rounded-full;
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full border-[3px] border-solid border-slate-100 dark:border-slate-900;
 }
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-rose-400 dark:bg-slate-600;
+  @apply bg-slate-400 dark:bg-slate-600;
+}
+
+::selection {
+  @apply bg-blue-500/30 text-blue-900 dark:text-blue-100;
 }
 
 @keyframes blob {

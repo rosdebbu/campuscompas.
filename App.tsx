@@ -159,7 +159,7 @@ const App: React.FC = () => {
   };
   
   return (
-    <div className="relative min-h-screen bg-lime-50 dark:bg-slate-950 text-rose-900 dark:text-slate-50 transition-colors duration-300 overflow-hidden overflow-y-auto">
+    <div className="relative min-h-screen max-w-[100vw] overflow-x-hidden bg-lime-50 dark:bg-slate-950 text-rose-900 dark:text-slate-50 transition-colors duration-300 overflow-y-auto">
       {/* Decorative Global Background with Custom Colors */}
       <div className="fixed inset-0 z-0 pointer-events-none opacity-40 dark:opacity-20 mix-blend-multiply dark:mix-blend-screen filter blur-[120px]">
          <div className="absolute top-0 -left-10 w-96 h-96 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-blob"></div>
